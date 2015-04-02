@@ -1,9 +1,9 @@
-require "nokogiri"
-require "base64"
-require "digest/sha1"
-require "openssl"
+require 'nokogiri'
+require 'base64'
+require 'digest/sha1'
+require 'openssl'
 
-require "egov/digester"
+require 'egov/digester'
 
 module Egov
   class Signer
@@ -55,24 +55,24 @@ module Egov
       @cert = certificate
       # Try to guess a digest algorithm for signature creation
       case @cert.signature_algorithm
-        when 'GOST R 34.11-94 with GOST R 34.10-2001'
-          self.signature_digest_algorithm = :gostr3411
-          self.signature_algorithm_id = 'http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411'
-        # Add clauses for other types of keys that require other digest algorithms and identifiers
-        else # most common 'sha1WithRSAEncryption' type included here
-          self.set_default_signature_method! # Reset any changes as they can become malformed
+      when 'GOST R 34.11-94 with GOST R 34.10-2001'
+        self.signature_digest_algorithm = :gostr3411
+        self.signature_algorithm_id = 'http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411'
+      # Add clauses for other types of keys that require other digest algorithms and identifiers
+      else # most common 'sha1WithRSAEncryption' type included here
+        self.set_default_signature_method! # Reset any changes as they can become malformed
       end
     end
 
     def security_token_id
-      @security_token_id ||= "uuid-639b8970-7644-4f9e-9bc4-9c2e367808fc-1"
+      @security_token_id ||= 'uuid-639b8970-7644-4f9e-9bc4-9c2e367808fc-1'
     end
 
     def security_node
       @security_node ||= document.xpath('//wsse:Security', wsse: WSSE_NAMESPACE).first
     end
 
-    def canonicalize(node = document, inclusive_namespaces=nil)
+    def canonicalize(node = document, inclusive_namespaces = nil)
       # node.canonicalize(Nokogiri::XML::XML_C14N_EXCLUSIVE_1_0, inclusive_namespaces, nil) # The last argument should be exactly +nil+ to remove comments from result
       node.canonicalize(Nokogiri::XML::XML_C14N_1_0, inclusive_namespaces, nil) # The last argument should be exactly +nil+ to remove comments from result
     end
@@ -106,7 +106,7 @@ module Egov
         canonicalization_method_node['Algorithm'] = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315'
         node.add_child(canonicalization_method_node)
         signature_method_node = Nokogiri::XML::Node.new('SignatureMethod', document)
-        signature_method_node['Algorithm'] = self.signature_algorithm_id
+        signature_method_node['Algorithm'] = signature_algorithm_id
         node.add_child(signature_method_node)
       end
       node
@@ -210,7 +210,7 @@ module Egov
       target_digest = Base64.encode64(@digester.digest(target_canon)).strip
 
       reference_node = Nokogiri::XML::Node.new('Reference', document)
-      reference_node['URI'] = id.to_s.size > 0 ? "##{id}" : ""
+      reference_node['URI'] = id.to_s.size > 0 ? "##{id}" : ''
       signed_info_node.add_child(reference_node)
 
       transforms_node = Nokogiri::XML::Node.new('Transforms', document)
@@ -252,13 +252,8 @@ module Egov
     # * [+:inclusive_namespaces+] Array of namespace prefixes which definitions should be added to signed info node during canonicalization
 
     def sign!(options = {})
-      if options[:security_token]
-        binary_security_token_node
-      end
-
-      if options[:issuer_serial]
-        x509_data_node
-      end
+      binary_security_token_node if options[:security_token]
+      x509_data_node if options[:issuer_serial]
 
       if options[:inclusive_namespaces]
         c14n_method_node = signed_info_node.at_xpath('ds:CanonicalizationMethod', ds: 'http://www.w3.org/2000/09/xmldsig#')
@@ -299,7 +294,7 @@ module Egov
     def namespace_prefix(target_node, namespace, desired_prefix = nil)
       ns = target_node.namespaces.key(namespace)
       if ns
-        ns.match(/(?:xmlns:)?(.*)/) && $1
+        ns.match(/(?:xmlns:)?(.*)/) && Regexp.last_match(1)
       elsif desired_prefix
         target_node.add_namespace_definition(desired_prefix, namespace)
         desired_prefix
