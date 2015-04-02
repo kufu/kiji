@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
   end
 
-  spec.summary       = 'TODO: Write a short summary, because Rubygems requires one.'
+  spec.summary       = 'Hack Japanese e-Gov'
   spec.description   = 'TODO: Write a longer description or delete this line.'
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = 'MIT'
@@ -31,4 +31,9 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rubocop'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'pry-byebug'
+  spec.add_development_dependency 'dotenv'
+
+  # spec.add_runtime_dependency 'signer'
+  spec.add_runtime_dependency 'faraday'
+  spec.add_runtime_dependency 'nokogiri'
 end

@@ -1,0 +1,9 @@
+<DataRoot>
+<Result>
+<Code>1</Code>
+<Message>該当する利用者IDと証明書の情報は、既に登録されています。</Message>
+</Result>
+<ApplData>
+<UserID>SmartHR001</UserID>
+</ApplData>
+</DataRoot>
