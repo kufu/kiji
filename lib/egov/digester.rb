@@ -1,3 +1,6 @@
+# Copyright (c) 2012 Edgars Beigarts
+# Released under the MIT license
+# http://opensource.org/licenses/mit-license.php
 require 'openssl'
 
 module Egov
