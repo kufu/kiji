@@ -2,7 +2,6 @@ require 'nokogiri'
 require 'base64'
 require 'digest/sha1'
 require 'openssl'
-
 require 'egov/digester'
 
 module Egov
@@ -92,7 +91,7 @@ module Egov
     end
 
     # <SignedInfo>
-    #   <CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+    #   <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
     #   <SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
     #   ...
     # </SignedInfo>
@@ -102,7 +101,6 @@ module Egov
         node = Nokogiri::XML::Node.new('SignedInfo', document)
         signature_node.add_child(node)
         canonicalization_method_node = Nokogiri::XML::Node.new('CanonicalizationMethod', document)
-        # canonicalization_method_node['Algorithm'] = 'http://www.w3.org/2001/10/xml-exc-c14n#'
         canonicalization_method_node['Algorithm'] = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315'
         node.add_child(canonicalization_method_node)
         signature_method_node = Nokogiri::XML::Node.new('SignatureMethod', document)
@@ -190,7 +188,7 @@ module Egov
     #
     #   <Reference URI="#_0">
     #     <Transforms>
-    #       <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#">
+    #       <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315">
     #         <ec:InclusiveNamespaces xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#" PrefixList="soap" />
     #       </Transform>
     #     </Transforms>
