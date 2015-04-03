@@ -34,7 +34,7 @@ module Egov
     end
 
     def req_body_register
-      fail 'Please specify cert & private_key' if cert.nil? || private_key.nil?
+      fail 'Please specify appl_data, cert & private_key' if appl_data.nil? || cert.nil? || private_key.nil?
 
       signer = Signer.new(appl_data)
       signer.cert = cert
