@@ -25,9 +25,23 @@ module Egov
         }
       end
 
-      response = post(appl_data)
-      File.write('tmp/response_body.txt', response.body)
-      response.body
+      response = post('/shinsei/1/authentication/user', appl_data)
+      File.write('tmp/response_register.txt', response.body)
+      response
+    end
+
+    def login(user_id)
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.UserID user_id
+          }
+        }
+      end
+
+      response = post('/shinsei/1/authentication/login', appl_data)
+      File.write('tmp/response_login.txt', response.body)
+      response
     end
 
     private
@@ -40,11 +54,11 @@ module Egov
       end
     end
 
-    def post(body)
-      connection.post '/shinsei/1/authentication/user' do |req|
+    def post(path, body)
+      connection.post(path) do |req|
         req.headers['User-Agent'] = 'SmartHR v0.0.1'
         req.headers['x-eGovAPI-SoftwareID'] = software_id
-        req.body = sign(body)
+        req.body = sign(body).to_xml
       end
     end
 
@@ -67,7 +81,7 @@ module Egov
       end
 
       signer.sign!(issuer_serial: true)
-      signer.to_xml
+      signer
     end
   end
 end
