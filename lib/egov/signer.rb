@@ -17,6 +17,8 @@ module Egov
       self.document = Nokogiri::XML(document.to_s, &:noblanks)
       self.digest_algorithm = :sha1
       self.set_default_signature_method!
+
+      yield(self) if block_given?
     end
 
     def to_xml

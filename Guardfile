@@ -44,5 +44,5 @@ guard :bundler do
 end
 
 guard :rubocop, all_on_start: true, cli: ['-D', '--format', 'clang'] do
-  # nop
+  watch(/.+\.rb$/)
 end
