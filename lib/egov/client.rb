@@ -1,38 +1,26 @@
 require 'faraday'
-require 'forwardable'
 require 'egov/signer'
 
 module Egov
   class Client
-    extend Forwardable
 
-    def_delegators :@signer, :cert=, :private_key=
-
-    attr_accessor :software_id, :end_point,
+    attr_accessor :appl_data, :cert, :private_key,
+                  :software_id, :api_end_point,
                   :basic_auth_id, :basic_auth_password
 
-    def initialize(
-      software_id: ENV['EGOV_SOFTWARE_ID'],
-      api_end_point: ENV['EGOV_API_END_POINT'],
-      basic_auth_id: ENV['EGOV_BASIC_AUTH_ID'],
-      basic_auth_password: ENV['EGOV_BASIC_AUTH_PASSWORD']
-    )
+    def initialize
       @software_id = software_id
+      @api_end_point = api_end_point
       @basic_auth_id = basic_auth_id
       @basic_auth_password = basic_auth_password
 
-      @conn = Faraday.new(url: api_end_point) do |c|
+      yield(self) if block_given?
+
+      @conn = Faraday.new(url: @api_end_point) do |c|
         # c.response :logger
         c.adapter Faraday.default_adapter
-        c.basic_auth(self.basic_auth_id, self.basic_auth_password) unless basic_auth_id.nil?
+        c.basic_auth(@basic_auth_id, @basic_auth_password) unless @basic_auth_id.nil?
       end
-    end
-
-    def appl_data=(appl_data)
-      @signer = Signer.new(appl_data)
-      @signer.digest_algorithm           = :sha256
-      @signer.signature_digest_algorithm = :sha256
-      @signer.security_node = @signer.document.root
     end
 
     def register
@@ -46,14 +34,23 @@ module Egov
     end
 
     def req_body_register
-      @signer.document.xpath('/DataRoot/ApplData').each do |node|
-        @signer.digest!(node, id: 'ApplData')
+      fail 'Please specify cert & private_key' if cert.nil? || private_key.nil?
+
+      signer = Signer.new(appl_data)
+      signer.cert = cert
+      signer.private_key = private_key
+      signer.digest_algorithm           = :sha256
+      signer.signature_digest_algorithm = :sha256
+      signer.security_node = signer.document.root
+
+      signer.document.xpath('/DataRoot/ApplData').each do |node|
+        signer.digest!(node, id: 'ApplData')
       end
 
-      @signer.sign!(issuer_serial: true)
+      signer.sign!(issuer_serial: true)
 
       # File.write('tmp/signed_req_body_register.xml', signer.to_xml)
-      @signer.to_xml
+      signer.to_xml
     end
   end
 end
