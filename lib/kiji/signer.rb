@@ -5,9 +5,9 @@ require 'nokogiri'
 require 'base64'
 require 'digest/sha1'
 require 'openssl'
-require 'egov/digester'
+require 'kiji/digester'
 
-module Egov
+module Kiji
   class Signer
     attr_accessor :document, :private_key, :signature_algorithm_id
     attr_reader :cert
@@ -39,7 +39,7 @@ module Egov
     # or +Hash+ with keys +:id+ with a string, which will denote algorithm in XML Reference tag
     # and +:digester+ with instance of class with interface compatible with +OpenSSL::Digest+ class.
     def digest_algorithm=(algorithm)
-      @digester = Egov::Digester.new(algorithm)
+      @digester = Kiji::Digester.new(algorithm)
     end
 
     # Return symbol name for supported digest algorithms and string name for custom ones.
@@ -49,7 +49,7 @@ module Egov
 
     # Allows to change digesting algorithm for signature creation. Same as +digest_algorithm=+
     def signature_digest_algorithm=(algorithm)
-      @sign_digester = Egov::Digester.new(algorithm)
+      @sign_digester = Kiji::Digester.new(algorithm)
     end
 
     # Receives certificate for signing and tries to guess a digest algorithm for signature creation.

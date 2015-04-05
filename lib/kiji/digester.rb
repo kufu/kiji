@@ -3,7 +3,7 @@
 # http://opensource.org/licenses/mit-license.php
 require 'openssl'
 
-module Egov
+module Kiji
   # Digest algorithms supported "out of the box"
   DIGEST_ALGORITHMS = {
     # SHA 1

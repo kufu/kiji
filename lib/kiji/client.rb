@@ -1,7 +1,7 @@
 require 'faraday'
-require 'egov/signer'
+require 'kiji/signer'
 
-module Egov
+module Kiji
   class Client
     attr_accessor :cert, :private_key,
                   :software_id, :api_end_point,

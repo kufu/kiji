@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Egov::Client do
+describe Kiji::Client do
   before do
     cert_file        = File.join(File.dirname(__FILE__), 'data', 'e-GovEE02_sha2.cer')
     private_key_file = File.join(File.dirname(__FILE__), 'data', 'e-GovEE02_sha2.pem')
@@ -11,7 +11,7 @@ describe Egov::Client do
 
   describe '#initialize' do
     it 'is able to set attributes in block' do
-      @client = Egov::Client.new do |c|
+      @client = Kiji::Client.new do |c|
         c.software_id = 'my_software_id'
         c.api_end_point = 'my_api_end_point'
         c.basic_auth_id = 'my_basic_auth_id'
@@ -29,7 +29,7 @@ describe Egov::Client do
   end
 
   it 'is able to set attributes after init' do
-    @client = Egov::Client.new
+    @client = Kiji::Client.new
     @client.software_id = 'my_software_id'
     @client.api_end_point = 'my_api_end_point'
     @client.basic_auth_id = 'my_basic_auth_id'
@@ -46,7 +46,7 @@ describe Egov::Client do
   end
 
   let(:my_client) {
-    Egov::Client.new do |c|
+    Kiji::Client.new do |c|
       c.software_id = ENV['EGOV_SOFTWARE_ID']
       c.api_end_point = ENV['EGOV_API_END_POINT']
       c.basic_auth_id = ENV['EGOV_BASIC_AUTH_ID']

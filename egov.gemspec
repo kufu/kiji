@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'egov/version'
+require 'kiji/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'egov'
-  spec.version       = Egov::VERSION
+  spec.name          = 'kiji'
+  spec.version       = Kiji::VERSION
   spec.authors       = ['kakipo']
   spec.email         = ['kakipo@gmail.com']
 
@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
     spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com' to prevent pushes to rubygems.org, or delete to allow pushes to any server."
   end
 
-  spec.summary       = 'Hack Japanese e-Gov'
+  spec.summary       = 'API toolkits for Japanese e-Gov system'
   spec.description   = 'TODO: Write a longer description or delete this line.'
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = 'MIT'

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Egov do
+describe Kiji do
   it 'has a version number' do
-    expect(Egov::VERSION).not_to be nil
+    expect(Kiji::VERSION).not_to be nil
   end
 
   # it 'does something useful' do
