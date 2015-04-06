@@ -45,4 +45,75 @@ describe Kiji::Access do
       expect(send_apply_count).to eq '1'
     end
   end
+
+  describe '#sended_applications' do
+    context 'when paras are invalid' do
+      context 'when params are blank' do
+        it 'should raise error' do
+          expect {
+            my_client_with_access_key.sended_applications
+          }.to raise_error
+        end
+      end
+      context 'when params do NOT contain SendNumber and (SendDateFrom and SendDateTo)' do
+        it 'should raise error' do
+          expect {
+            my_client_with_access_key.sended_applications(foo: :bar)
+          }.to raise_error
+        end
+      end
+      context 'when params contain only SendDateFrom' do
+        it 'should raise error' do
+          expect {
+            my_client_with_access_key.sended_applications(SendDateFrom: '20150401')
+          }.to raise_error
+        end
+      end
+      context 'when params contain only SendDateTo' do
+        it 'should raise error' do
+          expect {
+            my_client_with_access_key.sended_applications(SendDateTo: '20150401')
+          }.to raise_error
+        end
+      end
+    end
+    context 'when params are valid' do
+      before do
+        file_name = 'apply.zip'
+        file_data = Base64.encode64(File.new('spec/fixtures/apply.zip').read)
+
+        response = my_client_with_access_key.apply(file_name, file_data)
+        xml = Nokogiri::XML(response.body)
+
+        # send_datetime_str = xml.at_xpath('//ApplData/SendDate').text
+        # @send_date = DateTime.parse(send_datetime_str).strftime('%Y%m%d')
+        @send_number = xml.at_xpath('//ApplData/SendNumber').text
+      end
+      context 'when SendNumber is specified', :vcr do
+        it 'should return valid response' do
+          response = my_client_with_access_key.sended_applications(SendNumber: @send_number)
+          xml = Nokogiri::XML(response.body)
+
+          code = xml.at_xpath('//Code').text
+          package_apply_count = xml.at_xpath('//ApplData/PackageApplyCount').text
+
+          expect(code).to eq '0'
+          expect(package_apply_count).to eq '1'
+        end
+      end
+
+      context 'when SendDateFrom and SendDateTo are specified', :vcr do
+        it 'should return valid response' do
+          response = my_client_with_access_key.sended_applications(SendDateFrom: '20150101', SendDateTo: '20150101')
+          xml = Nokogiri::XML(response.body)
+
+          code = xml.at_xpath('//Code').text
+          message = xml.at_xpath('//Message').text
+
+          expect(code).to eq '1'
+          expect(message).to eq '該当する申請情報が存在しません。指定した取得対象期間を確認してください。'
+        end
+      end
+    end
+  end
 end
