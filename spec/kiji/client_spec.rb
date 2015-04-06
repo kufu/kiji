@@ -56,7 +56,7 @@ describe Kiji::Client do
     end
   }
 
-  describe '#register' do
+  describe '#register', :vcr do
     it 'should return valid response' do
       response = my_client.register('SmartHR001')
       xml = Nokogiri::XML(response.body)
@@ -67,7 +67,7 @@ describe Kiji::Client do
     end
   end
 
-  describe '#login' do
+  describe '#login', :vcr do
     it 'should return valid response' do
       response = my_client.login('SmartHR001')
       xml = Nokogiri::XML(response.body)

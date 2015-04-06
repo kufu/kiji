@@ -40,6 +40,7 @@ module Kiji
       end
 
       response = post('/shinsei/1/authentication/login', appl_data)
+
       File.write('tmp/response_login.txt', response.body)
       response
     end
