@@ -25,7 +25,10 @@ module Kiji
         }
       end
 
-      response = post('/shinsei/1/authentication/user', sign(appl_data).to_xml)
+      response = connection.post('/shinsei/1/authentication/user') do |req|
+        req.body = sign(appl_data).to_xml
+      end
+
       File.write('tmp/response_register.txt', response.body)
       response
     end
@@ -39,7 +42,10 @@ module Kiji
         }
       end
 
-      response = post('/shinsei/1/authentication/login', sign(appl_data).to_xml)
+      response = connection.post('/shinsei/1/authentication/login') do |req|
+        req.body = sign(appl_data).to_xml
+      end
+
       File.write('tmp/response_login.txt', response.body)
       response
     end
@@ -56,7 +62,10 @@ module Kiji
         }
       end
 
-      response = post('/shinsei/1/access/apply', appl_data.to_xml)
+      response = connection.post('/shinsei/1/access/apply') do |req|
+        req.body = appl_data.to_xml
+      end
+
       File.write('tmp/response_apply.txt', response.body)
       response
     end
@@ -68,15 +77,9 @@ module Kiji
         # c.response :logger
         c.adapter Faraday.default_adapter
         c.basic_auth(@basic_auth_id, @basic_auth_password) unless @basic_auth_id.nil?
-      end
-    end
-
-    def post(path, body)
-      connection.post(path) do |req|
-        req.headers['User-Agent'] = 'SmartHR v0.0.1'
-        req.headers['x-eGovAPI-SoftwareID'] = software_id
-        req.headers['x-eGovAPI-AccessKey'] = access_key unless access_key.nil?
-        req.body = body
+        c.headers['User-Agent'] = 'SmartHR v0.0.1'
+        c.headers['x-eGovAPI-SoftwareID'] = software_id
+        c.headers['x-eGovAPI-AccessKey'] = access_key unless access_key.nil?
       end
     end
 

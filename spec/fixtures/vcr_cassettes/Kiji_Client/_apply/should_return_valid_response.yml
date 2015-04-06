@@ -10,7 +10,7 @@ http_interactions:
         <DataRoot>
           <ApplData Id="ApplData">
             <Upload>
-              <FileName>test_20140406_01.zip</FileName>
+              <FileName>apply.zip</FileName>
               <FileData>UEsDBAoAAAAAAA2AhkYAAAAAAAAAAAAAAAAWABAAOTAwQTAxMDIwMDAwMTAw
         MCgwMDEpL1VYDADIHyJVCi8iVfUBFABQSwMEFAAIAAgAS2GGRgAAAAAAAAAA
         AAAAAC8AEAA5MDBBMDEwMjAwMDAxMDAwKDAwMSkvOTAwQTAxMDIwMDAwMTAw
@@ -97,11 +97,11 @@ http_interactions:
       message: Accepted
     headers:
       Content-Length:
-      - '366'
+      - '355'
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Mon, 06 Apr 2015 07:04:57 GMT
+      - Mon, 06 Apr 2015 07:44:39 GMT
       X-Frame-Options:
       - DENY
       Cache-Control:
@@ -117,10 +117,10 @@ http_interactions:
       Proxy-Agent:
       - none
       Set-Cookie:
-      - TSe37dc4=f1a2bc8f1cae46a1f9cd3370e59a417e15ff4f06eea25a4555223018; Path=/
+      - TSe37dc4=b8a9ef0132a97a46297ddbb34b1fa7ec0b910b3470ef4cc055223967; Path=/
     body:
       encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<DataRoot>\r\n\r\n\r\n\r\n\r\n<Result>\r\n\t<Code>0</Code>\r\n\t<Message></Message>\r\n</Result>\r\n<ApplData>\r\n\t<SendNumber>201504061604574744</SendNumber>\r\n\t<SendDate>20150406160457</SendDate>\r\n\t<SendFileName>test_20140406_01.zip</SendFileName>\r\n\t<SendApplyCount>1</SendApplyCount>\r\n\t<ErrorCount>0</ErrorCount>\r\n\r\n\r\n\r\n</ApplData>\r\n\r\n</DataRoot>"
-    http_version:
-  recorded_at: Mon, 06 Apr 2015 07:02:32 GMT
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<DataRoot>\r\n\r\n\r\n\r\n\r\n<Result>\r\n\t<Code>0</Code>\r\n\t<Message></Message>\r\n</Result>\r\n<ApplData>\r\n\t<SendNumber>201504061644404755</SendNumber>\r\n\t<SendDate>20150406164440</SendDate>\r\n\t<SendFileName>apply.zip</SendFileName>\r\n\t<SendApplyCount>1</SendApplyCount>\r\n\t<ErrorCount>0</ErrorCount>\r\n\r\n\r\n\r\n</ApplData>\r\n\r\n</DataRoot>"
+    http_version: 
+  recorded_at: Mon, 06 Apr 2015 07:42:15 GMT
 recorded_with: VCR 2.9.3
