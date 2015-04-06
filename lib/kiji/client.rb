@@ -3,7 +3,7 @@ require 'kiji/signer'
 
 module Kiji
   class Client
-    attr_accessor :cert, :private_key,
+    attr_accessor :cert, :private_key, :access_key,
                   :software_id, :api_end_point,
                   :basic_auth_id, :basic_auth_password
 
@@ -25,7 +25,7 @@ module Kiji
         }
       end
 
-      response = post('/shinsei/1/authentication/user', appl_data)
+      response = post('/shinsei/1/authentication/user', sign(appl_data).to_xml)
       File.write('tmp/response_register.txt', response.body)
       response
     end
@@ -39,9 +39,25 @@ module Kiji
         }
       end
 
-      response = post('/shinsei/1/authentication/login', appl_data)
-
+      response = post('/shinsei/1/authentication/login', sign(appl_data).to_xml)
       File.write('tmp/response_login.txt', response.body)
+      response
+    end
+
+    def apply(file_name, file_data)
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.Upload {
+              xml.FileName file_name
+              xml.FileData file_data
+            }
+          }
+        }
+      end
+
+      response = post('/shinsei/1/access/apply', appl_data.to_xml)
+      File.write('tmp/response_apply.txt', response.body)
       response
     end
 
@@ -59,7 +75,8 @@ module Kiji
       connection.post(path) do |req|
         req.headers['User-Agent'] = 'SmartHR v0.0.1'
         req.headers['x-eGovAPI-SoftwareID'] = software_id
-        req.body = sign(body).to_xml
+        req.headers['x-eGovAPI-AccessKey'] = access_key unless access_key.nil?
+        req.body = body
       end
     end
 
