@@ -31,6 +31,7 @@ describe Kiji::Access do
       file_data = Base64.encode64(File.new('spec/fixtures/apply.zip').read)
 
       response = my_client_with_access_key.apply(file_name, file_data)
+      File.write('tmp/response_apply.txt', response.body)
       xml = Nokogiri::XML(response.body)
 
       code = xml.at_xpath('//Code').text
@@ -92,6 +93,7 @@ describe Kiji::Access do
       context 'when SendNumber is specified', :vcr do
         it 'should return valid response' do
           response = my_client_with_access_key.sended_applications(SendNumber: @send_number)
+          File.write('tmp/response_sended_applications1.txt', response.body)
           xml = Nokogiri::XML(response.body)
 
           code = xml.at_xpath('//Code').text
@@ -105,6 +107,7 @@ describe Kiji::Access do
       context 'when SendDateFrom and SendDateTo are specified', :vcr do
         it 'should return valid response' do
           response = my_client_with_access_key.sended_applications(SendDateFrom: '20150101', SendDateTo: '20150101')
+          File.write('tmp/response_sended_applications2.txt', response.body)
           xml = Nokogiri::XML(response.body)
 
           code = xml.at_xpath('//Code').text

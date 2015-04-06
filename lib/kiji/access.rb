@@ -15,24 +15,19 @@ module Kiji
         }
       end
 
-      response = connection.post('/shinsei/1/access/apply') do |req|
+      connection.post('/shinsei/1/access/apply') do |req|
         req.body = appl_data.to_xml
       end
-
-      File.write('tmp/response_apply.txt', response.body)
-      response
     end
 
     def sended_applications(params)
-      response = if params[:SendNumber].present?
-                   connection.get("/shinsei/1/access/apply;id=#{params[:SendNumber]}")
-                 elsif params[:SendDateFrom].present? && params[:SendDateTo].present?
-                   connection.get("/shinsei/1/access/apply;date=#{params[:SendDateFrom]}-#{params[:SendDateTo]}")
-                 else
-                   fail 'Please specify id(SendNumber) or date(SendDateFrom & SendDateTo)'
-                 end
-      File.write('tmp/response_sended_applications.txt', response.body)
-      response
+      if params[:SendNumber].present?
+        connection.get("/shinsei/1/access/apply;id=#{params[:SendNumber]}")
+      elsif params[:SendDateFrom].present? && params[:SendDateTo].present?
+        connection.get("/shinsei/1/access/apply;date=#{params[:SendDateFrom]}-#{params[:SendDateTo]}")
+      else
+        fail 'Please specify id(SendNumber) or date(SendDateFrom & SendDateTo)'
+      end
     end
   end
 end

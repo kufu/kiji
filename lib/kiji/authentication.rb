@@ -9,12 +9,9 @@ module Kiji
         }
       end
 
-      response = connection.post('/shinsei/1/authentication/user') do |req|
+      connection.post('/shinsei/1/authentication/user') do |req|
         req.body = sign(appl_data).to_xml
       end
-
-      File.write('tmp/response_register.txt', response.body)
-      response
     end
 
     def login(user_id)
@@ -26,12 +23,9 @@ module Kiji
         }
       end
 
-      response = connection.post('/shinsei/1/authentication/login') do |req|
+      connection.post('/shinsei/1/authentication/login') do |req|
         req.body = sign(appl_data).to_xml
       end
-
-      File.write('tmp/response_login.txt', response.body)
-      response
     end
   end
 end

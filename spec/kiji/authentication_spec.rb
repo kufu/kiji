@@ -28,6 +28,8 @@ describe Kiji::Authentication do
   describe '#register', :vcr do
     it 'should return valid response' do
       response = my_client.register('SmartHR001')
+      File.write('tmp/response_register.txt', response.body)
+
       xml = Nokogiri::XML(response.body)
       code = xml.at_xpath('//Code').text
       user_id = xml.at_xpath('//UserID').text
@@ -39,6 +41,8 @@ describe Kiji::Authentication do
   describe '#login', :vcr do
     it 'should return valid response' do
       response = my_client.login('SmartHR001')
+      File.write('tmp/response_login.txt', response.body)
+
       xml = Nokogiri::XML(response.body)
       code = xml.at_xpath('//Code').text
       access_key = xml.at_xpath('//AccessKey').text
