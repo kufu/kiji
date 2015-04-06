@@ -1,8 +1,10 @@
 require 'faraday'
 require 'kiji/signer'
+require 'kiji/api'
 
 module Kiji
   class Client
+    include Kiji::API
     attr_accessor :cert, :private_key, :access_key,
                   :software_id, :api_end_point,
                   :basic_auth_id, :basic_auth_password
@@ -14,60 +16,6 @@ module Kiji
       @basic_auth_password = basic_auth_password
 
       yield(self) if block_given?
-    end
-
-    def register(user_id)
-      appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
-            xml.UserID user_id
-          }
-        }
-      end
-
-      response = connection.post('/shinsei/1/authentication/user') do |req|
-        req.body = sign(appl_data).to_xml
-      end
-
-      File.write('tmp/response_register.txt', response.body)
-      response
-    end
-
-    def login(user_id)
-      appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
-            xml.UserID user_id
-          }
-        }
-      end
-
-      response = connection.post('/shinsei/1/authentication/login') do |req|
-        req.body = sign(appl_data).to_xml
-      end
-
-      File.write('tmp/response_login.txt', response.body)
-      response
-    end
-
-    def apply(file_name, file_data)
-      appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
-            xml.Upload {
-              xml.FileName file_name
-              xml.FileData file_data
-            }
-          }
-        }
-      end
-
-      response = connection.post('/shinsei/1/access/apply') do |req|
-        req.body = appl_data.to_xml
-      end
-
-      File.write('tmp/response_apply.txt', response.body)
-      response
     end
 
     private
