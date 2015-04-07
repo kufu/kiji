@@ -41,5 +41,9 @@ module Kiji
     def amends(arrive_id)
       connection.get("/shinsei/1/access/amend/#{arrive_id}")
     end
+
+    def notices(arrive_id)
+      connection.get("/shinsei/1/access/notice/#{arrive_id}")
+    end
   end
 end

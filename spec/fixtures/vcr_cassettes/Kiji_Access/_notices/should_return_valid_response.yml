@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://T15JdS017PO8:aWD3QcIr@api2.kn.e-gov.go.jp/shinsei/1/access/notice/9002015000243928
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - SmartHR v0.0.1
+      X-Egovapi-Softwareid:
+      - T15JdS017PO8
+      X-Egovapi-Accesskey:
+      - rh0oAEUIJIO4vuMsjlMJkriEeRC4hnKCAgbnxznoscS0negVhfJwKJMKERiK3H2Hq3BkbmtoETVgBU8zsuRMDVdwNLvJ6jgEzmPGNaWi9LorX89DAhC/RT3DBiizk4zzjOnN5NWXUN4mwfOep+x1L954uZhm8uUm0kEOUVZlfxPC1R6ExvJuH0TaQ+1PtQz81UNejipIV0FbeVD/P4cqZxpRg9wz0wF++n58oI/4X54iOXqRFcm8ptbkTLUqxKoU
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '718'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Tue, 07 Apr 2015 01:58:09 GMT
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-store,no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Dec 1994 16:00:00 GMT
+      X-Ua-Compatible:
+      - IE=EmulateIE7
+      Via:
+      - 1.1 proxy-api2
+      Proxy-Agent:
+      - none
+      Set-Cookie:
+      - TSe37dc4=aa8523a9cc91f6f9a120ecc10232f1d4cc6ac72402acc9fd552339b1; Path=/
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxEYXRh
+        Um9vdD4NCg0KDQoNCg0KPFJlc3VsdD4NCgk8Q29kZT4wPC9Db2RlPg0KCTxN
+        ZXNzYWdlPjwvTWVzc2FnZT4NCjwvUmVzdWx0Pg0KPEFwcGxEYXRhPg0KCTxB
+        cnJpdmVJRD45MDAyMDE1MDAwMjQzOTI4PC9BcnJpdmVJRD4NCgk8UHJvY05h
+        bWU+77yh77yw77yp44OG44K544OI55So5omL57aa77yI5Yq05YON5L+d6Zm6
+        6Zai5L+C5omL57aa77yJ77yI6YCa77yJ77yQ77yQ77yQ77yU77yP77yh77yw
+        77yp44OG44K544OI55So5omL57aa77yI5Yq05YON5L+d6Zm66Zai5L+C5omL
+        57aa77yJ77yI6YCa77yJ77yQ77yQ77yQ77yUPC9Qcm9jTmFtZT4NCg0KDQoN
+        Cg0KDQoNCgk8Q29tbWVudD4NCgkJPE5vdGljZVN1YklEPjE8L05vdGljZVN1
+        YklEPg0KCQk8SXNzdWVEYXRlPjIwMTUwMzA5MTY0NzU4PC9Jc3N1ZURhdGU+
+        DQoJCTxEb2NUaXRsZT7jgrPjg6Hjg7Pjg4jvvIjjg6Hjg4Pjgrvjg7zjgrjv
+        vIk8L0RvY1RpdGxlPg0KDQoJCTxGaWxlPg0KCQkJPEZpbGVOYW1lPjk5OTAw
+        MDAwMDAwMDAwMDAwMi54c2w8L0ZpbGVOYW1lPg0KCQk8L0ZpbGU+DQoNCgkJ
+        PEZpbGU+DQoJCQk8RmlsZU5hbWU+Y29tbWVudHRzdXVjaGkueG1sPC9GaWxl
+        TmFtZT4NCgkJPC9GaWxlPg0KDQoJCTxSZWFkaW5nPuacquiqrTwvUmVhZGlu
+        Zz4NCgk8L0NvbW1lbnQ+DQoNCjwvQXBwbERhdGE+DQo8L0RhdGFSb290Pg==
+    http_version: 
+  recorded_at: Tue, 07 Apr 2015 01:55:44 GMT
+recorded_with: VCR 2.9.3
