@@ -37,5 +37,9 @@ module Kiji
     def reference(arrive_id)
       connection.get("/shinsei/1/access/reference/#{arrive_id}")
     end
+
+    def amends(arrive_id)
+      connection.get("/shinsei/1/access/amend/#{arrive_id}")
+    end
   end
 end

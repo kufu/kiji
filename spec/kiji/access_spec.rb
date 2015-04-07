@@ -118,7 +118,18 @@ describe Kiji::Access do
   describe '#reference', :vcr do
     it 'should return valid response' do
       response = my_client_with_access_key.reference('9002015000243941')
-      File.write('tmp/response_references.txt', response.body)
+      File.write('tmp/response_reference.txt', response.body)
+      xml = Nokogiri::XML(response.body)
+
+      code = xml.at_xpath('//Code').text
+      expect(code).to eq '0'
+    end
+  end
+
+  describe '#amends', :vcr do
+    it 'should return valid response' do
+      response = my_client_with_access_key.amends('9002015000243941')
+      File.write('tmp/response_amends.txt', response.body)
       xml = Nokogiri::XML(response.body)
 
       code = xml.at_xpath('//Code').text
