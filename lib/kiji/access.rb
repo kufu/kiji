@@ -45,5 +45,21 @@ module Kiji
     def notices(arrive_id)
       connection.get("/shinsei/1/access/notice/#{arrive_id}")
     end
+
+    def officialdocument(arrive_id, notice_sub_id)
+      connection.get("/shinsei/1/access/officialdocument/#{arrive_id}/#{notice_sub_id}")
+    end
+
+    def comment(arrive_id, notice_sub_id)
+      connection.get("/shinsei/1/access/comment/#{arrive_id}/#{notice_sub_id}")
+    end
+
+    def banks
+      connection.get('/shinsei/1/access/bank')
+    end
+
+    def payments(arrive_id)
+      connection.get("/shinsei/1/access/payment/#{arrive_id}")
+    end
   end
 end

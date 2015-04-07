@@ -147,4 +147,48 @@ describe Kiji::Access do
       expect(code).to eq '0'
     end
   end
+
+  describe '#officialdocument', :vcr do
+    it 'should return valid response' do
+      response = my_client_with_access_key.officialdocument('9002015000243931', '1')
+      File.write('tmp/response_officialdocument.txt', response.body)
+      xml = Nokogiri::XML(response.body)
+
+      code = xml.at_xpath('//Code').text
+      expect(code).to eq '0'
+    end
+  end
+
+  describe '#comment', :vcr do
+    it 'should return valid response' do
+      response = my_client_with_access_key.comment('9002015000243928', '1')
+      File.write('tmp/response_comment.txt', response.body)
+      xml = Nokogiri::XML(response.body)
+
+      code = xml.at_xpath('//Code').text
+      expect(code).to eq '0'
+    end
+  end
+
+  describe '#banks', :vcr do
+    it 'should return valid response' do
+      response = my_client_with_access_key.banks
+      File.write('tmp/response_banks.txt', response.body)
+      xml = Nokogiri::XML(response.body)
+
+      code = xml.at_xpath('//Code').text
+      expect(code).to eq '0'
+    end
+  end
+
+  describe '#payments', :vcr do
+    it 'should return valid response' do
+      response = my_client_with_access_key.payments('9002015000243934')
+      File.write('tmp/response_payments.txt', response.body)
+      xml = Nokogiri::XML(response.body)
+
+      code = xml.at_xpath('//Code').text
+      expect(code).to eq '0'
+    end
+  end
 end
