@@ -29,5 +29,9 @@ module Kiji
         fail 'Please specify id(SendNumber) or date(SendDateFrom & SendDateTo)'
       end
     end
+
+    def arrived_applications(send_number)
+      connection.get("/shinsei/1/access/apply/#{send_number}")
+    end
   end
 end

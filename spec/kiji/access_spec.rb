@@ -1,27 +1,28 @@
 require 'spec_helper'
 
 describe Kiji::Access do
-  before do
-    cert_file        = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.cer')
-    private_key_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.pem')
-
-    @cert = OpenSSL::X509::Certificate.new(File.read(cert_file))
-    @private_key =  OpenSSL::PKey::RSA.new(File.read(private_key_file), 'gpkitest')
-  end
-
   let(:my_client) {
     Kiji::Client.new do |c|
       c.software_id = ENV['EGOV_SOFTWARE_ID']
       c.api_end_point = ENV['EGOV_API_END_POINT']
       c.basic_auth_id = ENV['EGOV_BASIC_AUTH_ID']
       c.basic_auth_password = ENV['EGOV_BASIC_AUTH_PASSWORD']
-      c.cert = @cert
-      c.private_key = @private_key
     end
   }
 
   let(:my_client_with_access_key) {
-    my_client.access_key = ENV['EGOV_ACCESS_KEY']
+    cert_file        = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE01_sha2.cer')
+    private_key_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE01_sha2.pem')
+
+    my_client.cert = OpenSSL::X509::Certificate.new(File.read(cert_file))
+    my_client.private_key =  OpenSSL::PKey::RSA.new(File.read(private_key_file), 'hoge')
+
+    VCR.use_cassette('my_client_login') do
+      response = my_client.login(ENV['EGOV_TEST_USER_ID'])
+      xml = Nokogiri::XML(response.body)
+      my_client.access_key = xml.at_xpath('//AccessKey').text
+    end
+
     my_client
   }
 
@@ -79,44 +80,38 @@ describe Kiji::Access do
       end
     end
     context 'when params are valid' do
-      before do
-        file_name = 'apply.zip'
-        file_data = Base64.encode64(File.new('spec/fixtures/apply.zip').read)
-
-        response = my_client_with_access_key.apply(file_name, file_data)
-        xml = Nokogiri::XML(response.body)
-
-        # send_datetime_str = xml.at_xpath('//ApplData/SendDate').text
-        # @send_date = DateTime.parse(send_datetime_str).strftime('%Y%m%d')
-        @send_number = xml.at_xpath('//ApplData/SendNumber').text
-      end
       context 'when SendNumber is specified', :vcr do
         it 'should return valid response' do
-          response = my_client_with_access_key.sended_applications(SendNumber: @send_number)
+          response = my_client_with_access_key.sended_applications(SendNumber: '201503090951504109')
           File.write('tmp/response_sended_applications1.txt', response.body)
           xml = Nokogiri::XML(response.body)
 
           code = xml.at_xpath('//Code').text
-          package_apply_count = xml.at_xpath('//ApplData/PackageApplyCount').text
-
           expect(code).to eq '0'
-          expect(package_apply_count).to eq '1'
         end
       end
 
       context 'when SendDateFrom and SendDateTo are specified', :vcr do
         it 'should return valid response' do
-          response = my_client_with_access_key.sended_applications(SendDateFrom: '20150101', SendDateTo: '20150101')
+          response = my_client_with_access_key.sended_applications(SendDateFrom: '20150301', SendDateTo: '20150310')
           File.write('tmp/response_sended_applications2.txt', response.body)
           xml = Nokogiri::XML(response.body)
 
           code = xml.at_xpath('//Code').text
-          message = xml.at_xpath('//Message').text
-
-          expect(code).to eq '1'
-          expect(message).to eq '該当する申請情報が存在しません。指定した取得対象期間を確認してください。'
+          expect(code).to eq '0'
         end
       end
+    end
+  end
+
+  describe '#arrived_applications', :vcr do
+    it 'should return valid response' do
+      response = my_client_with_access_key.arrived_applications('201503090951504109')
+      File.write('tmp/response_arrived_applications.txt', response.body)
+      xml = Nokogiri::XML(response.body)
+
+      code = xml.at_xpath('//Code').text
+      expect(code).to eq '0'
     end
   end
 end

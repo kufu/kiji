@@ -21,7 +21,7 @@ module Kiji
     private
 
     def connection
-      @connection ||= Faraday.new(url: @api_end_point) do |c|
+      Faraday.new(url: @api_end_point) do |c|
         # c.response :logger
         c.adapter Faraday.default_adapter
         c.basic_auth(@basic_auth_id, @basic_auth_password) unless @basic_auth_id.nil?

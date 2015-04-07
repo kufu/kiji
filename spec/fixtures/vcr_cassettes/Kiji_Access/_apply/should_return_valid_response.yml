@@ -86,7 +86,7 @@ http_interactions:
       X-Egovapi-Softwareid:
       - T15JdS017PO8
       X-Egovapi-Accesskey:
-      - 1YlHTkZ5+PSV78TE5lo4TyaoaBWQuiPiEI8wGDX6thlUdnhuY4UrK4Wp52zikj/M1igqvBa7M+7E34kEIMF+0daMlGATPHD60djFQMsX8g741g6u3HO1WQofFKUTVBEjiNkfd1yDf/PNnyRvzT5JU8PmLuhMntGQx+vcNXCYoqhRxocmuDcJzmxvwDbFNtF9s26j7x0NcDPNTsIiCd53gqpI4qzg3LS0WAdH/rmrLU6Jrp32vl6n7HS4uOJgUfnd
+      - rh0oAEUIJIO4vuMsjlMJkriEeRC4hnKCAgbnxznoscS0negVhfJwKJMKERiK3H2Hq3BkbmtoETVgBU8zsuRMDVdwNLvJ6jgEzmPGNaWi9LorX89DAhC/RT3DBiizk4zzjOnN5NWXUN4mwfOep+x1L954uZhm8uUm0kEOUVZlfxPC1R6ExvJuH0TaQ+1PtQz81UNejipIV0FbeVD/P4cqZxpRg9wz0wF++n58oI/4X54iOXqRFcm8ptbkTLUqxKoU
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -101,7 +101,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Mon, 06 Apr 2015 10:14:20 GMT
+      - Tue, 07 Apr 2015 01:03:19 GMT
       X-Frame-Options:
       - DENY
       Cache-Control:
@@ -117,10 +117,10 @@ http_interactions:
       Proxy-Agent:
       - none
       Set-Cookie:
-      - TSe37dc4=4d7a0e3b9476f04520205e38a0d966b3e2e125d12f7cb87d55225c7b; Path=/
+      - TSe37dc4=e851391b65d266c9bedee2eda2d3f25a26039420d3c343b055232cd6; Path=/
     body:
       encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<DataRoot>\r\n\r\n\r\n\r\n\r\n<Result>\r\n\t<Code>0</Code>\r\n\t<Message></Message>\r\n</Result>\r\n<ApplData>\r\n\t<SendNumber>201504061914214760</SendNumber>\r\n\t<SendDate>20150406191421</SendDate>\r\n\t<SendFileName>apply.zip</SendFileName>\r\n\t<SendApplyCount>1</SendApplyCount>\r\n\t<ErrorCount>0</ErrorCount>\r\n\r\n\r\n\r\n</ApplData>\r\n\r\n</DataRoot>"
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<DataRoot>\r\n\r\n\r\n\r\n\r\n<Result>\r\n\t<Code>0</Code>\r\n\t<Message></Message>\r\n</Result>\r\n<ApplData>\r\n\t<SendNumber>201504071003204795</SendNumber>\r\n\t<SendDate>20150407100320</SendDate>\r\n\t<SendFileName>apply.zip</SendFileName>\r\n\t<SendApplyCount>1</SendApplyCount>\r\n\t<ErrorCount>0</ErrorCount>\r\n\r\n\r\n\r\n</ApplData>\r\n\r\n</DataRoot>"
     http_version: 
-  recorded_at: Mon, 06 Apr 2015 10:11:57 GMT
+  recorded_at: Tue, 07 Apr 2015 01:00:55 GMT
 recorded_with: VCR 2.9.3
