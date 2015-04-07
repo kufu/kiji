@@ -33,5 +33,9 @@ module Kiji
     def arrived_applications(send_number)
       connection.get("/shinsei/1/access/apply/#{send_number}")
     end
+
+    def reference(arrive_id)
+      connection.get("/shinsei/1/access/reference/#{arrive_id}")
+    end
   end
 end
