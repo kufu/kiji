@@ -25,7 +25,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 08 Apr 2015 04:21:52 GMT
+      - Wed, 08 Apr 2015 06:27:43 GMT
       X-Frame-Options:
       - DENY
       Cache-Control:
@@ -41,7 +41,7 @@ http_interactions:
       Proxy-Agent:
       - none
       Set-Cookie:
-      - TSe37dc4=0d588abae03b21c58ca22cf7780048afdfd8dde7f204cfea5524acdf; Path=/
+      - TSe37dc4=5abcfd6d28eb010893c0b628b3c76b5ad1703688b88baf3d5524ca5e; Path=/
       Transfer-Encoding:
       - chunked
     body:
@@ -634,5 +634,5 @@ http_interactions:
         dE5vdERvd25sb2FkPg0KCQk8RG9jQ291bnQ+MDwvRG9jQ291bnQ+DQoJPC9B
         cHBseT4NCg0KPC9BcHBsRGF0YT4NCg0KPC9EYXRhUm9vdD4=
     http_version: 
-  recorded_at: Wed, 08 Apr 2015 04:19:26 GMT
+  recorded_at: Wed, 08 Apr 2015 06:25:16 GMT
 recorded_with: VCR 2.9.3

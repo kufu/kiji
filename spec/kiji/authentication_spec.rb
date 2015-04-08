@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Kiji::Authentication do
-  before do
-
-  end
-
   let(:my_client) {
     Kiji::Client.new do |c|
       c.software_id = ENV['EGOV_SOFTWARE_ID']

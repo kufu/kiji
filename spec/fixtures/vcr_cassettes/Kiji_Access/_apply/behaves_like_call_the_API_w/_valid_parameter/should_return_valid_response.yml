@@ -101,7 +101,7 @@ http_interactions:
       Content-Type:
       - text/xml;charset=UTF-8
       Date:
-      - Wed, 08 Apr 2015 06:27:38 GMT
+      - Wed, 08 Apr 2015 06:35:46 GMT
       X-Frame-Options:
       - DENY
       Cache-Control:
@@ -117,10 +117,10 @@ http_interactions:
       Proxy-Agent:
       - none
       Set-Cookie:
-      - TSe37dc4=4620852043e16462073cd8e9435c1118fce2ee88034041485524ca5a; Path=/
+      - TSe37dc4=d82fbcaec905bd8a059e1e09fc73893f150487b5a1a1ff375524cc41; Path=/
     body:
       encoding: UTF-8
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<DataRoot>\r\n\r\n\r\n\r\n\r\n<Result>\r\n\t<Code>0</Code>\r\n\t<Message></Message>\r\n</Result>\r\n<ApplData>\r\n\t<SendNumber>201504081527394841</SendNumber>\r\n\t<SendDate>20150408152739</SendDate>\r\n\t<SendFileName>apply.zip</SendFileName>\r\n\t<SendApplyCount>1</SendApplyCount>\r\n\t<ErrorCount>0</ErrorCount>\r\n\r\n\r\n\r\n</ApplData>\r\n\r\n</DataRoot>"
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<DataRoot>\r\n\r\n\r\n\r\n\r\n<Result>\r\n\t<Code>0</Code>\r\n\t<Message></Message>\r\n</Result>\r\n<ApplData>\r\n\t<SendNumber>201504081535464842</SendNumber>\r\n\t<SendDate>20150408153546</SendDate>\r\n\t<SendFileName>apply.zip</SendFileName>\r\n\t<SendApplyCount>1</SendApplyCount>\r\n\t<ErrorCount>0</ErrorCount>\r\n\r\n\r\n\r\n</ApplData>\r\n\r\n</DataRoot>"
     http_version: 
-  recorded_at: Wed, 08 Apr 2015 06:25:12 GMT
+  recorded_at: Wed, 08 Apr 2015 06:33:19 GMT
 recorded_with: VCR 2.9.3
