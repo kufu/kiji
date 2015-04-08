@@ -48,6 +48,25 @@ module Kiji
       connection.get("/shinsei/1/access/officialdocument/#{arrive_id}/#{notice_sub_id}")
     end
 
+    def verify_officialdocument(arrive_id, file_name, file_data, sig_xml_file_name)
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.ArriveID arrive_id
+            xml.Upload {
+              xml.FileName file_name
+              xml.FileData file_data
+              xml.SigVerificationXMLFileName sig_xml_file_name
+            }
+          }
+        }
+      end
+
+      connection.post('/shinsei/1/access/officialdocument/verify') do |req|
+        req.body = appl_data.to_xml
+      end
+    end
+
     def comment(arrive_id, notice_sub_id)
       connection.get("/shinsei/1/access/comment/#{arrive_id}/#{notice_sub_id}")
     end
