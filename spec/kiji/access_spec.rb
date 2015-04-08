@@ -28,6 +28,9 @@ describe Kiji::Access do
 
   shared_examples_for 'call the API w/ valid parameter' do
     it 'should return valid response' do
+      method_name = RSpec.current_example.metadata[:example_group][:parent_example_group][:description]
+      File.write("tmp/response_#{method_name}.txt", response.body)
+
       xml = Nokogiri::XML(response.body)
 
       code = xml.at_xpath('//Code').text
