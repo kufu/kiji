@@ -5,6 +5,7 @@
 /coverage/
 /doc/
 /pkg/
+/spec/fixtures/vcr_cassettes/
 /spec/reports/
 /tmp/
 .env
