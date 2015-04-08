@@ -20,14 +20,12 @@ module Kiji
       end
     end
 
-    def sended_applications(params)
-      if params[:SendNumber].present?
-        connection.get("/shinsei/1/access/apply;id=#{params[:SendNumber]}")
-      elsif params[:SendDateFrom].present? && params[:SendDateTo].present?
-        connection.get("/shinsei/1/access/apply;date=#{params[:SendDateFrom]}-#{params[:SendDateTo]}")
-      else
-        fail 'Please specify id(SendNumber) or date(SendDateFrom & SendDateTo)'
-      end
+    def sended_applications_by_id(send_number)
+      connection.get("/shinsei/1/access/apply;id=#{send_number}")
+    end
+
+    def sended_applications_by_date(from, to)
+      connection.get("/shinsei/1/access/apply;date=#{from}-#{to}")
     end
 
     def arrived_applications(send_number)

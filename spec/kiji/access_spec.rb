@@ -48,59 +48,25 @@ describe Kiji::Access do
     end
   end
 
-  describe '#sended_applications' do
-    context 'when paras are invalid' do
-      context 'when params are blank' do
-        it 'should raise error' do
-          expect {
-            my_client_with_access_key.sended_applications
-          }.to raise_error
-        end
-      end
-      context 'when params do NOT contain SendNumber and (SendDateFrom and SendDateTo)' do
-        it 'should raise error' do
-          expect {
-            my_client_with_access_key.sended_applications(foo: :bar)
-          }.to raise_error
-        end
-      end
-      context 'when params contain only SendDateFrom' do
-        it 'should raise error' do
-          expect {
-            my_client_with_access_key.sended_applications(SendDateFrom: '20150401')
-          }.to raise_error
-        end
-      end
-      context 'when params contain only SendDateTo' do
-        it 'should raise error' do
-          expect {
-            my_client_with_access_key.sended_applications(SendDateTo: '20150401')
-          }.to raise_error
-        end
-      end
+  describe '#sended_applications_by_id', :vcr do
+    it 'should return valid response' do
+      response = my_client_with_access_key.sended_applications_by_id('201503090951504109')
+      File.write('tmp/response_sended_applicationsby_id.txt', response.body)
+      xml = Nokogiri::XML(response.body)
+
+      code = xml.at_xpath('//Code').text
+      expect(code).to eq '0'
     end
-    context 'when params are valid' do
-      context 'when SendNumber is specified', :vcr do
-        it 'should return valid response' do
-          response = my_client_with_access_key.sended_applications(SendNumber: '201503090951504109')
-          File.write('tmp/response_sended_applications1.txt', response.body)
-          xml = Nokogiri::XML(response.body)
+  end
 
-          code = xml.at_xpath('//Code').text
-          expect(code).to eq '0'
-        end
-      end
+  describe '#sended_applications_by_date', :vcr do
+    it 'should return valid response' do
+      response = my_client_with_access_key.sended_applications_by_date('20150301', '20150310')
+      File.write('tmp/response_sended_applications_by_date.txt', response.body)
+      xml = Nokogiri::XML(response.body)
 
-      context 'when SendDateFrom and SendDateTo are specified', :vcr do
-        it 'should return valid response' do
-          response = my_client_with_access_key.sended_applications(SendDateFrom: '20150301', SendDateTo: '20150310')
-          File.write('tmp/response_sended_applications2.txt', response.body)
-          xml = Nokogiri::XML(response.body)
-
-          code = xml.at_xpath('//Code').text
-          expect(code).to eq '0'
-        end
-      end
+      code = xml.at_xpath('//Code').text
+      expect(code).to eq '0'
     end
   end
 
