@@ -6,6 +6,7 @@ require 'base64'
 require 'digest/sha1'
 require 'openssl'
 require 'kiji/digester'
+require 'uri'
 
 module Kiji
   class Signer
@@ -87,7 +88,7 @@ module Kiji
         @signature_node = security_node.at_xpath('ds:Signature', ds: 'http://www.w3.org/2000/09/xmldsig#')
         unless @signature_node
           @signature_node = Nokogiri::XML::Node.new('Signature', document)
-          @signature_node['id'] = DateTime.now.strftime('%Y%m%d%H%M%S')
+          @signature_node['Id'] = DateTime.now.strftime('%Y%m%d%H%M%S')
           @signature_node.default_namespace = 'http://www.w3.org/2000/09/xmldsig#'
           security_node.add_child(@signature_node)
         end
@@ -213,7 +214,7 @@ module Kiji
       target_digest = Base64.encode64(@digester.digest(target_canon)).strip
 
       reference_node = Nokogiri::XML::Node.new('Reference', document)
-      reference_node['URI'] = id.to_s.size > 0 ? "##{id}" : ''
+      reference_node['URI'] = id.to_s.size > 0 ? encode_ja(id) : ''
       signed_info_node.add_child(reference_node)
 
       transforms_node = Nokogiri::XML::Node.new('Transforms', document)
@@ -233,6 +234,24 @@ module Kiji
         transform_node.add_child(inclusive_namespaces_node)
       end
       transforms_node.add_child(transform_node)
+
+      digest_method_node = Nokogiri::XML::Node.new('DigestMethod', document)
+      digest_method_node['Algorithm'] = @digester.digest_id
+      reference_node.add_child(digest_method_node)
+
+      digest_value_node = Nokogiri::XML::Node.new('DigestValue', document)
+      digest_value_node.content = target_digest
+      reference_node.add_child(digest_value_node)
+      self
+    end
+
+    def digest_file!(file_content, options = {})
+      target_digest = Base64.encode64(@digester.digest(file_content)).strip
+
+      reference_node = Nokogiri::XML::Node.new('Reference', document)
+      id = options[:id]
+      reference_node['URI'] = id.to_s.size > 0 ? encode_ja(id) : ''
+      signed_info_node.add_child(reference_node)
 
       digest_method_node = Nokogiri::XML::Node.new('DigestMethod', document)
       digest_method_node['Algorithm'] = @digester.digest_id
@@ -278,6 +297,18 @@ module Kiji
     end
 
     protected
+
+    def encode_ja(str)
+      ret = ''
+      str.split(//).each do |c|
+        if  /[!-~]/ =~ c
+          ret.concat(c)
+        else
+          ret.concat(CGI.escape(c))
+        end
+      end
+      ret
+    end
 
     # Reset digest algorithm for signature creation and signature algorithm identifier
     def set_default_signature_method!

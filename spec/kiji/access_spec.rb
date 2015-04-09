@@ -75,6 +75,27 @@ describe Kiji::Access do
     it_behaves_like 'call the API w/ valid parameter'
   end
 
+  describe '#withdraw' do
+    before do
+      # file_name = 'apply.zip'
+      # file_data = Base64.encode64(File.new('spec/fixtures/apply.zip').read)
+      # apply_response = my_client_with_access_key.apply(file_name, file_data)
+      # apply_xml = Nokogiri::XML(apply_response.body)
+      # @send_number = apply_xml.at_xpath('//SendNumber').text
+      # @send_number = '201504091310154929'
+    end
+    it 'test....' do
+      # response1 = my_client_with_access_key.sended_applications_by_id(@send_number)
+      # File.write('tmp/response_test1.txt', response1.body)
+      # xml = Nokogiri::XML(response1.body)
+      # error_file = xml.at_xpath('//ErrorFile').text
+      # File.write('tmp/test_error_file.html', Base64.decode64(error_file))
+
+      # file_data = Base64.encode64(File.new('spec/fixtures/apply.zip').read)
+      # my_client_with_access_key.withdraw('', file_data)
+    end
+  end
+
   describe '#amends', :vcr do
     let(:valid_status_code) { 200 }
     let(:response) { my_client_with_access_key.amends('9002015000243941') }

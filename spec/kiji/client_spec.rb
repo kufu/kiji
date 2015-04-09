@@ -44,4 +44,27 @@ describe Kiji::Client do
     expect(@client.cert).to eq @cert
     expect(@client.private_key).to eq @private_key
   end
+
+  it '一括送信用構成管理XMLファイルのビルド' do
+    appl_data = Nokogiri::XML(File.read('tmp/0409_kousei.xml'))
+    doc = appl_data.to_xml(save_with:  0)
+    signer = Kiji::Signer.new(doc) do |s|
+      s.cert =  OpenSSL::X509::Certificate.new(File.read('tmp/ikkatsu.cer'))
+      s.private_key = OpenSSL::PKey::RSA.new(File.read('tmp/ikkatsu.pem'), 'hoge')
+      s.digest_algorithm           = :sha256
+      s.signature_digest_algorithm = :sha256
+    end
+    signer.security_node = signer.document.root
+    node = signer.document.at_xpath('//構成情報')
+    signer.digest!(node, id: '#構成情報')
+
+    app_doc = File.read('tmp/4950000020325000(1)/495000020325029841_01.xml')
+    signer.digest_file!(app_doc, id: '495000020325029841_01.xml')
+
+    signer.sign!(issuer_serial: true)
+
+    signer.document.xpath('//ns:Signature', ns: 'http://www.w3.org/2000/09/xmldsig#').wrap('<署名情報></署名情報>')
+
+    File.write('tmp/4950000020325000(1)/kousei.xml', Nokogiri::XML(signer.to_xml))
+  end
 end

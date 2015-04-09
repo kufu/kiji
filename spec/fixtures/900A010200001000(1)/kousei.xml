@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="999000000000000001.xsl" type="text/xsl"?>
+<DataRoot>
+				<様式ID>999000000000000001</様式ID>
+				<様式バージョン>0001</様式バージョン>
+				<STYLESHEET>999000000000000001.xsl</STYLESHEET>
+				<構成情報 ID="構成情報">
+					<管理情報>
+						<手続番号>
+							<受付行政機関ID>100900</受付行政機関ID>
+							<手続ID>900A010200001000</手続ID>
+						</手続番号>
+						<手続名称>ＡＰＩテスト用手続（労働保険関係手続）（通）０００１／ＡＰＩテスト用手続（労働保険関係手続）（通）０００１</手続名称>
+						<初回受付番号/>
+						<申請種別>新規申請</申請種別>
+						<申請者連絡先情報>
+							<申請者情報>
+								<氏名>漢　字</氏名>
+								<氏名フリガナ>フリ　ガナ</氏名フリガナ>
+								<役職/>
+								<法人団体名/>
+								<法人団体名フリガナ/>
+								<部門名/>
+								<部門名フリガナ/>
+								<郵便番号>1200001</郵便番号>
+								<住所>東京都足立区大谷田</住所>
+								<住所フリガナ>トウキョウトアダチクオオヤタ</住所フリガナ>
+								<電話番号>12-232-1232</電話番号>
+								<FAX番号/>
+								<電子メールアドレス>zzz@zzz.zz</電子メールアドレス>
+							</申請者情報>
+							<連絡先情報>
+								<氏名>漢　字</氏名>
+								<氏名フリガナ>フリ　ガナ</氏名フリガナ>
+								<役職/>
+								<法人団体名/>
+								<法人団体名フリガナ/>
+								<部門名/>
+								<部門名フリガナ/>
+								<郵便番号>1200001</郵便番号>
+								<住所>東京都足立区大谷田</住所>
+								<住所フリガナ>トウキョウトアダチクオオヤタ</住所フリガナ>
+								<電話番号>12-232-1232</電話番号>
+								<FAX番号/>
+								<電子メールアドレス>zzz@zzz.zz</電子メールアドレス>
+							</連絡先情報>
+							<委任登録票添付情報>
+								<発行番号/>
+								<委任登録票名称/>
+								<委任登録票ファイル名称/>
+							</委任登録票添付情報>
+						</申請者連絡先情報>
+					</管理情報>
+					<添付書類属性情報>
+						<添付種別>添付</添付種別>
+						<添付書類名称>テスト添付書類１</添付書類名称>
+						<添付書類ファイル名称>tenpu.txt</添付書類ファイル名称>
+						<提出情報>1</提出情報>
+					</添付書類属性情報>
+					<手数料情報>
+						<手数料1>
+							<手数料識別子></手数料識別子>
+							<略科目コード></略科目コード>
+							<略科目名></略科目名>
+							<振込金額></振込金額>
+						</手数料1>
+						<手数料2>
+							<手数料識別子/>
+							<略科目コード/>
+							<略科目名/>
+							<振込金額/>
+						</手数料2>
+						<手数料3>
+							<手数料識別子/>
+							<略科目コード/>
+							<略科目名/>
+							<振込金額/>
+						</手数料3>
+						<手数料4>
+							<手数料識別子/>
+							<略科目コード/>
+							<略科目名/>
+							<振込金額/>
+						</手数料4>
+						<手数料5>
+							<手数料識別子/>
+							<略科目コード/>
+							<略科目名/>
+							<振込金額/>
+						</手数料5>
+						<手数料6>
+							<手数料識別子/>
+							<略科目コード/>
+							<略科目名/>
+							<振込金額/>
+						</手数料6>
+					</手数料情報>
+					<通信欄/>
+					<府省照会情報>
+						<府省照会1>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会1>
+						<府省照会2>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会2>
+						<府省照会3>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会3>
+						<府省照会4>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会4>
+						<府省照会5>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会5>
+						<府省照会6>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会6>
+						<府省照会7>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会7>
+						<府省照会8>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会8>
+						<府省照会9>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会9>
+						<府省照会10>
+							<府省照会情報ラベル/>
+							<府省照会情報/>
+						</府省照会10>
+					</府省照会情報>
+					<提出先情報>
+						<提出先識別子>900API00000000001001001</提出先識別子>
+						<提出先名称>総務省行政管理局ＡＰＩ</提出先名称>
+					</提出先情報>
+				<申請書属性情報><申請書様式ID>900A01020000100001</申請書様式ID><申請書様式バージョン>0003</申請書様式バージョン>
+				<申請書様式名称>ＡＰＩテスト用手続（労働保険関係手続）（通）０００１＿０１</申請書様式名称><申請書ファイル名称>900A01020000100001_01.xml</申請書ファイル名称></申請書属性情報></構成情報>
+			<署名情報><Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="20140328194350"><SignedInfo>
+    <CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+    <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+    <Reference URI="#%E6%A7%8B%E6%88%90%E6%83%85%E5%A0%B1">
+      <Transforms>
+        <Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+      </Transforms>
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>lJz/57cuF62sXa3GD5A6qwkfv6/RiLU+jhhsZy+ushE=</DigestValue>
+    </Reference>
+    <Reference URI="900A01020000100001_01.xml">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+      <DigestValue>5YJ9Mtkp1Wqoity4pRGFXpKtiIVZROlO/DQvtj8ztzY=</DigestValue>
+    </Reference>
+  </SignedInfo>
+  <SignatureValue>odzeh3HJCERVhTun4XsNKrJUjKmYt2Wj+JtUCVdzhD/pCqvVzoe0w2BMsnz9xdf2kcnsl93j6aoF
+bcgJCCA/PZ5TX2lwnYdYHtFWrhd8917nHRFmmDvDztZL0DV1L5X2/7exbh+SCux4VbeWTJVGrX33
+w9O7K9MwLG9kySzm+sd6BnEvTxs+2mEYDr6g/C4/AHQW6vxh7PO1lzETXyYba+AebzuwU6kTkw/P
+0pfWYdRLZuQAqPhjSeFegzwFj2bphAZEJw3t3uNacQNQt7OuMo0TKh1165j3P5hUMIBJQc87XFNH
+Hy2SgCjgrCWSP4ga0vKMZ4OrWd+BHNjBWGbrDA==</SignatureValue>
+  <KeyInfo>
+    <X509Data>
+      <X509Certificate>MIIEVTCCAz2gAwIBAgIBADANBgkqhkiG9w0BAQsFADCBnjELMAkGA1UEBhMCSlAxETAPBgNVBAgM
+CFRva3lvLXRvMRMwEQYDVQQHDApDaGl5b2RhLWt1MRIwEAYDVQQKDAllR292SVQxQ0ExCzAJBgNV
+BAsMAkNBMRgwFgYDVQQDDA9lR292SVQxQ0FTSEEyNTYxLDAqBgkqhkiG9w0BCQEWHWVHb3ZJVDFD
+QVNIQTI1NkBlR292SVQxQ0EuY29tMB4XDTE0MDIyNzA4NTUwMloXDTE1MDIyNzA4NTUwMlowgZ0x
+CzAJBgNVBAYTAkpQMREwDwYDVQQIDAhUb2t5by10bzEWMBQGA1UECgwNZUdvdklUMUNsaWVudDEP
+MA0GA1UECwwGY2xpZW50MRwwGgYDVQQDDBNzaGEyNTZyc2EyMDQ4bm9ybWFsMTQwMgYJKoZIhvcN
+AQkBFiVzaGEyNTZyc2EyMDQ4bm9ybWFsQGVHb3ZJVDFDbGllbnQuY29tMIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAqbYkyDA6jVfwvA2BFfalOTTuBzcx5Vo/JKvNsUm+6Bh6ldF8pfIS
+12NH5ICtGqkphJcB9V6bM9ACMQYzV0OHuuk7OTwWASm5Dm87tAU+ZfpR20ZyTP7zCFnIxbV/qhwP
+VbBtoM1aFyy4V+QADpSfrWQHJpDclO082q4+TBcWBb65/Oq98YznroEl79yVh1XDSPYUP+uxH4T9
+DDLqX47AhmnYgaXEszy7RyJZAeWGyFX615iJu1JFQYO/Ytap80kRA7dAaVOJh7jZq+z4pVwdsXq+
+0PwjNrtgOD+JMUcL0gpczrrKwkFtad+tLia7XtDwXxK39+GWZV9fGYTAg/EmPQIDAQABo4GcMIGZ
+MAkGA1UdEwQCMAAwEQYJYIZIAYb4QgEBBAQDAgWgMAsGA1UdDwQEAwIF4DAsBglghkgBhvhCAQ0E
+HxYdT3BlblNTTCBHZW5lcmF0ZWQgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFMEWg9vikz7i+N/8EX1D
+JwVR8uE1MB8GA1UdIwQYMBaAFP0FsR6TRd5ZFyczSOCom13oYS4jMA0GCSqGSIb3DQEBCwUAA4IB
+AQAi/D9kOn6H500ykiLct9TDd7BHHnFV4bqJ5E9wfrrpa/E04BUqNaORiv7SoOBFUeVtJLy/bOEf
+jumU7lz1vsyiLNjp+IcGeGayyOc/VGevsZtgttSrw1zfgyLHUvz0YPiyK38/FnFfWBrZFho+EZpg
+trQNcyrzH/eGxNmbEYGz0HTe6FKQJpRXM7r60KK4Y6ZEA9s1feV4d87aEmHf67vTip6mzFqbY4NI
+76pDkG5I1bZ0khdRHpfdKSaRz+QNxfCKA0WD7im4jfrH+SP4SvE+4UZCLXlNLW6u7cwFwQQ63zW5
+EvFUw6JAkhYelAc4WwVKf5RrH+CaMfobrvoNYa4R
+        </X509Certificate><X509Certificate>MIIEETCCAvmgAwIBAgIJAOlZs1FNgtZZMA0GCSqGSIb3DQEBCwUAMIGeMQswCQYDVQQGEwJKUDER
+MA8GA1UECAwIVG9reW8tdG8xEzARBgNVBAcMCkNoaXlvZGEta3UxEjAQBgNVBAoMCWVHb3ZJVDFD
+QTELMAkGA1UECwwCQ0ExGDAWBgNVBAMMD2VHb3ZJVDFDQVNIQTI1NjEsMCoGCSqGSIb3DQEJARYd
+ZUdvdklUMUNBU0hBMjU2QGVHb3ZJVDFDQS5jb20wHhcNMTQwMjI3MDUzODI4WhcNMzQwMjIyMDUz
+ODI4WjCBnjELMAkGA1UEBhMCSlAxETAPBgNVBAgMCFRva3lvLXRvMRMwEQYDVQQHDApDaGl5b2Rh
+LWt1MRIwEAYDVQQKDAllR292SVQxQ0ExCzAJBgNVBAsMAkNBMRgwFgYDVQQDDA9lR292SVQxQ0FT
+SEEyNTYxLDAqBgkqhkiG9w0BCQEWHWVHb3ZJVDFDQVNIQTI1NkBlR292SVQxQ0EuY29tMIIBIjAN
+BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmem6Nt+rotk2LkC5l9BFcQlVxmuEVuVIUpcu0xb3
+48B121/gjrfjDioI4UEi+mFetqDuSJ70By2LRADqB4XmFep+QrZvvYdk/GSfjUiXalFredGIi+DO
+A264eP8vrPDStTqe1IgmX90BImLvICgDpfP4qid8mSADf3nBfaAHlYcOTK7XSewknZNXsYJaSphK
+uWSu7Vnk2XnR99IwucC+l73wApsrATRzUCfVCZHEDsY4F6bH0ByfgEbpVt+RGR3T0ItZjxMgM73s
+mltD9bjn1bizX2FsXumWcDbejrlAMxofu/hHOwvMBdmxQutvghaUSNMqR/CVV8KpwbmQuV/NPwID
+AQABo1AwTjAdBgNVHQ4EFgQU/QWxHpNF3lkXJzNI4KibXehhLiMwHwYDVR0jBBgwFoAU/QWxHpNF
+3lkXJzNI4KibXehhLiMwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAjLZzajYdAmph
+C1N3J3lC3YqAaWKYXHfNO8Rt8lT1lKXdOPUaTy2PgQ8JLcsitVkjjpN64U4pznl+3kIcOvh/JKL6
+z3j6nLx3lWs/3d3q78QQTzcQMtjaOEr8e/DZ7jrcxqn8B2heEeyJ9QW46QS0ARqoiaZ0Da6aGF+i
+V/Wo8WlNzDLAjggO4jg3L++k3kJR9hJOQxb2JW3UJDkshTE5cIeV7ePiPKpyVCy1K/r9V5RbqXY3
+zSP+//5IijXsSjruDjInUG2+pdbGqTUXa0rBI0O1Pv3R38+vzrkkoGboo9cnHMbD3RVwjnl4zOHN
+OutmiSedtil8TW9RwxQxS2islg==
+        </X509Certificate>
+    </X509Data>
+    </KeyInfo>
+</Signature></署名情報></DataRoot>

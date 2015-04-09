@@ -46,7 +46,7 @@ module Kiji
       signer.security_node = signer.document.root
 
       signer.document.xpath('/DataRoot/ApplData').each do |node|
-        signer.digest!(node, id: 'ApplData')
+        signer.digest!(node, id: '#ApplData')
       end
 
       signer.sign!(issuer_serial: true)

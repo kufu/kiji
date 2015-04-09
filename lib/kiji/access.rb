@@ -36,6 +36,23 @@ module Kiji
       connection.get("/shinsei/1/access/reference/#{arrive_id}")
     end
 
+    def withdraw(arrive_id, file_data)
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.ArriveID arrive_id
+            xml.Upload {
+              xml.FileData file_data
+            }
+          }
+        }
+      end
+
+      connection.post('/shinsei/1/access/withdrawal') do |req|
+        req.body = appl_data.to_xml
+      end
+    end
+
     def amends(arrive_id)
       connection.get("/shinsei/1/access/amend/#{arrive_id}")
     end
