@@ -114,30 +114,24 @@ describe Kiji::Access do
     it_behaves_like 'call the API w/ valid parameter'
   end
 
-  # describe '#verify_officialdocument', :vcr do
-  #   before do
-  #     response = my_client_with_access_key.officialdocument('9002015000243931', '2')
-  #     xml = Nokogiri::XML(response.body)
-  #
-  #     @arrive_id = xml.at_xpath('//ArriveID').text
-  #     @file_data = xml.at_xpath('//FileData').text
-  #     @file_name = 'officialdocument_for_verify.zip'
-  #     File.write("tmp/#{@file_name}", Base64.decode64(@file_data))
-  #
-  #     @sig_xml_file_name = Zip::File.open("tmp/#{@file_name}").find { |zip_file|
-  #       zip_file.to_s.end_with? '.xml'
-  #     }.to_s
-  #   end
-  #   it 'should return valid response' do
-  #     response = my_client_with_access_key.verify_officialdocument(@arrive_id, @file_name, @file_data, @sig_xml_file_name)
-  #     File.write('tmp/response_verify_officialdocument.txt', response.body)
-  #     xml = Nokogiri::XML(response.body)
-  #
-  #     code = xml.at_xpath('//Code').text
-  #     expect(code).to eq '0'
-  #     expect(response.status).to eq 200
-  #   end
-  # end
+  describe '#verify_officialdocument', :vcr do
+    before do
+      response = my_client_with_access_key.officialdocument('9002015000243931', '2')
+      xml = Nokogiri::XML(response.body)
+
+      @arrive_id = xml.at_xpath('//ArriveID').text
+      @file_data = xml.at_xpath('//FileData').text
+      @file_name = 'officialdocument_for_verify.zip'
+      File.write("tmp/#{@file_name}", Base64.decode64(@file_data))
+
+      @sig_xml_file_name = Zip::File.open("tmp/#{@file_name}").find { |zip_file|
+        zip_file.to_s.end_with? '.xml'
+      }.to_s
+    end
+    let(:valid_status_code) { 200 }
+    let(:response) { my_client_with_access_key.verify_officialdocument(@arrive_id, @file_name, @file_data, @sig_xml_file_name) }
+    it_behaves_like 'call the API w/ valid parameter'
+  end
 
   describe '#comment', :vcr do
     let(:valid_status_code) { 200 }
