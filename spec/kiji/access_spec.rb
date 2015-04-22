@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'zip'
 
 describe Kiji::Access do
   let(:my_client) {
@@ -30,7 +29,7 @@ describe Kiji::Access do
   shared_examples_for 'call the API w/ valid parameter' do
     it 'should return valid response' do
       method_name = RSpec.current_example.metadata[:example_group][:parent_example_group][:description]
-      File.write("tmp/response_#{method_name}.txt", response.body)
+      File.write("tmp/responses/response_#{method_name}.txt", response.body)
 
       xml = Nokogiri::XML(response.body)
 

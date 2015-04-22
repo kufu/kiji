@@ -18,7 +18,8 @@ module Kiji
     WSSE_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
 
     def initialize(document)
-      self.document = Nokogiri::XML(document.to_s, &:noblanks)
+      # self.document = Nokogiri::XML(document.to_s, &:noblanks)
+      self.document = Nokogiri::XML(document.to_s)
       self.digest_algorithm = :sha1
       self.set_default_signature_method!
 
@@ -26,7 +27,7 @@ module Kiji
     end
 
     def to_xml
-      document.to_xml(save_with:  0, encoding: 'UTF-8')
+      document.to_xml(save_with: 0, encoding: 'UTF-8')
     end
 
     # Return symbol name for supported digest algorithms and string name for custom ones.
@@ -79,7 +80,7 @@ module Kiji
 
     def canonicalize(node = document, inclusive_namespaces = nil)
       # node.canonicalize(Nokogiri::XML::XML_C14N_EXCLUSIVE_1_0, inclusive_namespaces, nil) # The last argument should be exactly +nil+ to remove comments from result
-      node.canonicalize(Nokogiri::XML::XML_C14N_1_0, inclusive_namespaces, nil) # The last argument should be exactly +nil+ to remove comments from result
+      node.canonicalize(Nokogiri::XML::XML_C14N_1_1, inclusive_namespaces, nil) # The last argument should be exactly +nil+ to remove comments from result
     end
 
     # <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
@@ -211,7 +212,8 @@ module Kiji
       #   target_node["#{wsu_ns}:Id"] = id.to_s
       # end
       target_canon = canonicalize(target_node, options[:inclusive_namespaces])
-      target_digest = Base64.encode64(@digester.digest(target_canon)).strip
+      # target_digest = Base64.encode64(@digester.digest(target_canon)).strip
+      target_digest = @digester.base64(target_canon)
 
       reference_node = Nokogiri::XML::Node.new('Reference', document)
       reference_node['URI'] = id.to_s.size > 0 ? encode_ja(id) : ''
@@ -246,7 +248,8 @@ module Kiji
     end
 
     def digest_file!(file_content, options = {})
-      target_digest = Base64.encode64(@digester.digest(file_content)).strip
+      # target_digest = Base64.encode64(@digester.digest(file_content)).strip
+      target_digest = @digester.base64(file_content)
 
       reference_node = Nokogiri::XML::Node.new('Reference', document)
       id = options[:id]

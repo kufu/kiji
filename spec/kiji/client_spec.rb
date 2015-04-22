@@ -45,11 +45,11 @@ describe Kiji::Client do
     end
 
     it '一括送信用構成管理XMLファイルのビルド' do
-      appl_data = Nokogiri::XML(File.read('tmp/0416_kousei.xml'))
+      appl_data = Nokogiri::XML(File.read('tmp/build_test/base_kousei.xml'))
       doc = appl_data.to_xml(save_with:  0)
       signer = Kiji::Signer.new(doc) do |s|
-        s.cert =  OpenSSL::X509::Certificate.new(File.read('tmp/ikkatsu.cer'))
-        s.private_key = OpenSSL::PKey::RSA.new(File.read('tmp/ikkatsu.pem'), 'hoge')
+        s.cert =  OpenSSL::X509::Certificate.new(File.read('tmp/build_test/ikkatsu.cer'))
+        s.private_key = OpenSSL::PKey::RSA.new(File.read('tmp/build_test/ikkatsu.pem'), 'hoge')
         s.digest_algorithm           = :sha256
         s.signature_digest_algorithm = :sha256
       end
@@ -57,14 +57,17 @@ describe Kiji::Client do
       node = signer.document.at_xpath('//構成情報')
       signer.digest!(node, id: '#構成情報')
 
-      app_doc = File.read('tmp/4950000020325000(1)/495000020325029841_01.xml')
+      app_doc = File.read('tmp/bulk_apply/4950000020325000(1)/495000020325029841_01.xml')
       signer.digest_file!(app_doc, id: '495000020325029841_01.xml')
 
       signer.sign!(issuer_serial: true)
 
       signer.document.xpath('//ns:Signature', ns: 'http://www.w3.org/2000/09/xmldsig#').wrap('<署名情報></署名情報>')
 
-      File.write('tmp/4950000020325000(1)/kousei.xml', Nokogiri::XML(signer.to_xml))
+      directory_to_zip = 'tmp/bulk_apply'
+      output_file = 'tmp/bulk_apply.zip'
+      zf = ZipFileGenerator.new(directory_to_zip, output_file)
+      zf.write
     end
   end
 end

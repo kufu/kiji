@@ -39,3 +39,11 @@ Style/Documentation:
 # Offense count: 4
 Style/RegexpLiteral:
   MaxSlashes: 0
+
+Metrics/ClassLength:
+  Exclude:
+    - 'lib/kiji/signer.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/kiji/signer.rb'

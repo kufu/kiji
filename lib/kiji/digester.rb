@@ -48,6 +48,15 @@ module Kiji
       digester.digest(message)
     end
 
+    def hexdigest(message)
+      digester.hexdigest(message)
+    end
+
+    def base64(message)
+      hex = digester.hexdigest(message)
+      [[hex].pack('H*')].pack('m0')
+    end
+
     alias_method :call, :digest
 
     # Returns +OpenSSL::Digest+ (or derived class) instance
