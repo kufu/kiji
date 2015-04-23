@@ -28,8 +28,8 @@ module Kiji
       # 申請書のハッシュ値を求める
       app_file_paths.each do |app_file_path|
         app_doc = File.read(app_file_path)
-        file_name = File.basename(app_file_path)
-        signer.digest_file!(app_doc, id: file_name)
+        app_file_name = File.basename(app_file_path)
+        signer.digest_file!(app_doc, id: app_file_name)
       end
 
       # 署名の付与

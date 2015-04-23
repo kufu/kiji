@@ -44,7 +44,6 @@ class ZipFileGenerator
       # puts 'Deflating ' + disk_file_path
       if File.directory?(disk_file_path)
         # io.mkdir(zip_file_path)
-        FileUtils.mkdir_p(zip_file_path) unless File.directory?(zip_file_path)
         subdir = Dir.entries(disk_file_path)
         subdir.delete('.DS_Store')
         subdir.delete('.')

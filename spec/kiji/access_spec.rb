@@ -89,34 +89,37 @@ describe Kiji::Access do
   end
 
   describe '#withdraw' do
-    context 'when INVALID arrive_id is specified', vcr: { re_record_interval: nil } do
-      let(:expected_status_code) { 400 }
-      let(:response) {
-        file_data = Base64.encode64(File.new('spec/fixtures/bulk_apply_for_api.zip').read)
-        my_client_with_access_key.withdraw('9002015000246401', file_data)
-      }
-      it 'returns errors' do
-      end
-      it_behaves_like 'call the API w/ INVALID parameter'
-    end
-    # context 'when VALID arrive_id is specified', vcr: { re_record_interval: 0 } do
-    #   let(:expected_status_code) { 200 }
+    # context 'when INVALID arrive_id is specified', vcr: { re_record_interval: nil } do
+    #   let(:expected_status_code) { 400 }
     #   let(:response) {
     #     file_data = Base64.encode64(File.new('spec/fixtures/bulk_apply_for_api.zip').read)
-    #     my_client_with_access_key.withdraw('9002015000246402', file_data)
+    #     my_client_with_access_key.withdraw('9002015000246401', file_data)
     #   }
     #   it 'returns errors' do
     #   end
-    #   it_behaves_like 'call the API w/ VALID parameter'
+    #   it_behaves_like 'call the API w/ INVALID parameter'
     # end
+    context 'when VALID arrive_id is specified', vcr: { re_record_interval: 0 } do
+      before do
+        response = my_client_with_access_key.reference('9002015000246405')
+        File.write('tmp/responses/response_withdraw_reference.txt', response.body)
+      end
+      let(:expected_status_code) { 200 }
+      let(:response) {
+        file_data = Base64.encode64(File.new('tmp/9990000000000008.zip').read)
+        my_client_with_access_key.withdraw('9002015000246405', file_data)
+      }
+      it_behaves_like 'call the API w/ VALID parameter'
+    end
+
     # before do
-    #   # file_name = 'bulk_apply_for_api.zip'
-    #   # file_data = Base64.encode64(File.new('tmp/bulk_apply_for_api.zip').read)
+    #   # file_name = '900A010000004000.zip'
+    #   # file_data = Base64.encode64(File.new('tmp/900A010000004000.zip').read)
     #   # apply_response = my_client_with_access_key.apply(file_name, file_data)
     #   # File.write('tmp/response_apply_response.txt', apply_response.body)
     #   # apply_xml = Nokogiri::XML(apply_response.body)
     #   # @send_number = apply_xml.at_xpath('//SendNumber').text
-    #   @send_number = '201504221845475437'
+    #   @send_number = '201504231550535464'
     # end
     # it 'test....' do
     #   response1 = my_client_with_access_key.sended_applications_by_id(@send_number)
@@ -124,9 +127,6 @@ describe Kiji::Access do
     #   xml = Nokogiri::XML(response1.body)
     #   error_file = xml.at_xpath('//ErrorFile').text
     #   File.write('tmp/response_withdraw_error_file.html', Base64.decode64(error_file))
-    #
-    #   file_data = Base64.encode64(File.new('spec/fixtures/apply.zip').read)
-    #   my_client_with_access_key.withdraw('', file_data)
     # end
   end
 

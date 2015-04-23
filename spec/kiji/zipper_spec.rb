@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-def create_zip(procedure_id, app_form_ids = [])
+def create_zip(procedure_id, app_file_names = [])
   cert_file        = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.cer')
   private_key_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.pem')
 
@@ -11,7 +11,7 @@ def create_zip(procedure_id, app_form_ids = [])
 
   # 署名の実施
   kousei_base_file_path = "tmp/base_files/#{procedure_id}_base_kousei.xml"
-  app_file_paths = app_form_ids.map { |id| "tmp/base_files/#{id}.xml" }
+  app_file_paths = app_file_names.map { |file_name| "tmp/base_files/#{file_name}" }
   signer = zipper.sign(kousei_base_file_path, app_file_paths)
 
   # 出力
@@ -26,8 +26,7 @@ def create_zip(procedure_id, app_form_ids = [])
 
   # 申請書XMLをコピー
   app_file_paths.each do |app_file_path|
-    app_form_id = File.basename(app_file_path, '.xml')
-    FileUtils.cp(app_file_path, "#{application_dir}/#{app_form_id}_01.xml")
+    FileUtils.cp(app_file_path, application_dir)
   end
 
   # zip に固める
@@ -39,15 +38,21 @@ describe Kiji::Zipper do
   describe 'create_zip' do
     it '900A010200001000' do
       procedure_id =  '900A010200001000'
-      app_form_ids = ['900A01020000100001']
+      app_file_names = ['900A01020000100001_01.xml']
 
-      create_zip(procedure_id, app_form_ids)
+      create_zip(procedure_id, app_file_names)
     end
-    it '900A010200001000' do
-      procedure_id =  '900A010200001000'
-      app_form_ids = ['900A01020000100001']
+    it '900A010000004000' do
+      procedure_id =  '900A010000004000'
+      app_file_names = ['900A01000000400001_01.xml']
 
-      create_zip(procedure_id, app_form_ids)
+      create_zip(procedure_id, app_file_names)
+    end
+    it '9990000000000008' do
+      procedure_id =  '9990000000000008'
+      app_file_names = ['torisageshinsei.xml']
+
+      create_zip(procedure_id, app_file_names)
     end
   end
 end
