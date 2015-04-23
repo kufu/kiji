@@ -99,16 +99,16 @@ describe Kiji::Access do
       end
       it_behaves_like 'call the API w/ INVALID parameter'
     end
-    context 'when VALID arrive_id is specified', vcr: { re_record_interval: 0 } do
-      let(:expected_status_code) { 200 }
-      let(:response) {
-        file_data = Base64.encode64(File.new('spec/fixtures/bulk_apply_for_api.zip').read)
-        my_client_with_access_key.withdraw('9002015000246402', file_data)
-      }
-      it 'returns errors' do
-      end
-      it_behaves_like 'call the API w/ VALID parameter'
-    end
+    # context 'when VALID arrive_id is specified', vcr: { re_record_interval: 0 } do
+    #   let(:expected_status_code) { 200 }
+    #   let(:response) {
+    #     file_data = Base64.encode64(File.new('spec/fixtures/bulk_apply_for_api.zip').read)
+    #     my_client_with_access_key.withdraw('9002015000246402', file_data)
+    #   }
+    #   it 'returns errors' do
+    #   end
+    #   it_behaves_like 'call the API w/ VALID parameter'
+    # end
     # before do
     #   # file_name = 'bulk_apply_for_api.zip'
     #   # file_data = Base64.encode64(File.new('tmp/bulk_apply_for_api.zip').read)

@@ -1,0 +1,54 @@
+require 'spec_helper'
+
+def create_zip(procedure_id, app_form_ids = [])
+
+  cert_file        = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.cer')
+  private_key_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.pem')
+
+  zipper = Kiji::Zipper.new do |z|
+    z.cert = OpenSSL::X509::Certificate.new(File.read(cert_file))
+    z.private_key = OpenSSL::PKey::RSA.new(File.read(private_key_file), 'gpkitest')
+  end
+
+  # 署名の実施
+  kousei_base_file_path = "tmp/base_files/#{procedure_id}_base_kousei.xml"
+  app_file_paths = app_form_ids.map { |id| "tmp/base_files/#{id}.xml" }
+  signer = zipper.sign(kousei_base_file_path, app_file_paths)
+
+  # 出力
+  base_dir              = "tmp/ikkatsu/#{procedure_id}"
+  application_dir       = "#{base_dir}/#{procedure_id}(1)"
+
+  # 申請案件フォルダの作成
+  FileUtils.mkdir_p(application_dir) unless File.directory?(application_dir)
+
+  # 署名済みの構成管理XMLを書き出し
+  File.write("#{application_dir}/kousei.xml", signer.to_xml)
+
+  # 申請書XMLをコピー
+  app_file_paths.each do |app_file_path|
+    app_form_id = File.basename(app_file_path, '.xml')
+    FileUtils.cp(app_file_path, "#{application_dir}/#{app_form_id}_01.xml")
+  end
+
+  # zip に固める
+  zf = ZipFileGenerator.new(base_dir, "tmp/#{procedure_id}.zip")
+  zf.write
+end
+
+describe Kiji::Zipper do
+  describe 'create_zip' do
+    it '900A010200001000' do
+      procedure_id =  '900A010200001000'
+      app_form_ids = ['900A01020000100001']
+
+      create_zip(procedure_id, app_form_ids)
+    end
+    it '900A010200001000' do
+      procedure_id =  '900A010200001000'
+      app_form_ids = ['900A01020000100001']
+
+      create_zip(procedure_id, app_form_ids)
+    end
+  end
+end

@@ -41,9 +41,10 @@ class ZipFileGenerator
     entries.each do |e|
       zip_file_path = path == '' ? e : File.join(path, e)
       disk_file_path = File.join(@input_dir, zip_file_path)
-      puts 'Deflating ' + disk_file_path
+      # puts 'Deflating ' + disk_file_path
       if File.directory?(disk_file_path)
-        io.mkdir(zip_file_path)
+        # io.mkdir(zip_file_path)
+        FileUtils.mkdir_p(zip_file_path) unless File.directory?(zip_file_path)
         subdir = Dir.entries(disk_file_path)
         subdir.delete('.DS_Store')
         subdir.delete('.')
