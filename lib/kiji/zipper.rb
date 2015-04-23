@@ -1,6 +1,5 @@
 module Kiji
   class Zipper
-
     attr_accessor :cert, :private_key
 
     def initialize

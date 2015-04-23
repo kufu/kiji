@@ -45,5 +45,4 @@ Metrics/ClassLength:
     - 'lib/kiji/signer.rb'
 
 Metrics/AbcSize:
-  Exclude:
-    - 'lib/kiji/signer.rb'
+  Enabled: false

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 def create_zip(procedure_id, app_form_ids = [])
-
   cert_file        = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.cer')
   private_key_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.pem')
 
