@@ -36,6 +36,11 @@ module Kiji
       signer.sign!(issuer_serial: true)
       signer.document.xpath('//ns:Signature', ns: 'http://www.w3.org/2000/09/xmldsig#').wrap('<署名情報></署名情報>')
 
+      # 構成情報 - 署名情報 - その他という順序
+      kousei_node = signer.document.at_xpath('//構成情報')
+      signature_node = signer.document.at_xpath('//署名情報')
+      kousei_node.add_next_sibling(signature_node)
+
       signer
     end
   end

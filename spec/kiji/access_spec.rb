@@ -128,6 +128,33 @@ describe Kiji::Access do
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
+  describe 'just an applying test' do
+    it 'test....' do
+      @send_number = '201504242038585539'
+
+      if @send_number.blank?
+        file_name = '900A010002008000.zip'
+        file_data = Base64.encode64(File.new('tmp/900A010002008000.zip').read)
+        apply_response = my_client_with_access_key.apply(file_name, file_data)
+        File.write('tmp/response_test_apply_900A010002008000.txt', apply_response.body)
+      else
+        response_sended_appl = my_client_with_access_key.sended_applications_by_id(@send_number)
+        File.write('tmp/response_test_sended_applications_900A010002008000.txt', response_sended_appl.body)
+        xml = Nokogiri::XML(response_sended_appl.body)
+        error_file = xml.at_xpath('//ErrorFile').text
+        File.write('tmp/response_test_error_file_900A010002008000.html', Base64.decode64(error_file))
+      end
+
+      @arrive_id = '9002015000246603'
+      if @arrive_id.present?
+        response_notices = my_client_with_access_key.notices(@arrive_id)
+        File.write('tmp/response_test_notices_900A010002008000.txt', response_notices.body)
+      end
+
+      nil
+    end
+  end
+
   describe '#banks', :vcr do
     let(:expected_status_code) { 200 }
     let(:response) { my_client_with_access_key.banks }

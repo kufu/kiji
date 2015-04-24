@@ -36,21 +36,34 @@ end
 
 describe Kiji::Zipper do
   describe 'create_zip' do
+    # ＡＰＩテスト用手続（労働保険関係手続）（通）０００１／ＡＰＩテスト用手続（労働保険関係手続）（通）０００１
     it '900A010200001000' do
       procedure_id =  '900A010200001000'
       app_file_names = ['900A01020000100001_01.xml']
 
       create_zip(procedure_id, app_file_names)
     end
+
+    # ＡＰＩテスト用手続（労働保険関係手続）（通）０００２／ＡＰＩテスト用手続（労働保険関係手続）（通）０００２
     it '900A010000004000' do
       procedure_id =  '900A010000004000'
       app_file_names = ['900A01000000400001_01.xml']
 
       create_zip(procedure_id, app_file_names)
     end
+
+    # 取下げ申請
     it '9990000000000008' do
       procedure_id =  '9990000000000008'
       app_file_names = ['torisageshinsei.xml']
+
+      create_zip(procedure_id, app_file_names)
+    end
+
+    # ＡＰＩテスト用手続（労働保険関係手続）（通）０００４／ＡＰＩテスト用手続（労働保険関係手続）（通）０００４
+    it '900A010002008000' do
+      procedure_id =  '900A010002008000'
+      app_file_names = ['900A01000200800001_01.xml']
 
       create_zip(procedure_id, app_file_names)
     end
