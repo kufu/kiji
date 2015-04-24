@@ -39,4 +39,26 @@ describe Kiji::Authentication do
     end
     it_behaves_like 'call the API w/ VALID parameter'
   end
+
+  # 恐らく一回しか更新できないので re_record_invertal を無効（=再記録しない）
+  #
+  # なぜなら
+  # - 有効期限切れの証明書を設定されているアカウントのみ証明書の更新が可能
+  # - 有効期限切れの証明書を新たに設定することができない
+  describe '#update_certificate', vcr: { re_record_interval: nil } do
+    let(:expected_status_code) { 200 }
+    let(:response) do
+      new_cert_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE04-2_sha2.cer')
+      new_private_key = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE04-2_sha2.pem')
+
+      my_client.cert = OpenSSL::X509::Certificate.new(File.read(new_cert_file))
+      my_client.private_key =  OpenSSL::PKey::RSA.new(File.read(new_private_key), 'hoge')
+
+      old_cert_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE04-1_sha2.cer')
+      @old_cert = OpenSSL::X509::Certificate.new(File.read(old_cert_file))
+
+      my_client.update_certificate(ENV['EGOV_TEST_USER_ID'], @old_cert)
+    end
+    it_behaves_like 'call the API w/ VALID parameter'
+  end
 end

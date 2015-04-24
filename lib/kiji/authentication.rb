@@ -44,5 +44,22 @@ module Kiji
         req.body = sign(appl_data).to_xml
       end
     end
+
+    def update_certificate(user_id, old_cert)
+      x509_cert = Base64.encode64(old_cert.to_der).gsub('\n', '')
+
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.UserID user_id
+            xml.X509Certificate x509_cert
+          }
+        }
+      end
+
+      connection.post('/shinsei/1/authentication/certificate/update') do |req|
+        req.body = sign(appl_data).to_xml
+      end
+    end
   end
 end
