@@ -22,19 +22,22 @@ shared_context 'setup client' do
     end
   }
 
-  let(:my_client_with_access_key) {
+  let(:my_client_with_sign) {
     cert_file        = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE01_sha2.cer')
     private_key_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE01_sha2.pem')
 
     my_client.cert = OpenSSL::X509::Certificate.new(File.read(cert_file))
     my_client.private_key =  OpenSSL::PKey::RSA.new(File.read(private_key_file), 'hoge')
+    my_client
+  }
 
+  let(:my_client_with_access_key) {
     VCR.use_cassette('my_client_login') do
-      response = my_client.login(ENV['EGOV_TEST_USER_ID'])
+      response = my_client_with_sign.login(ENV['EGOV_TEST_USER_ID'])
       xml = Nokogiri::XML(response.body)
-      my_client.access_key = xml.at_xpath('//AccessKey').text
+      my_client_with_sign.access_key = xml.at_xpath('//AccessKey').text
     end
 
-    my_client
+    my_client_with_sign
   }
 end

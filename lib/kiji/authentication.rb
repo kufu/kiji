@@ -27,5 +27,22 @@ module Kiji
         req.body = sign(appl_data).to_xml
       end
     end
+
+    def append(user_id, new_cert)
+      x509_cert = Base64.encode64(new_cert.to_der).gsub('\n', '')
+
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.UserID user_id
+            xml.AddX509Certificate x509_cert
+          }
+        }
+      end
+
+      connection.post('/shinsei/1/authentication/certificate/append') do |req|
+        req.body = sign(appl_data).to_xml
+      end
+    end
   end
 end
