@@ -10,8 +10,8 @@ def create_zip(procedure_id, app_file_names = [])
   end
 
   # 署名の実施
-  kousei_base_file_path = "tmp/base_files/#{procedure_id}_base_kousei.xml"
-  app_file_paths = app_file_names.map { |file_name| "tmp/base_files/#{file_name}" }
+  kousei_base_file_path = "spec/fixtures/base_files/#{procedure_id}_base_kousei.xml"
+  app_file_paths = app_file_names.map { |file_name| "spec/fixtures/base_files/#{file_name}" }
   signer = zipper.sign(kousei_base_file_path, app_file_paths)
 
   # 出力
