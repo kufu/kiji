@@ -61,5 +61,22 @@ module Kiji
         req.body = sign(appl_data).to_xml
       end
     end
+
+    def delete_certificate(user_id, cert_to_delete)
+      x509_cert = Base64.encode64(cert_to_delete.to_der).gsub('\n', '')
+
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.UserID user_id
+            xml.DelX509Certificate x509_cert
+          }
+        }
+      end
+
+      connection.post('/shinsei/1/authentication/certificate/delete') do |req|
+        req.body = sign(appl_data).to_xml
+      end
+    end
   end
 end
