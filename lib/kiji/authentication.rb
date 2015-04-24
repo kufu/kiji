@@ -28,7 +28,7 @@ module Kiji
       end
     end
 
-    def append(user_id, new_cert)
+    def append_certificate(user_id, new_cert)
       x509_cert = Base64.encode64(new_cert.to_der).gsub('\n', '')
 
       appl_data = Nokogiri::XML::Builder.new do |xml|

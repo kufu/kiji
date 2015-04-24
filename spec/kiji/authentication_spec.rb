@@ -20,7 +20,7 @@ describe Kiji::Authentication do
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
-  describe '#append', :vcr do
+  describe '#append_certificate', :vcr do
     before do
       @id = Time.now.strftime('%y%m%d%H%M%S')
 
@@ -35,7 +35,7 @@ describe Kiji::Authentication do
     end
     let(:expected_status_code) { 200 }
     let(:response) do
-      my_client_with_sign.append(@id, @new_cert)
+      my_client_with_sign.append_certificate(@id, @new_cert)
     end
     it_behaves_like 'call the API w/ VALID parameter'
   end
