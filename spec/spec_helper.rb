@@ -17,6 +17,8 @@ VCR.configure do |config|
   }
 end
 
+Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
+
 class ZipFileGenerator
   # Initialize with the directory to zip and the location of the output archive.
   def initialize(input_dir, output_file)
