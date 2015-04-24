@@ -88,6 +88,21 @@ module Kiji
       connection.get("/shinsei/1/access/comment/#{arrive_id}/#{notice_sub_id}")
     end
 
+    def done_comment(arrive_id, notice_sub_id)
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.ArriveID arrive_id
+            xml.NoticeSubID notice_sub_id
+          }
+        }
+      end
+
+      connection.put('/shinsei/1/access/comment') do |req|
+        req.body = appl_data.to_xml
+      end
+    end
+
     def banks
       connection.get('/shinsei/1/access/bank')
     end

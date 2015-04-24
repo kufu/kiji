@@ -122,6 +122,12 @@ describe Kiji::Access do
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
+  describe '#done_comment', vcr: { re_record_interval: nil } do
+    let(:expected_status_code) { 200 }
+    let(:response) { my_client_with_access_key.done_comment('9002015000243928', '1') }
+    it_behaves_like 'call the API w/ VALID parameter'
+  end
+
   describe '#banks', :vcr do
     let(:expected_status_code) { 200 }
     let(:response) { my_client_with_access_key.banks }

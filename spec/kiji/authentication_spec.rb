@@ -62,7 +62,6 @@ describe Kiji::Authentication do
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
-
   describe '#delete_certificate', :vcr do
     before do
       @id = Time.now.strftime('%y%m%d%H%M%S')
