@@ -1,0 +1,143 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/access/officialdocument/9002015000243931/2
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - SmartHR v0.0.1
+      X-Egovapi-Softwareid:
+      - "<EGOV-SOFTWARE-ID>"
+      X-Egovapi-Accesskey:
+      - "<X-EGOVAPI-ACCESSKEY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '4729'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Tue, 28 Apr 2015 02:45:04 GMT
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-store,no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Dec 1994 16:00:00 GMT
+      X-Ua-Compatible:
+      - IE=EmulateIE7
+      Via:
+      - 1.1 proxy-api2
+      Proxy-Agent:
+      - none
+      Set-Cookie:
+      - "<SET-COOKIE>"
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<DataRoot>\r\n\r\n\r\n\r\n<Result>\r\n\t<Code>0</Code>\r\n\t<Message></Message>\r\n</Result>\r\n<ApplData>\r\n\t<ArriveID>9002015000243931</ArriveID>\r\n\t<NoticeSubID>2</NoticeSubID>\r\n\t<Download>\r\n\t\t<FileData>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</FileData>\r\n\t</Download>\r\n</ApplData>\r\n\r\n\r\n</DataRoot>"
+    http_version: 
+  recorded_at: Tue, 28 Apr 2015 02:45:04 GMT
+- request:
+    method: post
+    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/access/officialdocument/verify
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <DataRoot>
+          <ApplData Id="ApplData">
+            <ArriveID>9002015000243931</ArriveID>
+            <Upload>
+              <FileName>officialdocument_for_verify.zip</FileName>
+              <FileData>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</FileData>
+              <SigVerificationXMLFileName>0000-API-002.xml</SigVerificationXMLFileName>
+            </Upload>
+          </ApplData>
+        </DataRoot>
+    headers:
+      User-Agent:
+      - SmartHR v0.0.1
+      X-Egovapi-Softwareid:
+      - "<EGOV-SOFTWARE-ID>"
+      X-Egovapi-Accesskey:
+      - "<X-EGOVAPI-ACCESSKEY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '1366'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Tue, 28 Apr 2015 02:45:05 GMT
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-store,no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Dec 1994 16:00:00 GMT
+      X-Ua-Compatible:
+      - IE=EmulateIE7
+      Via:
+      - 1.1 proxy-api2
+      Proxy-Agent:
+      - none
+      Set-Cookie:
+      - "<SET-COOKIE>"
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxEYXRh
+        Um9vdD4NCg0KDQoNCg0KDQoNCjxSZXN1bHQ+DQoJPENvZGU+MDwvQ29kZT4N
+        Cgk8TWVzc2FnZT48L01lc3NhZ2U+DQo8L1Jlc3VsdD4NCjxBcHBsRGF0YT4N
+        Cgk8QXJyaXZlSUQ+OTAwMjAxNTAwMDI0MzkzMTwvQXJyaXZlSUQ+DQoJPEVy
+        cm9yQ291bnQ+MDwvRXJyb3JDb3VudD4NCg0KICANCg0KCTxEb2N1bWVudEZp
+        bGVOYW1lPjAwMDAtQVBJLTAwMi54bWw8L0RvY3VtZW50RmlsZU5hbWU+DQoJ
+        PEF0dGFjaGVkRmlsZU5hbWU+LTwvQXR0YWNoZWRGaWxlTmFtZT4NCgkNCg0K
+        CTxWZXJpZnlSZXN1bHQ+DQoJCTxPZmZpY2lhbD4NCgkJCTxWYWxpZGF0aW9u
+        UmVzdWx0Puato+W4uOOBp+OBmeOAgjwvVmFsaWRhdGlvblJlc3VsdD4NCgkJ
+        CTxDZXJ0aWZpY2F0ZVJlc3VsdD4tPC9DZXJ0aWZpY2F0ZVJlc3VsdD4NCgkJ
+        CTxDZXJ0aWZpY2F0ZUNvdW50PjI8L0NlcnRpZmljYXRlQ291bnQ+DQoJCQk8
+        UHVibGlzaGVyPuaXpeacrOWbveaUv+W6nCzjg4fjg6Llrpjogbfoqo3oqLzl
+        sYA8L1B1Ymxpc2hlcj4NCgkJCTxPd25lcj7ml6XmnKzlm73mlL/lupws44OG
+        44K544OI55yBLOODhuOCueODiOeUqOiovOaYjuabuO+8kO+8ke+8oTwvT3du
+        ZXI+DQoNCgkJCTxQdWJsaXNoZXJETj5PVT1EZW1vT2ZmaWNpYWxTdGF0dXND
+        QSwgTz1KYXBhbmVzZSBHb3Zlcm5tZW50LCBDPUpQPC9QdWJsaXNoZXJETj4N
+        CgkJCTxPd25lckROPkNOPXRlc3RFRSAwMUEsIE9VPVRlc3QsIE89SmFwYW5l
+        c2UgR292ZXJubWVudCwgQz1KUDwvT3duZXJETj4NCgkJCTxTZXJpYWxOdW1i
+        ZXI+MzIgMzUgMzcgMzAgMzQgMzEgMzUgMzggMzggMzMgMzIgMzcgMzYgMzE8
+        L1NlcmlhbE51bWJlcj4NCgkJCTxUZXJtVmFsaWRpdHk+MjAxNC8wOC8wNCAw
+        MDowMDowMCDjgYvjgokgMjAxOS8wOC8wMyAyMzo1OTo1OTwvVGVybVZhbGlk
+        aXR5Pg0KDQoJCTwvT2ZmaWNpYWw+DQoNCgkJPEdvdmVybm1lbnQ+DQoJCQk8
+        UHVibGlzaGVyRE4+T1U9RGVtb09mZmljaWFsU3RhdHVzQ0EsIE89SmFwYW5l
+        c2UgR292ZXJubWVudCwgQz1KUDwvUHVibGlzaGVyRE4+DQoJCQk8T3duZXJE
+        Tj5PVT1EZW1vT2ZmaWNpYWxTdGF0dXNDQSwgTz1KYXBhbmVzZSBHb3Zlcm5t
+        ZW50LCBDPUpQPC9Pd25lckROPg0KCQkJPFNlcmlhbE51bWJlcj4zMiAzNSAz
+        NCAzNyAzMCAzNCAzOSAzMCAzNyAzNSAzNyAzMSAzNyAzNjwvU2VyaWFsTnVt
+        YmVyPg0KCQkJPFRlcm1WYWxpZGl0eT4yMDE0LzA4LzAxIDAwOjAwOjAwIOOB
+        i+OCiSAyMDI0LzA3LzMxIDIzOjU5OjU5PC9UZXJtVmFsaWRpdHk+DQoJCTwv
+        R292ZXJubWVudD4NCg0KCTwvVmVyaWZ5UmVzdWx0Pg0KDQo8L0FwcGxEYXRh
+        Pg0KDQo8L0RhdGFSb290Pg==
+    http_version: 
+  recorded_at: Tue, 28 Apr 2015 02:45:06 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/access/comment
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <DataRoot>
+          <ApplData Id="ApplData">
+            <ArriveID>9002015000243928</ArriveID>
+            <NoticeSubID>1</NoticeSubID>
+          </ApplData>
+        </DataRoot>
+    headers:
+      User-Agent:
+      - SmartHR v0.0.1
+      X-Egovapi-Softwareid:
+      - "<EGOV-SOFTWARE-ID>"
+      X-Egovapi-Accesskey:
+      - "<X-EGOVAPI-ACCESSKEY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '651'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Tue, 28 Apr 2015 02:45:06 GMT
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-store,no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Dec 1994 16:00:00 GMT
+      X-Ua-Compatible:
+      - IE=EmulateIE7
+      Via:
+      - 1.1 proxy-api2
+      Proxy-Agent:
+      - none
+      Set-Cookie:
+      - "<SET-COOKIE>"
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxEYXRh
+        Um9vdD4NCg0KDQoNCg0KPFJlc3VsdD4NCgk8Q29kZT4wPC9Db2RlPg0KCTxN
+        ZXNzYWdlPjwvTWVzc2FnZT4NCjwvUmVzdWx0Pg0KPEFwcGxEYXRhPg0KCTxB
+        cnJpdmVJRD45MDAyMDE1MDAwMjQzOTI4PC9BcnJpdmVJRD4NCgk8Tm90aWNl
+        U3ViSUQ+MTwvTm90aWNlU3ViSUQ+DQoJPFByb2NOYW1lPu+8oe+8sO+8qeOD
+        huOCueODiOeUqOaJi+e2mu+8iOWKtOWDjeS/nemZuumWouS/guaJi+e2mu+8
+        ie+8iOmAmu+8ie+8kO+8kO+8kO+8lO+8j++8oe+8sO+8qeODhuOCueODiOeU
+        qOaJi+e2mu+8iOWKtOWDjeS/nemZuumWouS/guaJi+e2mu+8ie+8iOmAmu+8
+        ie+8kO+8kO+8kO+8lDwvUHJvY05hbWU+DQoJPERvY1RpdGxlPuOCs+ODoeOD
+        s+ODiO+8iOODoeODg+OCu+ODvOOCuO+8iTwvRG9jVGl0bGU+DQoJPERvd25s
+        b2FkRGF0ZT4yMDE1MDQyODExNDUwNjwvRG93bmxvYWREYXRlPg0KDQoNCg0K
+        CTxGaWxlPg0KCQk8RmlsZU5hbWU+Y29tbWVudHRzdXVjaGkueG1sPC9GaWxl
+        TmFtZT4NCgk8L0ZpbGU+DQoNCgk8RmlsZT4NCgkJPEZpbGVOYW1lPjk5OTAw
+        MDAwMDAwMDAwMDAwMi54c2w8L0ZpbGVOYW1lPg0KCTwvRmlsZT4NCg0KPC9B
+        cHBsRGF0YT4NCjwvRGF0YVJvb3Q+
+    http_version: 
+  recorded_at: Tue, 28 Apr 2015 02:45:06 GMT
+recorded_with: VCR 2.9.3

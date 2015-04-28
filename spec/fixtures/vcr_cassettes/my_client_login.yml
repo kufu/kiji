@@ -1,0 +1,64 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/authentication/login
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DataRoot><ApplData Id="ApplData"><UserID><EGOV-TEST-USER-ID></UserID></ApplData><Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="20150428114458"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#ApplData"><Transforms><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>V//B0sP2jNsl+Heiy0sNsCR2B3P6gjtOzsfvEO8868g=</DigestValue></Reference></SignedInfo><SignatureValue>EXiX+wVNsJ/xflESNLzBfVb2HpPdCX8Rq3cuYqz5tWfkxKqtvI6oImeoWLr0SWYfWdHzdSBfNCEYbBrjCZzAB/DG3fstU5NtkSIcWy/gPxXCnvwZAk7fiFqUFPdBL6YmsHnjY5cymKHXGm//RnMj3DabJOWeHWMD0K4B6bch5Ar2dyqWTCx/u1OkLkuPmKyaRNwuxyrbBhV8HkjVqfAnd/mzK+Py9eYmv1lqw6VSX2lh607BEgdGMxjasPgi6tNrnVME9SwX0IxSCsvDUy/ET4bNw409Y+YuX1gzaD2cO3NHlO5l0MEzka+rXTYKW66t5GS0cZckHnooytzGoUoGow==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIEizCCA3OgAwIBAgIEVHXPfTANBgkqhkiG9w0BAQsFADAuMQswCQYDVQQGEwJKUDERMA8GA1UECgwIRGVtb01pbjExDDAKBgNVBAsMA0NBMTAeFw0xNDExMjgwNjAxMDJaFw0xOTExMjcxNDU5NTlaMEkxCzAJBgNVBAYTAkpQMREwDwYDVQQKDAhEZW1vTWluMTEMMAoGA1UECwwDQ0ExMRkwFwYDVQQDDBBJY2hpcm8gTWFkb2d1Y2hpMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyJBITKzWETx6waZ4cTuhM0rThzTM2tzIUH1Pbq6UbeUE/sjDAUGs5RxIWCugtORajYOnoBSCV3rJE/oMdo5NJkUU2xtI0t4+0GXWNVeomUGT4RG4O3/ctJvL/WkgH7d+WUb8CeUjSSVqQCPxdJehuIxZSgL0lqASovuHYfvblB8DsAMNlhqLZWDxdy8xp25o+N9+iiS0z5LIHF2D6xnnIxv59SY3A49GUMVeBopI5tIRkZG1ahCJTYEAvcJioEXPP8R9OBIOGiWGxXdoXIJmKsyxGZ5XsC+gx4J/zf4U8UJWfSkfpQREbInC+n9T9hFIBpDzrdDBT1BW4vZTQGtj4QIDAQABo4IBlDCCAZAwDgYDVR0PAQH/BAQDAgbAMBEGCWCGSAGG+EIBAQQEAwIGQDBOBgNVHRIERzBFpEMwQTELMAkGA1UEBhMCSlAxHjAcBgNVBAoMFeaooeaTrOawkemWk+iqjeiovOWxgDESMBAGA1UECwwJ77yj77yh77yRMB8GA1UdIAEB/wQVMBMwEQYPAoM4ho4xCAEBAAKMmyVkMGgGA1UdEQRhMF+kXTBbMQswCQYDVQQGEwJKUDEeMBwGA1UECgwV5qih5pOs5rCR6ZaT6KqN6Ki85bGAMRIwEAYDVQQLDAnvvKPvvKHvvJExGDAWBgNVBAMMD+eqk+WPo+OAgOS4gOmDjjBQBgNVHR8ESTBHMEWgQ6BBpD8wPTELMAkGA1UEBhMCSlAxETAPBgNVBAoMCERlbW9NaW4xMQwwCgYDVQQLDANDQTExDTALBgNVBAMMBENSTDEwHwYDVR0jBBgwFoAUFNPnlvRSx8XFOnRlLumW95h4I18wHQYDVR0OBBYEFHS3bhJrJpfwWCRG6XOCpfnv6YZWMA0GCSqGSIb3DQEBCwUAA4IBAQBGJqT07F70WP2xJoFyLZu3aB5g9FnT2zrd5gcB7VzIlB14B48tCSFRL+mXicacsnu8JX5vdah9TBeJ8FgzTNWgkr8QVKAEymA7KZOktlRlrLMaHqPKJVIKOZHQJxfrqznGLOetbALnslQwU9EVyjCMSnFH3Gdh2JqsQP9y9lRt+tPEehAv7eTZmQ+MYCQrSXX2VAbXUrHxEWdjWwlPzFHQrNlVOpaAlVu9CnNZoBgk09IMkTJ3p5TjOY9UZcK/3p0B3iksWt10cWJ4GE+IrjNSu+ZxLYR5Ld4vYNtIL7cLEUw1CbB334JBH9vT8mTo54kdGVB4ZOix5lkog3PJnoAF</X509Certificate></X509Data></KeyInfo></Signature></DataRoot>
+    headers:
+      User-Agent:
+      - SmartHR v0.0.1
+      X-Egovapi-Softwareid:
+      - "<EGOV-SOFTWARE-ID>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '511'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Tue, 28 Apr 2015 02:44:58 GMT
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-store,no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Dec 1994 16:00:00 GMT
+      X-Ua-Compatible:
+      - IE=EmulateIE7
+      Via:
+      - 1.1 proxy-api2
+      Proxy-Agent:
+      - none
+      Set-Cookie:
+      - "<SET-COOKIE>"
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <DataRoot>
+        <Result>
+        <Code>0</Code>
+        <Message></Message>
+        </Result>
+        <ApplData>
+        <UserID><EGOV-TEST-USER-ID></UserID>
+        <AccessKey>APbSZpO0s8wuMljui4o5ci4zSYIlwnzTjVaC5CNxBHXPD/LxIsU7CIpx0/gd6hykgjhAevKGcoGAYHRHd1Jg8cSvWzwKqjFvYDMYZ5MGUpmCw70H8V3NAtrCIMaim/0DVv07oU6ruq0FXMlThyWT/iPKeztK4iMmFNcbFdY25L6wfHlAbDva4NP/e4h90k3f80pwcSs87HETnGVSZmE3QSK/vyqXNZXJRMY1cLXDUnrFHRbPC/HTz2s6Vqaour96</AccessKey>
+        <LastAuthenticationDate>20150428113317</LastAuthenticationDate>
+        </ApplData>
+        </DataRoot>
+    http_version: 
+  recorded_at: Tue, 28 Apr 2015 02:44:59 GMT
+recorded_with: VCR 2.9.3
