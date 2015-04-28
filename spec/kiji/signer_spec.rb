@@ -5,8 +5,8 @@ describe Kiji::Signer do
     file_data = Nokogiri::XML(File.read('spec/fixtures/sample_kousei_base.xml'))
     doc = file_data.to_xml(save_with:  0)
     my_signer = Kiji::Signer.new(doc) do |s|
-      s.cert =  OpenSSL::X509::Certificate.new(File.read('tmp/build_test/ikkatsu.cer'))
-      s.private_key = OpenSSL::PKey::RSA.new(File.read('tmp/build_test/ikkatsu.pem'), 'hoge')
+      s.cert =  OpenSSL::X509::Certificate.new(File.read('spec/fixtures/ikkatsu.cer'))
+      s.private_key = OpenSSL::PKey::RSA.new(File.read('spec/fixtures/ikkatsu.pem'), 'hoge')
       s.digest_algorithm           = :sha256
       s.signature_digest_algorithm = :sha256
     end

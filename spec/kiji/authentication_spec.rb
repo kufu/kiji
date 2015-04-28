@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Kiji::Authentication do
   include_context 'setup client'
 
-  describe '#register', vcr: { re_record_interval: nil } do
+  describe '#register', :vcr do
     let(:expected_status_code) { 201 }
     let(:response) do
       id = Time.now.strftime('%y%m%d%H%M%S')
@@ -40,12 +40,7 @@ describe Kiji::Authentication do
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
-  # 恐らく一回しか更新できないので re_record_invertal を無効（=再記録しない）
-  #
-  # なぜなら
-  # - 有効期限切れの証明書を設定されているアカウントのみ証明書の更新が可能
-  # - 有効期限切れの証明書を新たに設定することができない
-  describe '#update_certificate', vcr: { re_record_interval: nil } do
+  describe '#update_certificate', :vcr do
     let(:expected_status_code) { 200 }
     let(:response) do
       new_cert_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE04-2_sha2.cer')

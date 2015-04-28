@@ -37,32 +37,7 @@ describe Kiji::Access do
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
-  # データの作成から取下げ可能になるまで時間かかるので、
-  # re_record_invertal を無効（=再記録しない）
-  describe '#withdraw', vcr: { re_record_interval: nil } do
-    # context 'when INVALID arrive_id is specified', vcr: { re_record_interval: nil } do
-    #   let(:expected_status_code) { 400 }
-    #   let(:response) {
-    #     file_data = Base64.encode64(File.new('spec/fixtures/bulk_apply_for_api.zip').read)
-    #     my_client_with_access_key.withdraw('9002015000246401', file_data)
-    #   }
-    #   it 'returns errors' do
-    #   end
-    #   it_behaves_like 'call the API w/ INVALID parameter'
-    # end
-
-    # context 'when VALID arrive_id is specified', vcr: { re_record_interval: 0 } do
-    #   before do
-    #     response = my_client_with_access_key.reference('9002015000246405')
-    #     File.write('tmp/responses/response_withdraw_reference.txt', response.body)
-    #   end
-    #   let(:expected_status_code) { 202 }
-    #   let(:response) {
-    #     file_data = Base64.encode64(File.new('tmp/9990000000000008.zip').read)
-    #     my_client_with_access_key.withdraw('9002015000246405', file_data)
-    #   }
-    #   it_behaves_like 'call the API w/ VALID parameter'
-    # end
+  describe '#withdraw', :vcr do
     before do
       send_number = '201504281051005638'
       if send_number.blank?
@@ -90,7 +65,6 @@ describe Kiji::Access do
       }
       it_behaves_like 'call the API w/ VALID parameter'
     end
-
   end
 
   describe '#amends', :vcr do
@@ -136,38 +110,11 @@ describe Kiji::Access do
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
-  describe '#done_comment', vcr: { re_record_interval: nil } do
+  describe '#done_comment', :vcr do
     let(:expected_status_code) { 200 }
     let(:response) { my_client_with_access_key.done_comment('9002015000243928', '1') }
     it_behaves_like 'call the API w/ VALID parameter'
   end
-
-  # describe 'just an applying test' do
-  #   it 'test....' do
-  #     send_number = '201504242038585539'
-  #
-  #     if send_number.blank?
-  #       file_name = '900A010002008000.zip'
-  #       file_data = Base64.encode64(File.new('tmp/900A010002008000.zip').read)
-  #       apply_response = my_client_with_access_key.apply(file_name, file_data)
-  #       File.write('tmp/response_test_apply_900A010002008000.txt', apply_response.body)
-  #     else
-  #       response_sended_appl = my_client_with_access_key.sended_applications_by_id(send_number)
-  #       File.write('tmp/response_test_sended_applications_900A010002008000.txt', response_sended_appl.body)
-  #       xml = Nokogiri::XML(response_sended_appl.body)
-  #       error_file = xml.at_xpath('//ErrorFile').text
-  #       File.write('tmp/response_test_error_file_900A010002008000.html', Base64.decode64(error_file))
-  #     end
-  #
-  #     arrive_id = '9002015000246603'
-  #     if arrive_id.present?
-  #       response_notices = my_client_with_access_key.notices(@arrive_id)
-  #       File.write('tmp/response_test_notices_900A010002008000.txt', response_notices.body)
-  #     end
-  #
-  #     nil
-  #   end
-  # end
 
   describe '#banks', :vcr do
     let(:expected_status_code) { 200 }
