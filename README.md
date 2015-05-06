@@ -6,6 +6,18 @@ by [KUFU, Inc.](http://kufuinc.com/)
 
 A Ruby interface to the e-Gov API.
 
+## 理念
+
+2008 年より[電子政府（e-Gov）のウェブサイト](http://www.e-gov.go.jp/shinsei/index.html)上で社会保険・労働保険関連手続きの電子申請の受付が開始されました。  
+2010 年には e-Gov の使い勝手の向上を図り、一括申請機能の提供が開始されました。  
+そして 2014 年 10 月、さらなる利便性の向上を目的に、外部連携 API 仕様が公開されました。  
+
+これまで様々な取組が行われてきた一方で、確定申告などで利用される国税の電子申告（e-Tax）と比べるとまだまだ普及度が低いのが実情です。
+
+わたしたちは kiji の開発・公開によって e-Gov 外部連携 API に対応したソフトウェアが増えることを期待します。  
+そして、ユーザの利便性を向上し、もって国の手続きにおけるオンライン利用の認知度の向上、利用率の向上、及び利用の拡大に貢献します。
+
+
 ## インストール
 
 Gemfile に追記して:
@@ -41,7 +53,6 @@ end
 response = client.register("NEW_USER_ID") # => Faraday::Response
 xml = Nokogiri::XML(response.body) # => Nokogiri::XML::Document
 xml.at_xpath('//Code').text # => 0（正常終了）
-
 ```
 
 ### 利用者認証
@@ -81,10 +92,51 @@ encoded_data = Base64.encode64(File.new("data/#{file_name}").read)
 client.apply(file_name, encoded_data)
 ```
 
+
 ## 事前準備
 
 e-Gov API を利用するには外部連携 API 利用ソフトウェア開発の申込みを行い、ソフトウェア ID を入手する必要があります。  
 詳しくは [利用にあたっての留意事項](http://www.e-gov.go.jp/shinsei/interface_api/attention.html) をご参照ください。
+
+
+## 検証環境での利用
+
+検証環境には BASIC 認証が設定されています。  
+`Kiji::Client` の `basic_auth_id` および `basic_auth_password` に ID と Password をそれぞれ設定しましょう。
+
+```ruby
+client = Kiji::Client.new do |c|
+  ...
+  c.basic_auth_id = ENV['EGOV_BASIC_AUTH_ID']
+  c.basic_auth_password = ENV['EGOV_BASIC_AUTH_PASSWORD']
+end
+```
+
+また、署名に利用する証明書については配布されているものを利用します。  
+
+[仕様書ダウンロード｜電子政府の総合窓口e-Gov イーガブ](http://www.e-gov.go.jp/shinsei/interface_api/download.html) > 検証環境テスト用電子証明書
+
+**TIPS**
+
+pfx から *.pem と *.cer を取り出す
+
+__*.cer__
+
+```bash
+$ openssl pkcs12 -in e-GovEE02_sha2.pfx -nokeys -out ~/Desktop/egov.cer
+Enter Import Password:（gpkitestと入力）
+MAC verified OK
+```
+
+__*.pem__
+
+```bash
+$ openssl pkcs12 -in e-GovEE02_sha2.pfx -nocerts -out ~/Desktop/egov.pem
+Enter Import Password:（gpkitestと入力）
+MAC verified OK
+Enter PEM pass phrase:（適当なパスワード入力）
+Verifying - Enter PEM pass phrase:（適当なパスワード入力）
+```
 
 
 ## API と メソッドの対応
@@ -131,6 +183,10 @@ e-Gov API を利用するには外部連携 API 利用ソフトウェア開発�
 - [一括申請仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](http://www.e-gov.go.jp/shinsei/interface/index.html)  
     （公式）申請データの構造仕様について
 
+## 注意事項
+
+最終確認試験にて合格していない API 機能を利用すると当該ソフトウェアからの e-Gov 電子申請システムへの接続が制限されます。ご注意ください。（API 利用ガイド p. 20）
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/kiji/fork )
@@ -138,3 +194,14 @@ e-Gov API を利用するには外部連携 API 利用ソフトウェア開発�
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+
+## ライセンス
+
+Copyright (c) 2015 Kensuke NAITO
+
+以下に定める条件に従い、本ソフトウェアおよび関連文書のファイル（以下「ソフトウェア」）の複製を取得するすべての人に対し、ソフトウェアを無制限に扱うことを無償で許可します。これには、ソフトウェアの複製を使用、複写、変更、結合、掲載、頒布、サブライセンス、および/または販売する権利、およびソフトウェアを提供する相手に同じことを許可する権利も無制限に含まれます。
+
+上記の著作権表示および本許諾表示を、ソフトウェアのすべての複製または重要な部分に記載するものとします。
+
+ソフトウェアは「現状のまま」で、明示であるか暗黙であるかを問わず、何らの保証もなく提供されます。ここでいう保証とは、商品性、特定の目的への適合性、および権利非侵害についての保証も含みますが、それに限定されるものではありません。 作者または著作権者は、契約行為、不法行為、またはそれ以外であろうと、ソフトウェアに起因または関連し、あるいはソフトウェアの使用またはその他の扱いによって生じる一切の請求、損害、その他の義務について何らの責任も負わないものとします。
