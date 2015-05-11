@@ -204,7 +204,7 @@ Copyright (c) 2015 Kensuke NAITO and KUFU, Inc.
 ライセンスはこちら: [kiji/LICENSE.md](https://github.com/kufu/kiji/blob/master/LICENSE.md)
 
 
-## KUFU について
+# KUFU について
 
 ![KUFU logo](https://raw.githubusercontent.com/wiki/kufu/kiji/images/logo_kufu.png)
 
@@ -215,3 +215,13 @@ KUFU では OSS 活動に積極的なエンジニアを募集しています！
 
 [「雇用」×「国のAPI」をハックする Ruby エンジニア募集！](https://www.wantedly.com/projects/3788)
 
+
+# kiji について
+
+キジ（雉子、雉、学名: Phasianus versicolor）は、キジ目キジ科キジ属の鳥の一種で、日本の国鳥です。  
+オスは美しい緑色の羽で覆われ、長い尾と目の周りに赤い肉腫を持つことが特徴です。  
+飛ぶのはそれほど得意ではない一方で、発達した筋肉により時速 30 キロメートルで走ることができます。
+古来より日本人と関わりの深い鳥として「日本書紀」、「万葉集」、「桃太郎」をはじめ、様々な文学作品に登場してきました。  
+国鳥であるにも関わらず狩猟が許可されているというちょっと悲しい鳥でもあります。
+
+kiji のロゴは「きじ馬（あるいは雉子車）」と呼ばれる、九州地方に伝わる郷土玩具をモチーフとしています。
