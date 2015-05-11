@@ -1,4 +1,4 @@
-![kiji logo](https://raw.githubusercontent.com/wiki/kufu/kiji/images/logo_kiji.png?token=ACHJI5TyC7JTMukERkP_818OKspbneAdks5VUpmFwA%3D%3D)
+![kiji logo](https://raw.githubusercontent.com/wiki/kufu/kiji/images/logo_kiji.png)
 
 by [KUFU, Inc.](http://kufuinc.com/)
 
@@ -200,5 +200,18 @@ Verifying - Enter PEM pass phrase:（適当なパスワード入力）
 
 ## Copyright
 
-Copyright (c) 2015 Kensuke NAITO  
+Copyright (c) 2015 Kensuke NAITO and KUFU, Inc.
 ライセンスはこちら: [kiji/LICENSE.md](https://github.com/kufu/kiji/blob/master/LICENSE.md)
+
+
+## KUFU について
+
+![KUFU logo](https://raw.githubusercontent.com/wiki/kufu/kiji/images/logo_kufu.png)
+
+kiji は株式会社 KUFU によってメンテナンス、開発が行われています。  
+わたしたちは OSS の力を信じています。  
+
+KUFU では OSS 活動に積極的なエンジニアを募集しています！  
+
+[「雇用」×「国のAPI」をハックする Ruby エンジニア募集！](https://www.wantedly.com/projects/3788)
+
