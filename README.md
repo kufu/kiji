@@ -200,7 +200,7 @@ Verifying - Enter PEM pass phrase:（適当なパスワード入力）
 
 ## Copyright
 
-Copyright (c) 2015 Kensuke NAITO and KUFU, Inc.
+Copyright (c) 2015 Kensuke NAITO and KUFU, Inc.  
 ライセンスはこちら: [kiji/LICENSE.md](https://github.com/kufu/kiji/blob/master/LICENSE.md)
 
 
