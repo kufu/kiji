@@ -102,6 +102,27 @@ describe Kiji::Access do
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
+  describe '#amendapply' do
+    # APIテスト用データ情報より
+    # 「再提出」が可能な状態の手続きの到達番号をセット
+    # 手続きは 900A010200001000（ＡＰＩテスト用手続（労働保険関係手続）（通）０００１）
+    arrive_id = '9002015000243936'
+    let(:expected_status_code) { 202 }
+    let(:response) {
+      # 補正用データを Base64 化
+      file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
+      my_client_with_access_key.amendapply(arrive_id, file_data)
+    }
+
+    # 状況の確認
+    # before do
+    #   res = my_client_with_access_key.reference('9002015000243936')
+    #   File.write('tmp/response_reference_9002015000243936.txt', res.body)
+    # end
+
+    it_behaves_like 'call the API w/ VALID parameter'
+  end
+
   describe '#notices', :vcr do
     let(:expected_status_code) { 200 }
     let(:response) { my_client_with_access_key.notices('9002015000243928') }
@@ -111,6 +132,12 @@ describe Kiji::Access do
   describe '#officialdocument', :vcr do
     let(:expected_status_code) { 200 }
     let(:response) { my_client_with_access_key.officialdocument('9002015000243931', '1') }
+    it_behaves_like 'call the API w/ VALID parameter'
+  end
+
+  describe '#done_officialdocument', :vcr do
+    let(:expected_status_code) { 200 }
+    let(:response) { my_client_with_access_key.done_officialdocument('9002015000243931', '1') }
     it_behaves_like 'call the API w/ VALID parameter'
   end
 

@@ -1,0 +1,74 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/access/officialdocument
+    body:
+      encoding: UTF-8
+      string: |
+        <?xml version="1.0"?>
+        <DataRoot>
+          <ApplData Id="ApplData">
+            <ArriveID>9002015000243931</ArriveID>
+            <NoticeSubID>1</NoticeSubID>
+          </ApplData>
+        </DataRoot>
+    headers:
+      User-Agent:
+      - SmartHR v0.0.1
+      X-Egovapi-Softwareid:
+      - "<EGOV-SOFTWARE-ID>"
+      X-Egovapi-Accesskey:
+      - "<X-EGOVAPI-ACCESSKEY>"
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Length:
+      - '644'
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Date:
+      - Wed, 17 Jun 2015 11:42:30 GMT
+      X-Frame-Options:
+      - DENY
+      Cache-Control:
+      - no-store,no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - Thu, 01 Dec 1994 16:00:00 GMT
+      X-Ua-Compatible:
+      - IE=EmulateIE7
+      Via:
+      - 1.1 proxy-api2
+      Proxy-Agent:
+      - none
+      Set-Cookie:
+      - "<SET-COOKIE>"
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxEYXRh
+        Um9vdD4NCg0KDQoNCg0KPFJlc3VsdD4NCgk8Q29kZT4wPC9Db2RlPg0KCTxN
+        ZXNzYWdlPjwvTWVzc2FnZT4NCjwvUmVzdWx0Pg0KPEFwcGxEYXRhPg0KCTxB
+        cnJpdmVJRD45MDAyMDE1MDAwMjQzOTMxPC9BcnJpdmVJRD4NCgk8Tm90aWNl
+        U3ViSUQ+MTwvTm90aWNlU3ViSUQ+DQoJPFByb2NOYW1lPu+8oe+8sO+8qeOD
+        huOCueODiOeUqOaJi+e2mu+8iOWKtOWDjeS/nemZuumWouS/guaJi+e2mu+8
+        ie+8iOmAmu+8ie+8kO+8kO+8kO+8lO+8j++8oe+8sO+8qeODhuOCueODiOeU
+        qOaJi+e2mu+8iOWKtOWDjeS/nemZuumWouS/guaJi+e2mu+8ie+8iOmAmu+8
+        ie+8kO+8kO+8kO+8lDwvUHJvY05hbWU+DQoJPERvY1RpdGxlPue9suWQjeS7
+        mOOBjeWFrOaWh+abuO+8kTwvRG9jVGl0bGU+DQoJPERvd25sb2FkRGF0ZT4y
+        MDE1MDYxNzIwNDIzMDwvRG93bmxvYWREYXRlPg0KDQoNCg0KCTxGaWxlPg0K
+        CQk8RmlsZU5hbWU+MDAwMC1BUEktMDAxLnhtbDwvRmlsZU5hbWU+DQoJPC9G
+        aWxlPg0KDQoJPEZpbGU+DQoJCTxGaWxlTmFtZT7jgrnjgr/jgqTjg6vjgrfj
+        g7zjg4gxLnhzbDwvRmlsZU5hbWU+DQoJPC9GaWxlPg0KDQo8L0FwcGxEYXRh
+        Pg0KPC9EYXRhUm9vdD4=
+    http_version: 
+  recorded_at: Wed, 17 Jun 2015 11:42:29 GMT
+recorded_with: VCR 2.9.3

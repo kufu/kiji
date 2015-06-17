@@ -95,12 +95,44 @@ module Kiji
       end
     end
 
+    def amendapply(arrive_id, file_data)
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.ArriveID arrive_id
+            xml.Upload {
+              xml.FileData file_data
+            }
+          }
+        }
+      end
+
+      connection.post('/shinsei/1/access/amendapply') do |req|
+        req.body = appl_data.to_xml
+      end
+    end
+
     def notices(arrive_id)
       connection.get("/shinsei/1/access/notice/#{arrive_id}")
     end
 
     def officialdocument(arrive_id, notice_sub_id)
       connection.get("/shinsei/1/access/officialdocument/#{arrive_id}/#{notice_sub_id}")
+    end
+
+    def done_officialdocument(arrive_id, notice_sub_id)
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.ArriveID arrive_id
+            xml.NoticeSubID notice_sub_id
+          }
+        }
+      end
+
+      connection.put('/shinsei/1/access/officialdocument') do |req|
+        req.body = appl_data.to_xml
+      end
     end
 
     def verify_officialdocument(arrive_id, file_name, file_data, sig_xml_file_name)
