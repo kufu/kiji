@@ -60,6 +60,7 @@ describe Kiji::Access do
     if arrive_id.present?
       let(:expected_status_code) { 202 }
       let(:response) {
+        # 取下げ申請データを Base64 エンコード
         file_data = Base64.encode64(File.new('tmp/9990000000000008.zip').read)
         my_client_with_access_key.withdraw(arrive_id, file_data)
       }
@@ -70,6 +71,20 @@ describe Kiji::Access do
   describe '#amends', :vcr do
     let(:expected_status_code) { 200 }
     let(:response) { my_client_with_access_key.amends('9002015000243941') }
+    it_behaves_like 'call the API w/ VALID parameter'
+  end
+
+  describe '#reamend', :vcr do
+    # APIテスト用データ情報より
+    # 再提出が可能な状態の手続きの到達番号をセット
+    # 手続きは 900A010200001000（ＡＰＩテスト用手続（労働保険関係手続）（通）０００１）
+    arrive_id = '9002015000244076'
+    let(:expected_status_code) { 202 }
+    let(:response) {
+      # 補正（再提出用のデータを Base64 化
+      file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
+      my_client_with_access_key.reamend(arrive_id, file_data)
+    }
     it_behaves_like 'call the API w/ VALID parameter'
   end
 

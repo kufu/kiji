@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-def create_zip(procedure_id, app_file_names = [])
+def create_zip(procedure_id, app_file_names = [], tenpu_file_names = [])
   cert_file        = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.cer')
   private_key_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.pem')
 
@@ -12,6 +12,7 @@ def create_zip(procedure_id, app_file_names = [])
   # 署名の実施
   kousei_base_file_path = "spec/fixtures/base_files/#{procedure_id}_base_kousei.xml"
   app_file_paths = app_file_names.map { |file_name| "spec/fixtures/base_files/#{file_name}" }
+  tenpu_file_paths = tenpu_file_names.map { |file_name| "spec/fixtures/base_files/#{file_name}" }
   signer = zipper.sign(kousei_base_file_path, app_file_paths)
 
   # 出力
@@ -29,6 +30,11 @@ def create_zip(procedure_id, app_file_names = [])
     FileUtils.cp(app_file_path, application_dir)
   end
 
+  # 添付ファイルをコピー
+  tenpu_file_paths.each do |tenpu_file_path|
+    FileUtils.cp(tenpu_file_path, application_dir)
+  end
+
   # zip に固める
   zf = ZipFileGenerator.new(base_dir, "tmp/#{procedure_id}.zip")
   zf.write
@@ -40,8 +46,9 @@ describe Kiji::Zipper do
     it '900A010200001000' do
       procedure_id =  '900A010200001000'
       app_file_names = ['900A01020000100001_01.xml']
+      tenpu_file_names = ['tenpu.txt']
 
-      create_zip(procedure_id, app_file_names)
+      create_zip(procedure_id, app_file_names, tenpu_file_names)
     end
 
     # ＡＰＩテスト用手続（労働保険関係手続）（通）０００２／ＡＰＩテスト用手続（労働保険関係手続）（通）０００２
