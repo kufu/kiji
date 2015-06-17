@@ -74,6 +74,27 @@ module Kiji
       end
     end
 
+    def partamend(arrive_id, basic_form_flag, attached_flag, file_data)
+      appl_data = Nokogiri::XML::Builder.new do |xml|
+        xml.DataRoot {
+          xml.ApplData(Id: 'ApplData') {
+            xml.ArriveID arrive_id
+            xml.Target {
+              xml.BasicFormFlag basic_form_flag ? '1' : '0'
+              xml.AttachedFlag attached_flag ? '1' : '0'
+            }
+            xml.Upload {
+              xml.FileData file_data
+            }
+          }
+        }
+      end
+
+      connection.post('/shinsei/1/access/partamend') do |req|
+        req.body = appl_data.to_xml
+      end
+    end
+
     def notices(arrive_id)
       connection.get("/shinsei/1/access/notice/#{arrive_id}")
     end

@@ -76,14 +76,28 @@ describe Kiji::Access do
 
   describe '#reamend', :vcr do
     # APIテスト用データ情報より
-    # 再提出が可能な状態の手続きの到達番号をセット
+    # 「再提出」が可能な状態の手続きの到達番号をセット
     # 手続きは 900A010200001000（ＡＰＩテスト用手続（労働保険関係手続）（通）０００１）
     arrive_id = '9002015000244076'
     let(:expected_status_code) { 202 }
     let(:response) {
-      # 補正（再提出用のデータを Base64 化
+      # 補正用データを Base64 化
       file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
       my_client_with_access_key.reamend(arrive_id, file_data)
+    }
+    it_behaves_like 'call the API w/ VALID parameter'
+  end
+
+  describe '#partamend', :vcr do
+    # APIテスト用データ情報より
+    # 「補正申請」が可能な状態の手続きの到達番号をセット
+    # 手続きは 900A010200001000（ＡＰＩテスト用手続（労働保険関係手続）（通）０００１）
+    arrive_id = '9002015000243941'
+    let(:expected_status_code) { 202 }
+    let(:response) {
+      # 補正用データを Base64 化
+      file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
+      my_client_with_access_key.partamend(arrive_id, true, false, file_data)
     }
     it_behaves_like 'call the API w/ VALID parameter'
   end
