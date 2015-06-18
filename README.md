@@ -143,35 +143,34 @@ Verifying - Enter PEM pass phrase:（適当なパスワード入力）
 
 | API | メソッド | 実装状況 |
 | --- | --- | :---: |
-| 利用者 ID 登録 | register | ○ |
-| 利用者認証 | login | ○ |
-| 一括申請 | apply | ○ |
-| 送信案件一覧情報取得 (ID 指定) | sended_applications_by_id | ○ |
-| 送信案件一覧情報取得 (日付 指定) | sended_applications_by_date | ○ |
-| 申請案件一覧情報取得 | arrived_applications | ○ |
-| 状況照会 | reference | ○ |
-| 取下げ | withdraw | ○ |
-| 補正通知一覧取得 | amends | ○ |
-| 補正(再提出) | reamend | △ |
-| 補正(部分補正) | partamend | △ |
-| 補正(補正申請) | amend_apply | △ |
-| 公文書・コメント一覧取得 | notices | ○ |
-| 公文書取得 | officialdocument | ○ |
-| 公文書取得完了 | done_officialdocument | ○ |
-| 公文書署名検証 | verify_officialdocument | ○ |
-| コメント通知取得 | comment | ○ |
-| コメント通知取得完了 | done_comment | ○ |
-| 電子納付対応金融機関一覧取得 | banks | ○ |
-| 電子納付情報一覧取得 | payments | ○ |
+| 利用者 ID 登録 | register | ◯ |
+| 利用者認証 | login | ◯ |
+| 一括申請 | apply | ◯ |
+| 送信案件一覧情報取得 (ID 指定) | sended_applications_by_id | ◯ |
+| 送信案件一覧情報取得 (日付 指定) | sended_applications_by_date | ◯ |
+| 申請案件一覧情報取得 | arrived_applications | ◯ |
+| 状況照会 | reference | ◯ |
+| 取下げ | withdraw | ◯ |
+| 補正通知一覧取得 | amends | ◯ |
+| 補正(再提出) | reamend | ◯ |
+| 補正(部分補正) | partamend | ◯ |
+| 補正(補正申請) | amendapply | ◯ |
+| 公文書・コメント一覧取得 | notices | ◯ |
+| 公文書取得 | officialdocument | ◯ |
+| 公文書取得完了 | done_officialdocument | ◯ |
+| 公文書署名検証 | verify_officialdocument | ◯ |
+| コメント通知取得 | comment | ◯ |
+| コメント通知取得完了 | done_comment | ◯ |
+| 電子納付対応金融機関一覧取得 | banks | ◯ |
+| 電子納付情報一覧取得 | payments | ◯ |
 | 電子納付金融機関サイト表示 | - | ☓ |
-| 証明書識別情報追加 | append_certificate | ○ |
-| 証明書識別情報更新 | update_certificate | ○ |
-| 証明書識別情報削除 | delete_certificate | ○ |
+| 証明書識別情報追加 | append_certificate | ◯ |
+| 証明書識別情報更新 | update_certificate | ◯ |
+| 証明書識別情報削除 | delete_certificate | ◯ |
 
 ※実装状況について
 
-- ○: 実装、テスト済み
-- △: 実装予定
+- ◯: 実装、テスト済み
 - ☓: 実装予定無し
 
 ## 参考リンク
