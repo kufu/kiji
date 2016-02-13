@@ -304,7 +304,7 @@ module Kiji
     def encode_ja(str)
       ret = ''
       str.split(//).each do |c|
-        if  /[!-~]/ =~ c
+        if /[!-~]/ =~ c
           ret.concat(c)
         else
           ret.concat(CGI.escape(c))
