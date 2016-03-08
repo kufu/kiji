@@ -128,28 +128,6 @@ end
 
 [仕様書ダウンロード｜電子政府の総合窓口e-Gov イーガブ](http://www.e-gov.go.jp/shinsei/interface_api/download.html) > 検証環境テスト用電子証明書
 
-**TIPS**
-
-pfx から *.pem と *.cer を取り出す
-
-__*.cer__
-
-```bash
-$ openssl pkcs12 -in e-GovEE02_sha2.pfx -nokeys -out ~/Desktop/egov.cer
-Enter Import Password:（gpkitestと入力）
-MAC verified OK
-```
-
-__*.pem__
-
-```bash
-$ openssl pkcs12 -in e-GovEE02_sha2.pfx -nocerts -out ~/Desktop/egov.pem
-Enter Import Password:（gpkitestと入力）
-MAC verified OK
-Enter PEM pass phrase:（適当なパスワード入力）
-Verifying - Enter PEM pass phrase:（適当なパスワード入力）
-```
-
 
 ## API と メソッドの対応
 
