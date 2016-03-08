@@ -43,11 +43,15 @@ $ gem install kiji
 ### 利用者 ID 登録
 
 ```ruby
+p12 = OpenSSL::PKCS12.new(p12_file, P12_PIN)
+
 client = Kiji::Client.new do |c|
   c.software_id   = ENV['EGOV_SOFTWARE_ID']
   c.api_end_point = ENV['EGOV_API_END_POINT']
-  c.cert          = OpenSSL::X509::Certificate.new(File.read(cert_file))
-  c.private_key   = OpenSSL::PKey::RSA.new(File.read(private_key_file))
+
+  # 証明書 & 秘密鍵の attach
+  c.cert = p12.certificate
+  c.private_key = p12.key
 end
 
 response = client.register("NEW_USER_ID") # => Faraday::Response
@@ -58,11 +62,15 @@ xml.at_xpath('//Code').text # => 0（正常終了）
 ### 利用者認証
 
 ```ruby
+p12 = OpenSSL::PKCS12.new(p12_file, P12_PIN)
+
 client = Kiji::Client.new do |c|
   c.software_id   = ENV['EGOV_SOFTWARE_ID']
   c.api_end_point = ENV['EGOV_API_END_POINT']
-  c.cert          = OpenSSL::X509::Certificate.new(File.read(cert_file))
-  c.private_key   = OpenSSL::PKey::RSA.new(File.read(private_key_file))
+
+  # 証明書 & 秘密鍵の attach
+  c.cert = p12.certificate
+  c.private_key = p12.key
 end
 
 # 利用者認証（Access Key の取得 & 設定）
@@ -74,11 +82,15 @@ client.access_key = xml.at_xpath('//AccessKey').text
 ### 一括申請
 
 ```ruby
+p12 = OpenSSL::PKCS12.new(p12_file, P12_PIN)
+
 client = Kiji::Client.new do |c|
   c.software_id   = ENV['EGOV_SOFTWARE_ID']
   c.api_end_point = ENV['EGOV_API_END_POINT']
-  c.cert          = OpenSSL::X509::Certificate.new(File.read(cert_file))
-  c.private_key   = OpenSSL::PKey::RSA.new(File.read(private_key_file))
+
+  # 証明書 & 秘密鍵の attach
+  c.cert = p12.certificate
+  c.private_key = p12.key
 end
 
 # 利用者認証（Access Key の取得 & 設定）
