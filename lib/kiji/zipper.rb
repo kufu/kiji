@@ -54,10 +54,7 @@ module Kiji
       @input_dir = input_dir
       @output_file = output_file
 
-      entries = Dir.entries(@input_dir)
-      entries.delete('.DS_Store')
-      entries.delete('.')
-      entries.delete('..')
+      entries = Dir.entries(@input_dir) - %w(. .. .DS_Store)
       Zip.sort_entries = true
       Zip::File.open(output_file, Zip::File::CREATE) do |io|
         write_entries(entries, '', io)
@@ -87,7 +84,7 @@ module Kiji
 
     def put_into_archive(disk_file_path, io, zip_file_path)
       io.get_output_stream(zip_file_path) do |f|
-        f.puts(File.open(disk_file_path, 'rb').read)
+        f.write(File.open(disk_file_path, 'rb').read)
       end
     end
   end
