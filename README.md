@@ -1,6 +1,6 @@
 ![kiji logo](https://raw.githubusercontent.com/wiki/kufu/kiji/images/logo_kiji.png)
 
-by [KUFU, Inc.](http://kufuinc.com/)
+by [SmartHR, Inc.](https://smarthr.co.jp/)
 
 # kiji
 
@@ -189,18 +189,18 @@ end
 
 ## Copyright
 
-Copyright (c) 2015 Kensuke NAITO and KUFU, Inc.  
+Copyright (c) 2015 Kensuke NAITO and SmartHR, Inc.  
 ライセンスはこちら: [kiji/LICENSE.md](https://github.com/kufu/kiji/blob/master/LICENSE.md)
 
 
-# KUFU について
+# SmartHR について
 
-![KUFU logo](https://raw.githubusercontent.com/wiki/kufu/kiji/images/logo_kufu.png)
+![SmartHR logo](https://cloud.githubusercontent.com/assets/2214179/24910676/79ef6ada-1f03-11e7-856a-9f9737942867.png)
 
-kiji は株式会社 KUFU によってメンテナンス、開発が行われています。  
+kiji は株式会社 SmartHR によってメンテナンス、開発が行われています。  
 わたしたちは OSS の力を信じています。  
 
-KUFU では OSS 活動に積極的なエンジニアを募集しています！  
+SmartHR では OSS 活動に積極的なエンジニアを募集しています！  
 
 [「雇用」×「国のAPI」をハックする Ruby エンジニア募集！](https://www.wantedly.com/projects/3788)
 
