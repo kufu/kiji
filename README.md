@@ -195,7 +195,7 @@ Copyright (c) 2015 Kensuke NAITO and SmartHR, Inc.
 
 # SmartHR について
 
-![SmartHR logo](https://cloud.githubusercontent.com/assets/2214179/24910676/79ef6ada-1f03-11e7-856a-9f9737942867.png)
+<img src="https://user-images.githubusercontent.com/2214179/30309095-3fb58b08-97c4-11e7-939b-b4b97414bb1d.png" width="300">
 
 kiji は株式会社 SmartHR によってメンテナンス、開発が行われています。  
 わたしたちは OSS の力を信じています。  
