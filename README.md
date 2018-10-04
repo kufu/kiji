@@ -195,14 +195,12 @@ Copyright (c) 2015 Kensuke NAITO and SmartHR, Inc.
 
 # SmartHR について
 
-![KUFU logo](https://raw.githubusercontent.com/wiki/kufu/kiji/images/logo_kufu.png)
-
 kiji は株式会社 SmartHR によってメンテナンス、開発が行われています。
 わたしたちは OSS の力を信じています。
 
 SmartHR では OSS 活動に積極的なエンジニアを募集しています！
 
-[「雇用」×「国のAPI」をハックする Ruby エンジニア募集！](https://www.wantedly.com/projects/3788)
+[SmartHR Engineer Recruiting](https://smarthr.co.jp/recruit/hello-world)
 
 
 # kiji について
