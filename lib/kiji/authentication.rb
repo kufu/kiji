@@ -2,11 +2,11 @@ module Kiji
   module Authentication
     def register(user_id)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.UserID user_id
-          }
-        }
+          end
+        end
       end
 
       connection.post('/shinsei/1/authentication/user') do |req|
@@ -16,11 +16,11 @@ module Kiji
 
     def login(user_id)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.UserID user_id
-          }
-        }
+          end
+        end
       end
 
       connection.post('/shinsei/1/authentication/login') do |req|
@@ -32,12 +32,12 @@ module Kiji
       x509_cert = Base64.encode64(new_cert.to_der).gsub('\n', '')
 
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.UserID user_id
             xml.AddX509Certificate x509_cert
-          }
-        }
+          end
+        end
       end
 
       connection.post('/shinsei/1/authentication/certificate/append') do |req|
@@ -49,12 +49,12 @@ module Kiji
       x509_cert = Base64.encode64(old_cert.to_der).gsub('\n', '')
 
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.UserID user_id
             xml.X509Certificate x509_cert
-          }
-        }
+          end
+        end
       end
 
       connection.post('/shinsei/1/authentication/certificate/update') do |req|
@@ -66,12 +66,12 @@ module Kiji
       x509_cert = Base64.encode64(cert_to_delete.to_der).gsub('\n', '')
 
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.UserID user_id
             xml.DelX509Certificate x509_cert
-          }
-        }
+          end
+        end
       end
 
       connection.post('/shinsei/1/authentication/certificate/delete') do |req|

@@ -24,7 +24,7 @@ module Kiji
       id: 'http://www.w3.org/2001/04/xmldsig-more#gostr3411',
       digester: -> { OpenSSL::Digest.new('md_gost94') }
     }
-  }
+  }.freeze
 
   # Class that holds +OpenSSL::Digest+ instance with some meta information for digesting in XML.
   class Digester
@@ -57,7 +57,7 @@ module Kiji
       [[hex].pack('H*')].pack('m0')
     end
 
-    alias_method :call, :digest
+    alias call digest
 
     # Returns +OpenSSL::Digest+ (or derived class) instance
     def digester
