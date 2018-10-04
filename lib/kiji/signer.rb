@@ -14,14 +14,14 @@ module Kiji
     attr_reader :cert
     attr_writer :security_node, :signature_node, :security_token_id
 
-    WSU_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
-    WSSE_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
+    WSU_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'.freeze
+    WSSE_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'.freeze
 
     def initialize(document)
       # self.document = Nokogiri::XML(document.to_s, &:noblanks)
       self.document = Nokogiri::XML(document.to_s)
       self.digest_algorithm = :sha1
-      self.set_default_signature_method!
+      set_default_signature_method!
 
       yield(self) if block_given?
     end
@@ -66,7 +66,7 @@ module Kiji
         self.signature_algorithm_id = 'http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411'
       # Add clauses for other types of keys that require other digest algorithms and identifiers
       else # most common 'sha1WithRSAEncryption' type included here
-        self.set_default_signature_method! # Reset any changes as they can become malformed
+        set_default_signature_method! # Reset any changes as they can become malformed
       end
     end
 
@@ -134,7 +134,7 @@ module Kiji
         node = Nokogiri::XML::Node.new('BinarySecurityToken', document)
         node['ValueType']    = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3'
         node['EncodingType'] = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary'
-        node.content = Base64.encode64(cert.to_der).gsub("\n", '')
+        node.content = Base64.encode64(cert.to_der).delete("\n")
         signature_node.add_previous_sibling(node)
         wsse_ns = namespace_prefix(node, WSSE_NAMESPACE, 'wsse')
         wsu_ns = namespace_prefix(node, WSU_NAMESPACE, 'wsu')
@@ -167,14 +167,14 @@ module Kiji
       # issuer_serial_node.add_child(issuer_name_node)
       # issuer_serial_node.add_child(issuer_number_node)
 
-      cetificate_node    = Nokogiri::XML::Node.new('X509Certificate', document)
-      cetificate_node.content = Base64.encode64(cert.to_der).gsub("\n", '')
+      cetificate_node = Nokogiri::XML::Node.new('X509Certificate', document)
+      cetificate_node.content = Base64.encode64(cert.to_der).delete("\n")
 
-      data_node          = Nokogiri::XML::Node.new('X509Data', document)
+      data_node = Nokogiri::XML::Node.new('X509Data', document)
       # data_node.add_child(issuer_serial_node)
       data_node.add_child(cetificate_node)
 
-      key_info_node      = Nokogiri::XML::Node.new('KeyInfo', document)
+      key_info_node = Nokogiri::XML::Node.new('KeyInfo', document)
       key_info_node.add_child(data_node)
 
       signed_info_node.add_next_sibling(key_info_node)
@@ -205,7 +205,7 @@ module Kiji
 
     def digest!(target_node, options = {})
       wsu_ns = namespace_prefix(target_node, WSU_NAMESPACE)
-      current_id = target_node["#{wsu_ns}:Id"]  if wsu_ns
+      current_id = target_node["#{wsu_ns}:Id"] if wsu_ns
       id = options[:id] || current_id || "_#{Digest::SHA1.hexdigest(target_node.to_s)}"
       # if id.to_s.size > 0
       #   wsu_ns ||= namespace_prefix(target_node, WSU_NAMESPACE, 'wsu')
@@ -216,19 +216,19 @@ module Kiji
       target_digest = @digester.base64(target_canon)
 
       reference_node = Nokogiri::XML::Node.new('Reference', document)
-      reference_node['URI'] = id.to_s.size > 0 ? encode_ja(id) : ''
+      reference_node['URI'] = !id.to_s.empty? ? encode_ja(id) : ''
       signed_info_node.add_child(reference_node)
 
       transforms_node = Nokogiri::XML::Node.new('Transforms', document)
       reference_node.add_child(transforms_node)
 
       transform_node = Nokogiri::XML::Node.new('Transform', document)
-      if options[:enveloped]
-        transform_node['Algorithm'] = 'http://www.w3.org/2000/09/xmldsig#enveloped-signature'
-      else
-        # transform_node['Algorithm'] = 'http://www.w3.org/2001/10/xml-exc-c14n#'
-        transform_node['Algorithm'] = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315'
-      end
+      transform_node['Algorithm'] = if options[:enveloped]
+                                      'http://www.w3.org/2000/09/xmldsig#enveloped-signature'
+                                    else
+                                      # transform_node['Algorithm'] = 'http://www.w3.org/2001/10/xml-exc-c14n#'
+                                      'http://www.w3.org/TR/2001/REC-xml-c14n-20010315'
+                                    end
       if options[:inclusive_namespaces]
         inclusive_namespaces_node = Nokogiri::XML::Node.new('ec:InclusiveNamespaces', document)
         inclusive_namespaces_node.add_namespace_definition('ec', transform_node['Algorithm'])
@@ -253,7 +253,7 @@ module Kiji
 
       reference_node = Nokogiri::XML::Node.new('Reference', document)
       id = options[:id]
-      reference_node['URI'] = id.to_s.size > 0 ? encode_ja(id) : ''
+      reference_node['URI'] = !id.to_s.empty? ? encode_ja(id) : ''
       signed_info_node.add_child(reference_node)
 
       digest_method_node = Nokogiri::XML::Node.new('DigestMethod', document)
@@ -291,7 +291,7 @@ module Kiji
       signed_info_canon = canonicalize(signed_info_node, options[:inclusive_namespaces])
 
       signature = private_key.sign(@sign_digester.digester, signed_info_canon)
-      signature_value_digest = Base64.encode64(signature).gsub("\n", '')
+      signature_value_digest = Base64.encode64(signature).delete("\n")
 
       signature_value_node = Nokogiri::XML::Node.new('SignatureValue', document)
       signature_value_node.content = signature_value_digest

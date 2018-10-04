@@ -5,14 +5,14 @@ module Kiji
   module Access
     def apply(file_name, file_data)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
-            xml.Upload {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
+            xml.Upload do
               xml.FileName file_name
               xml.FileData file_data
-            }
-          }
-        }
+            end
+          end
+        end
       end
 
       connection.post('/shinsei/1/access/apply') do |req|
@@ -38,14 +38,14 @@ module Kiji
 
     def withdraw(arrive_id, file_data)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.ArriveID arrive_id
-            xml.Upload {
+            xml.Upload do
               xml.FileData file_data
-            }
-          }
-        }
+            end
+          end
+        end
       end
 
       connection.post('/shinsei/1/access/withdrawal') do |req|
@@ -59,14 +59,14 @@ module Kiji
 
     def reamend(arrive_id, file_data)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.ArriveID arrive_id
-            xml.Upload {
+            xml.Upload do
               xml.FileData file_data
-            }
-          }
-        }
+            end
+          end
+        end
       end
 
       connection.post('/shinsei/1/access/reamend') do |req|
@@ -76,18 +76,18 @@ module Kiji
 
     def partamend(arrive_id, basic_form_flag, attached_flag, file_data)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.ArriveID arrive_id
-            xml.Target {
+            xml.Target do
               xml.BasicFormFlag basic_form_flag ? '1' : '0'
               xml.AttachedFlag attached_flag ? '1' : '0'
-            }
-            xml.Upload {
+            end
+            xml.Upload do
               xml.FileData file_data
-            }
-          }
-        }
+            end
+          end
+        end
       end
 
       connection.post('/shinsei/1/access/partamend') do |req|
@@ -97,14 +97,14 @@ module Kiji
 
     def amendapply(arrive_id, file_data)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.ArriveID arrive_id
-            xml.Upload {
+            xml.Upload do
               xml.FileData file_data
-            }
-          }
-        }
+            end
+          end
+        end
       end
 
       connection.post('/shinsei/1/access/amendapply') do |req|
@@ -122,12 +122,12 @@ module Kiji
 
     def done_officialdocument(arrive_id, notice_sub_id)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.ArriveID arrive_id
             xml.NoticeSubID notice_sub_id
-          }
-        }
+          end
+        end
       end
 
       connection.put('/shinsei/1/access/officialdocument') do |req|
@@ -137,16 +137,16 @@ module Kiji
 
     def verify_officialdocument(arrive_id, file_name, file_data, sig_xml_file_name)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.ArriveID arrive_id
-            xml.Upload {
+            xml.Upload do
               xml.FileName file_name
               xml.FileData file_data
               xml.SigVerificationXMLFileName sig_xml_file_name
-            }
-          }
-        }
+            end
+          end
+        end
       end
 
       connection.post('/shinsei/1/access/officialdocument/verify') do |req|
@@ -160,12 +160,12 @@ module Kiji
 
     def done_comment(arrive_id, notice_sub_id)
       appl_data = Nokogiri::XML::Builder.new do |xml|
-        xml.DataRoot {
-          xml.ApplData(Id: 'ApplData') {
+        xml.DataRoot do
+          xml.ApplData(Id: 'ApplData') do
             xml.ArriveID arrive_id
             xml.NoticeSubID notice_sub_id
-          }
-        }
+          end
+        end
       end
 
       connection.put('/shinsei/1/access/comment') do |req|

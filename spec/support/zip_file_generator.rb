@@ -4,6 +4,7 @@ class ZipFileGenerator
     @input_dir = input_dir
     @output_file = output_file
   end
+
   # Zip the input directory.
   def write
     entries = Dir.entries(@input_dir)

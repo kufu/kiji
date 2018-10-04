@@ -59,11 +59,11 @@ describe Kiji::Access do
     arrive_id = '9002015000246820'
     if arrive_id.present?
       let(:expected_status_code) { 202 }
-      let(:response) {
+      let(:response) do
         # 取下げ申請データを Base64 エンコード
         file_data = Base64.encode64(File.new('tmp/9990000000000008.zip').read)
         my_client_with_access_key.withdraw(arrive_id, file_data)
-      }
+      end
       it_behaves_like 'call the API w/ VALID parameter'
     end
   end
@@ -80,11 +80,11 @@ describe Kiji::Access do
     # 手続きは 900A010200001000（ＡＰＩテスト用手続（労働保険関係手続）（通）０００１）
     arrive_id = '9002015000244076'
     let(:expected_status_code) { 202 }
-    let(:response) {
+    let(:response) do
       # 補正用データを Base64 化
       file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
       my_client_with_access_key.reamend(arrive_id, file_data)
-    }
+    end
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
@@ -94,11 +94,11 @@ describe Kiji::Access do
     # 手続きは 900A010200001000（ＡＰＩテスト用手続（労働保険関係手続）（通）０００１）
     arrive_id = '9002015000243941'
     let(:expected_status_code) { 202 }
-    let(:response) {
+    let(:response) do
       # 補正用データを Base64 化
       file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
       my_client_with_access_key.partamend(arrive_id, true, false, file_data)
-    }
+    end
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
@@ -108,11 +108,11 @@ describe Kiji::Access do
     # 手続きは 900A010200001000（ＡＰＩテスト用手続（労働保険関係手続）（通）０００１）
     arrive_id = '9002015000248266'
     let(:expected_status_code) { 202 }
-    let(:response) {
+    let(:response) do
       # 補正用データを Base64 化
       file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
       my_client_with_access_key.amendapply(arrive_id, file_data)
-    }
+    end
 
     # 状況の確認
     before do
@@ -151,9 +151,9 @@ describe Kiji::Access do
       @file_name = 'officialdocument_for_verify.zip'
       File.write("tmp/#{@file_name}", Base64.decode64(@file_data))
 
-      @sig_xml_file_name = Zip::File.open("tmp/#{@file_name}").find { |zip_file|
+      @sig_xml_file_name = Zip::File.open("tmp/#{@file_name}").find do |zip_file|
         zip_file.to_s.end_with? '.xml'
-      }.to_s
+      end.to_s
     end
     let(:expected_status_code) { 200 }
     let(:response) { my_client_with_access_key.verify_officialdocument(@arrive_id, @file_name, @file_data, @sig_xml_file_name) }

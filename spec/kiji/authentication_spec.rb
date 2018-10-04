@@ -47,7 +47,7 @@ describe Kiji::Authentication do
       new_private_key = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE04-2_sha2.pem')
 
       my_client.cert = OpenSSL::X509::Certificate.new(File.read(new_cert_file))
-      my_client.private_key =  OpenSSL::PKey::RSA.new(File.read(new_private_key), 'hoge')
+      my_client.private_key = OpenSSL::PKey::RSA.new(File.read(new_private_key), 'hoge')
 
       old_cert_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE04-1_sha2.cer')
       @old_cert = OpenSSL::X509::Certificate.new(File.read(old_cert_file))
