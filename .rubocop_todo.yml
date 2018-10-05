@@ -36,10 +36,6 @@ Metrics/PerceivedComplexity:
 Style/Documentation:
   Enabled: false
 
-# Offense count: 4
-Style/RegexpLiteral:
-  MaxSlashes: 0
-
 Metrics/ClassLength:
   Exclude:
     - 'lib/kiji/signer.rb'

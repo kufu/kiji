@@ -6,7 +6,7 @@ describe Kiji::Client do
     private_key_file = File.join(File.dirname(__FILE__), '..', 'fixtures', 'e-GovEE02_sha2.pem')
 
     @cert = OpenSSL::X509::Certificate.new(File.read(cert_file))
-    @private_key =  OpenSSL::PKey::RSA.new(File.read(private_key_file), 'gpkitest')
+    @private_key = OpenSSL::PKey::RSA.new(File.read(private_key_file), 'gpkitest')
   end
 
   describe '#initialize' do

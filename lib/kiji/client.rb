@@ -32,9 +32,9 @@ module Kiji
     end
 
     def sign(appl_data)
-      fail 'Please specify cert & private_key' if cert.nil? || private_key.nil?
+      raise 'Please specify cert & private_key' if cert.nil? || private_key.nil?
 
-      doc = appl_data.to_xml(save_with:  0)
+      doc = appl_data.to_xml(save_with: 0)
 
       signer = Signer.new(doc) do |s|
         s.cert = cert

@@ -8,7 +8,7 @@ module Kiji
 
     # 構成管理ファイル（kouse.xml）に署名を施す
     def sign(kousei_base_file_path_or_content, app_file_paths)
-      fail 'Please specify cert & private_key' if @cert.nil? || @private_key.nil?
+      raise 'Please specify cert & private_key' if @cert.nil? || @private_key.nil?
 
       content = begin
                   File.read(kousei_base_file_path_or_content)
@@ -17,7 +17,7 @@ module Kiji
                 end
 
       kousei_data = Nokogiri::XML(content)
-      kousei_doc = kousei_data.to_xml(save_with:  0)
+      kousei_doc = kousei_data.to_xml(save_with: 0)
 
       signer = Signer.new(kousei_doc) do |s|
         s.cert                       = @cert
@@ -54,7 +54,7 @@ module Kiji
       @input_dir = input_dir
       @output_file = output_file
 
-      entries = Dir.entries(@input_dir) - %w(. .. .DS_Store)
+      entries = Dir.entries(@input_dir) - %w[. .. .DS_Store]
       Zip.sort_entries = true
       Zip::File.open(output_file, Zip::File::CREATE) do |io|
         write_entries(entries, '', io)
@@ -78,7 +78,7 @@ module Kiji
 
     def recursively_deflate_directory(disk_file_path, io, zip_file_path)
       # io.mkdir(zip_file_path)
-      subdir = Dir.entries(disk_file_path) - %w(. .. .DS_Store)
+      subdir = Dir.entries(disk_file_path) - %w[. .. .DS_Store]
       write_entries(subdir, zip_file_path, io)
     end
 
