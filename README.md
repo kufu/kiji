@@ -8,7 +8,7 @@ A Ruby interface to the e-Gov API.
 
 ## 理念
 
-2008 年より[電子政府（e-Gov）のウェブサイト](http://www.e-gov.go.jp/shinsei/index.html)上で社会保険・労働保険関連手続きの電子申請の受付が開始されました。
+2008 年より[電子政府（e-Gov）のウェブサイト](https://www.e-gov.go.jp/shinsei/index.html)上で社会保険・労働保険関連手続きの電子申請の受付が開始されました。
 2010 年には e-Gov の使い勝手の向上を図り、一括申請機能の提供が開始されました。
 そして 2014 年 10 月、さらなる利便性の向上を目的に、外部連携 API 仕様が公開されました。
 
@@ -108,7 +108,7 @@ client.apply(file_name, encoded_data)
 ## 事前準備
 
 e-Gov API を利用するには外部連携 API 利用ソフトウェア開発の申込みを行い、ソフトウェア ID を入手する必要があります。
-詳しくは [利用にあたっての留意事項](http://www.e-gov.go.jp/shinsei/interface_api/attention.html) をご参照ください。
+詳しくは [利用にあたっての留意事項](https://www.e-gov.go.jp/shinsei/interface_api/attention.html) をご参照ください。
 
 
 ## 検証環境での利用
@@ -126,7 +126,7 @@ end
 
 また、署名に利用する証明書については e-Gov にて配布されているものを利用します。
 
-[仕様書ダウンロード｜電子政府の総合窓口e-Gov イーガブ](http://www.e-gov.go.jp/shinsei/interface_api/download.html) > 検証環境テスト用電子証明書
+[仕様書ダウンロード｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/interface_api/download.html) > 検証環境テスト用電子証明書
 
 
 ## API と メソッドの対応
@@ -165,11 +165,11 @@ end
 
 ## 参考リンク
 
-- [e-Gov電子申請システム｜電子政府の総合窓口e-Gov イーガブ](http://www.e-gov.go.jp/shinsei/index.html)
+- [e-Gov電子申請システム｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/index.html)
     e-Gov に関する最新情報
-- [外部連携API仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](http://www.e-gov.go.jp/shinsei/interface_api/index.html)
+- [外部連携API仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/interface_api/index.html)
     （公式）API の仕様について
-- [一括申請仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](http://www.e-gov.go.jp/shinsei/interface/index.html)
+- [一括申請仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/interface/index.html)
     （公式）申請データの構造仕様について
 
 ## 注意事項
