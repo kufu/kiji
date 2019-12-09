@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'webmock'
 
   # spec.add_runtime_dependency 'signer'
-  spec.add_runtime_dependency 'activesupport', '~> 5.2'
+  spec.add_runtime_dependency 'activesupport', '>= 5.2'
   spec.add_runtime_dependency 'faraday'
   spec.add_runtime_dependency 'nokogiri'
 end
