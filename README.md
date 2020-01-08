@@ -186,6 +186,10 @@ end
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
+## Code of Conduct
+
+Everyone interacting in the kiji project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/kufu/kiji/blob/master/CODE_OF_CONDUCT.md).
+
 
 ## Copyright
 
