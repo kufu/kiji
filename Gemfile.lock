@@ -112,7 +112,7 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.0)
-    vcr (5.0.0)
+    vcr (2.9.3)
     webmock (3.7.6)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -135,7 +135,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rubocop
   rubyzip
-  vcr
+  vcr (= 2.9.3)
   webmock
 
 BUNDLED WITH
