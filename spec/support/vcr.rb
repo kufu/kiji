@@ -16,6 +16,9 @@ VCR.configure do |config|
   config.filter_sensitive_data('<X-EGOVAPI-ACCESSKEY>') do |interaction|
     interaction.request.headers['X-Egovapi-Accesskey'].first if interaction.request.headers['X-Egovapi-Accesskey']
   end
+  config.filter_sensitive_data('<AUTHORIZATION>') do |interaction|
+    interaction.request.headers['Authorization'].first if interaction.request.headers['Authorization']
+  end
   config.filter_sensitive_data('<SET-COOKIE>') do |interaction|
     interaction.response.headers['Set-Cookie'].first if interaction.response.headers['Set-Cookie']
   end
