@@ -2,13 +2,15 @@
 http_interactions:
 - request:
     method: post
-    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/authentication/login
+    uri: "<EGOV-API-END-POINT>shinsei/1/authentication/login"
     body:
       encoding: UTF-8
       string: |
         <?xml version="1.0" encoding="UTF-8"?>
         <DataRoot><ApplData Id="ApplData"><UserID><EGOV-TEST-USER-ID></UserID></ApplData><Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="20150617091628"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#ApplData"><Transforms><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>V//B0sP2jNsl+Heiy0sNsCR2B3P6gjtOzsfvEO8868g=</DigestValue></Reference></SignedInfo><SignatureValue>EXiX+wVNsJ/xflESNLzBfVb2HpPdCX8Rq3cuYqz5tWfkxKqtvI6oImeoWLr0SWYfWdHzdSBfNCEYbBrjCZzAB/DG3fstU5NtkSIcWy/gPxXCnvwZAk7fiFqUFPdBL6YmsHnjY5cymKHXGm//RnMj3DabJOWeHWMD0K4B6bch5Ar2dyqWTCx/u1OkLkuPmKyaRNwuxyrbBhV8HkjVqfAnd/mzK+Py9eYmv1lqw6VSX2lh607BEgdGMxjasPgi6tNrnVME9SwX0IxSCsvDUy/ET4bNw409Y+YuX1gzaD2cO3NHlO5l0MEzka+rXTYKW66t5GS0cZckHnooytzGoUoGow==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIEizCCA3OgAwIBAgIEVHXPfTANBgkqhkiG9w0BAQsFADAuMQswCQYDVQQGEwJKUDERMA8GA1UECgwIRGVtb01pbjExDDAKBgNVBAsMA0NBMTAeFw0xNDExMjgwNjAxMDJaFw0xOTExMjcxNDU5NTlaMEkxCzAJBgNVBAYTAkpQMREwDwYDVQQKDAhEZW1vTWluMTEMMAoGA1UECwwDQ0ExMRkwFwYDVQQDDBBJY2hpcm8gTWFkb2d1Y2hpMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyJBITKzWETx6waZ4cTuhM0rThzTM2tzIUH1Pbq6UbeUE/sjDAUGs5RxIWCugtORajYOnoBSCV3rJE/oMdo5NJkUU2xtI0t4+0GXWNVeomUGT4RG4O3/ctJvL/WkgH7d+WUb8CeUjSSVqQCPxdJehuIxZSgL0lqASovuHYfvblB8DsAMNlhqLZWDxdy8xp25o+N9+iiS0z5LIHF2D6xnnIxv59SY3A49GUMVeBopI5tIRkZG1ahCJTYEAvcJioEXPP8R9OBIOGiWGxXdoXIJmKsyxGZ5XsC+gx4J/zf4U8UJWfSkfpQREbInC+n9T9hFIBpDzrdDBT1BW4vZTQGtj4QIDAQABo4IBlDCCAZAwDgYDVR0PAQH/BAQDAgbAMBEGCWCGSAGG+EIBAQQEAwIGQDBOBgNVHRIERzBFpEMwQTELMAkGA1UEBhMCSlAxHjAcBgNVBAoMFeaooeaTrOawkemWk+iqjeiovOWxgDESMBAGA1UECwwJ77yj77yh77yRMB8GA1UdIAEB/wQVMBMwEQYPAoM4ho4xCAEBAAKMmyVkMGgGA1UdEQRhMF+kXTBbMQswCQYDVQQGEwJKUDEeMBwGA1UECgwV5qih5pOs5rCR6ZaT6KqN6Ki85bGAMRIwEAYDVQQLDAnvvKPvvKHvvJExGDAWBgNVBAMMD+eqk+WPo+OAgOS4gOmDjjBQBgNVHR8ESTBHMEWgQ6BBpD8wPTELMAkGA1UEBhMCSlAxETAPBgNVBAoMCERlbW9NaW4xMQwwCgYDVQQLDANDQTExDTALBgNVBAMMBENSTDEwHwYDVR0jBBgwFoAUFNPnlvRSx8XFOnRlLumW95h4I18wHQYDVR0OBBYEFHS3bhJrJpfwWCRG6XOCpfnv6YZWMA0GCSqGSIb3DQEBCwUAA4IBAQBGJqT07F70WP2xJoFyLZu3aB5g9FnT2zrd5gcB7VzIlB14B48tCSFRL+mXicacsnu8JX5vdah9TBeJ8FgzTNWgkr8QVKAEymA7KZOktlRlrLMaHqPKJVIKOZHQJxfrqznGLOetbALnslQwU9EVyjCMSnFH3Gdh2JqsQP9y9lRt+tPEehAv7eTZmQ+MYCQrSXX2VAbXUrHxEWdjWwlPzFHQrNlVOpaAlVu9CnNZoBgk09IMkTJ3p5TjOY9UZcK/3p0B3iksWt10cWJ4GE+IrjNSu+ZxLYR5Ld4vYNtIL7cLEUw1CbB334JBH9vT8mTo54kdGVB4ZOix5lkog3PJnoAF</X509Certificate></X509Data></KeyInfo></Signature></DataRoot>
     headers:
+      Authorization:
+      - "<AUTHORIZATION>"
       User-Agent:
       - SmartHR v0.0.1
       X-Egovapi-Softwareid:

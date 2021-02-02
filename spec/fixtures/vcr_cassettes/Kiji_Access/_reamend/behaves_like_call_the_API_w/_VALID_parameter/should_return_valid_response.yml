@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/access/reamend
+    uri: "<EGOV-API-END-POINT>shinsei/1/access/reamend"
     body:
       encoding: UTF-8
       string: |
@@ -124,6 +124,8 @@ http_interactions:
           </ApplData>
         </DataRoot>
     headers:
+      Authorization:
+      - "<AUTHORIZATION>"
       User-Agent:
       - SmartHR v0.0.1
       X-Egovapi-Softwareid:

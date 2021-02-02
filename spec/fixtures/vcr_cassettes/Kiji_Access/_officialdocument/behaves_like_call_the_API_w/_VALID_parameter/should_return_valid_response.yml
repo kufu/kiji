@@ -2,11 +2,13 @@
 http_interactions:
 - request:
     method: get
-    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/access/officialdocument/9002015000243931/1
+    uri: "<EGOV-API-END-POINT>shinsei/1/access/officialdocument/9002015000243931/1"
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Authorization:
+      - "<AUTHORIZATION>"
       User-Agent:
       - SmartHR v0.0.1
       X-Egovapi-Softwareid:
