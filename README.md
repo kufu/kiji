@@ -165,12 +165,12 @@ end
 
 ## 参考リンク
 
-- [e-Gov電子申請システム｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/index.html)
+- [電子申請API｜電子政府の総合窓口e-Gov イーガブ](https://developer.e-gov.go.jp/contents/specification)
     e-Gov に関する最新情報
-- [外部連携API仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/interface_api/index.html)
-    （公式）API の仕様について
-- [一括申請仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/interface/index.html)
-    （公式）申請データの構造仕様について
+- [電子申請APIドキュメント 共通仕様｜電子政府の総合窓口e-Gov イーガブ](https://developer.e-gov.go.jp/contents/specification/document-api/common.html)
+    （公式）電子申請APIドキュメント
+- [電子申請APIリファレンス｜電子政府の総合窓口e-Gov イーガブ](https://developer.e-gov.go.jp/contents/specification/shinsei-api/)
+    （公式）電子申請APIリファレンス
 
 ## 注意事項
 
