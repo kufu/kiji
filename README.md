@@ -8,7 +8,7 @@ A Ruby interface to the e-Gov API.
 
 ## 理念
 
-2008 年より[電子政府（e-Gov）のウェブサイト](https://www.e-gov.go.jp/shinsei/index.html)上で社会保険・労働保険関連手続きの電子申請の受付が開始されました。
+2008 年より[電子政府（e-Gov）のウェブサイト](https://www.e-gov.go.jp/)上で社会保険・労働保険関連手続きの電子申請の受付が開始されました。
 2010 年には e-Gov の使い勝手の向上を図り、一括申請機能の提供が開始されました。
 そして 2014 年 10 月、さらなる利便性の向上を目的に、外部連携 API 仕様が公開されました。
 
@@ -108,7 +108,7 @@ client.apply(file_name, encoded_data)
 ## 事前準備
 
 e-Gov API を利用するには外部連携 API 利用ソフトウェア開発の申込みを行い、ソフトウェア ID を入手する必要があります。
-詳しくは [利用にあたっての留意事項](https://www.e-gov.go.jp/shinsei/interface_api/attention.html) をご参照ください。
+詳しくは [スタートガイド](https://developer.e-gov.go.jp/contents/preparation)・[留意事項](https://developer.e-gov.go.jp/contents/preparation/notice.html) をご参照ください。
 
 
 ## 検証環境での利用
@@ -126,7 +126,9 @@ end
 
 また、署名に利用する証明書については e-Gov にて配布されているものを利用します。
 
-[仕様書ダウンロード｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/interface_api/download.html) > 検証環境テスト用電子証明書
+[e-Gov 電子申請サービス 電子申請 API API 利用ガイド](https://developer.e-gov.go.jp/sites/default/files/filebrowser/e-gov/doc/specification/specification/denshishinsei-guide.pdf)
+
+[~~仕様書ダウンロード｜電子政府の総合窓口e-Gov イーガブ~~](https://www.e-gov.go.jp/shinsei/interface_api/download.html) ~~> 検証環境テスト用電子証明書~~
 
 
 ## API と メソッドの対応
@@ -165,18 +167,21 @@ end
 
 ## 参考リンク
 
-- [e-Gov電子申請システム｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/index.html)
+- [e-Gov電子申請システム｜電子政府の総合窓口e-Gov イーガブ](https://shinsei.e-gov.go.jp/)
     e-Gov に関する最新情報
-- [外部連携API仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/interface_api/index.html)
-    （公式）API の仕様について
-- [一括申請仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ](https://www.e-gov.go.jp/shinsei/interface/index.html)
-    （公式）申請データの構造仕様について
+- [e-Gov電子申請API (Swagger)](https://developer.e-gov.go.jp/sites/default/files/filebrowser/e-gov/swagger/) (公式)電子申請API仕様
+
+- [~~外部連携API API（Version 1）仕様書~~](https://developer.e-gov.go.jp/sites/default/files/filebrowser/e-gov/doc/specification/specification/API-shiyousho.pdf)
+    （公式）旧API の仕様について
+- [~~一括申請仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ~~](https://www.e-gov.go.jp/shinsei/interface/index.html)~~
+    （公式）旧申請データの構造仕様について
 
 ## 注意事項
 
 - kiji を利用する場合、必ず検証環境にて検証を行ってください。
 - すでに最終試験に合格したソフトウェアに kiji を組み込む場合、新たにソフトウェア ID を取得し、再度最終試験に合格する必要があります。（API 利用ガイド p. 20）
 - 最終確認試験にて合格していない API 機能を利用すると当該ソフトウェアからの e-Gov 電子申請システムへの接続が制限されます。ご注意ください。（API 利用ガイド p. 20）
+- ※外部連携APIを利用したソフトウェア等の新規開発申込み受付は、既に終了しており、2022年12月31日をもってサポート終了
 
 ## Contributing
 
