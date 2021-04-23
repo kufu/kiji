@@ -126,9 +126,6 @@ end
 
 また、署名に利用する証明書については e-Gov にて配布されているものを利用します。
 
-[e-Gov 電子申請サービス 電子申請 API API 利用ガイド](https://developer.e-gov.go.jp/sites/default/files/filebrowser/e-gov/doc/specification/specification/denshishinsei-guide.pdf)
-
-[~~仕様書ダウンロード｜電子政府の総合窓口e-Gov イーガブ~~](https://www.e-gov.go.jp/shinsei/interface_api/download.html) ~~> 検証環境テスト用電子証明書~~
 
 
 ## API と メソッドの対応
@@ -170,11 +167,6 @@ end
 - [e-Gov電子申請システム｜電子政府の総合窓口e-Gov イーガブ](https://shinsei.e-gov.go.jp/)
     e-Gov に関する最新情報
 - [e-Gov電子申請API (Swagger)](https://developer.e-gov.go.jp/sites/default/files/filebrowser/e-gov/swagger/) (公式)電子申請API仕様
-
-- [~~外部連携API API（Version 1）仕様書~~](https://developer.e-gov.go.jp/sites/default/files/filebrowser/e-gov/doc/specification/specification/API-shiyousho.pdf)
-    （公式）旧API の仕様について
-- [~~一括申請仕様公開（ソフトウェア開発事業者の方へ）｜電子政府の総合窓口e-Gov イーガブ~~](https://www.e-gov.go.jp/shinsei/interface/index.html)~~
-    （公式）旧申請データの構造仕様について
 
 ## 注意事項
 
