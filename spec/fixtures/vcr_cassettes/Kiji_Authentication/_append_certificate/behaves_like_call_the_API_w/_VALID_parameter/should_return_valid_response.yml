@@ -2,13 +2,15 @@
 http_interactions:
 - request:
     method: post
-    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/authentication/user
+    uri: "<EGOV-API-END-POINT>shinsei/1/authentication/user"
     body:
       encoding: UTF-8
       string: |
         <?xml version="1.0" encoding="UTF-8"?>
         <DataRoot><ApplData Id="ApplData"><UserID>150428114508</UserID></ApplData><Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="20150428114508"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#ApplData"><Transforms><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>EiquUyCbD/sPUkisymT67RBLKniJdGImf7XH6SBHf0M=</DigestValue></Reference></SignedInfo><SignatureValue>gbWAprCDxlaCWcSITxTJU86wXF+ozzAHd5b22CNcJAnRsBkvClouPjUat2a8cWih0WP+y5QnL8ChvKN0APdWP9zHhOBgbHgnprn9TmxYQ7IIjyA4IafANzRlyATgFaNRr1oAREOCQLz9ucA+9P8fBdG6WFerQgzNqMrvhJGgdwuyVr0WtlBcvBlf9AICaFd8MEX6fymUCSpRkw3BmLCPxDj7A+LXj/zbL4wUphR7/NMlBydLHNkq2i9L0hhN3Y/1sNuTnZ0ywzX1UNRgffHH8M7m51nFEDm0m9J5cNxRyTNaeazx9EkBXVLkBjUFe8R9OGbdRcMsgABsFVPd7Z20xA==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIEizCCA3OgAwIBAgIEVHXPfTANBgkqhkiG9w0BAQsFADAuMQswCQYDVQQGEwJKUDERMA8GA1UECgwIRGVtb01pbjExDDAKBgNVBAsMA0NBMTAeFw0xNDExMjgwNjAxMDJaFw0xOTExMjcxNDU5NTlaMEkxCzAJBgNVBAYTAkpQMREwDwYDVQQKDAhEZW1vTWluMTEMMAoGA1UECwwDQ0ExMRkwFwYDVQQDDBBJY2hpcm8gTWFkb2d1Y2hpMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyJBITKzWETx6waZ4cTuhM0rThzTM2tzIUH1Pbq6UbeUE/sjDAUGs5RxIWCugtORajYOnoBSCV3rJE/oMdo5NJkUU2xtI0t4+0GXWNVeomUGT4RG4O3/ctJvL/WkgH7d+WUb8CeUjSSVqQCPxdJehuIxZSgL0lqASovuHYfvblB8DsAMNlhqLZWDxdy8xp25o+N9+iiS0z5LIHF2D6xnnIxv59SY3A49GUMVeBopI5tIRkZG1ahCJTYEAvcJioEXPP8R9OBIOGiWGxXdoXIJmKsyxGZ5XsC+gx4J/zf4U8UJWfSkfpQREbInC+n9T9hFIBpDzrdDBT1BW4vZTQGtj4QIDAQABo4IBlDCCAZAwDgYDVR0PAQH/BAQDAgbAMBEGCWCGSAGG+EIBAQQEAwIGQDBOBgNVHRIERzBFpEMwQTELMAkGA1UEBhMCSlAxHjAcBgNVBAoMFeaooeaTrOawkemWk+iqjeiovOWxgDESMBAGA1UECwwJ77yj77yh77yRMB8GA1UdIAEB/wQVMBMwEQYPAoM4ho4xCAEBAAKMmyVkMGgGA1UdEQRhMF+kXTBbMQswCQYDVQQGEwJKUDEeMBwGA1UECgwV5qih5pOs5rCR6ZaT6KqN6Ki85bGAMRIwEAYDVQQLDAnvvKPvvKHvvJExGDAWBgNVBAMMD+eqk+WPo+OAgOS4gOmDjjBQBgNVHR8ESTBHMEWgQ6BBpD8wPTELMAkGA1UEBhMCSlAxETAPBgNVBAoMCERlbW9NaW4xMQwwCgYDVQQLDANDQTExDTALBgNVBAMMBENSTDEwHwYDVR0jBBgwFoAUFNPnlvRSx8XFOnRlLumW95h4I18wHQYDVR0OBBYEFHS3bhJrJpfwWCRG6XOCpfnv6YZWMA0GCSqGSIb3DQEBCwUAA4IBAQBGJqT07F70WP2xJoFyLZu3aB5g9FnT2zrd5gcB7VzIlB14B48tCSFRL+mXicacsnu8JX5vdah9TBeJ8FgzTNWgkr8QVKAEymA7KZOktlRlrLMaHqPKJVIKOZHQJxfrqznGLOetbALnslQwU9EVyjCMSnFH3Gdh2JqsQP9y9lRt+tPEehAv7eTZmQ+MYCQrSXX2VAbXUrHxEWdjWwlPzFHQrNlVOpaAlVu9CnNZoBgk09IMkTJ3p5TjOY9UZcK/3p0B3iksWt10cWJ4GE+IrjNSu+ZxLYR5Ld4vYNtIL7cLEUw1CbB334JBH9vT8mTo54kdGVB4ZOix5lkog3PJnoAF</X509Certificate></X509Data></KeyInfo></Signature></DataRoot>
     headers:
+      Authorization:
+      - "<AUTHORIZATION>"
       User-Agent:
       - SmartHR v0.0.1
       X-Egovapi-Softwareid:
@@ -61,7 +63,7 @@ http_interactions:
   recorded_at: Tue, 28 Apr 2015 02:45:09 GMT
 - request:
     method: post
-    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/authentication/certificate/append
+    uri: "<EGOV-API-END-POINT>shinsei/1/authentication/certificate/append"
     body:
       encoding: UTF-8
       string: |
@@ -94,6 +96,8 @@ http_interactions:
         cLsyXTQTJJifppZ45CiyxrqwjJp1I0EfNmWtGRj93/XAutaqJk73Sg==
         </AddX509Certificate></ApplData><Signature xmlns="http://www.w3.org/2000/09/xmldsig#" Id="20150428114509"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/><Reference URI="#ApplData"><Transforms><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/><DigestValue>kgjUnAYJybQK3bZLhmcKp1+tCZRbD1TTDsvoVGHxcsc=</DigestValue></Reference></SignedInfo><SignatureValue>NVs8RCd5Sr+TqO0vsVjUrLNXNXmD5YTWZegceiHEAjdej0XFyO7adelvlbjMfuryxyW0V5M+R0ri+903HCAmKGFfhOTy2BRTT5663NsQQi3ztTJsUlL5urCwsrEC1G1b2sZa5jV4NwE4YrcCL+Qrkomx2m5iqtXONm6BQQIDRX9dLZodO3xw1kJq/3grUzHdaS8/AZ44j5uQRbhxH1dRaMROAs1+wskh4C7yxnXoZWQm/29vmFBTdKRidDg2bbxlaohlYihcwGPPQFOpcchFbOXFwc4CadF7p8VEzV17B9HwQITuuS1BpsDNqmDubG3RYz9Av1aodrZbwVyx9PJVPw==</SignatureValue><KeyInfo><X509Data><X509Certificate>MIIEizCCA3OgAwIBAgIEVHXPfTANBgkqhkiG9w0BAQsFADAuMQswCQYDVQQGEwJKUDERMA8GA1UECgwIRGVtb01pbjExDDAKBgNVBAsMA0NBMTAeFw0xNDExMjgwNjAxMDJaFw0xOTExMjcxNDU5NTlaMEkxCzAJBgNVBAYTAkpQMREwDwYDVQQKDAhEZW1vTWluMTEMMAoGA1UECwwDQ0ExMRkwFwYDVQQDDBBJY2hpcm8gTWFkb2d1Y2hpMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyJBITKzWETx6waZ4cTuhM0rThzTM2tzIUH1Pbq6UbeUE/sjDAUGs5RxIWCugtORajYOnoBSCV3rJE/oMdo5NJkUU2xtI0t4+0GXWNVeomUGT4RG4O3/ctJvL/WkgH7d+WUb8CeUjSSVqQCPxdJehuIxZSgL0lqASovuHYfvblB8DsAMNlhqLZWDxdy8xp25o+N9+iiS0z5LIHF2D6xnnIxv59SY3A49GUMVeBopI5tIRkZG1ahCJTYEAvcJioEXPP8R9OBIOGiWGxXdoXIJmKsyxGZ5XsC+gx4J/zf4U8UJWfSkfpQREbInC+n9T9hFIBpDzrdDBT1BW4vZTQGtj4QIDAQABo4IBlDCCAZAwDgYDVR0PAQH/BAQDAgbAMBEGCWCGSAGG+EIBAQQEAwIGQDBOBgNVHRIERzBFpEMwQTELMAkGA1UEBhMCSlAxHjAcBgNVBAoMFeaooeaTrOawkemWk+iqjeiovOWxgDESMBAGA1UECwwJ77yj77yh77yRMB8GA1UdIAEB/wQVMBMwEQYPAoM4ho4xCAEBAAKMmyVkMGgGA1UdEQRhMF+kXTBbMQswCQYDVQQGEwJKUDEeMBwGA1UECgwV5qih5pOs5rCR6ZaT6KqN6Ki85bGAMRIwEAYDVQQLDAnvvKPvvKHvvJExGDAWBgNVBAMMD+eqk+WPo+OAgOS4gOmDjjBQBgNVHR8ESTBHMEWgQ6BBpD8wPTELMAkGA1UEBhMCSlAxETAPBgNVBAoMCERlbW9NaW4xMQwwCgYDVQQLDANDQTExDTALBgNVBAMMBENSTDEwHwYDVR0jBBgwFoAUFNPnlvRSx8XFOnRlLumW95h4I18wHQYDVR0OBBYEFHS3bhJrJpfwWCRG6XOCpfnv6YZWMA0GCSqGSIb3DQEBCwUAA4IBAQBGJqT07F70WP2xJoFyLZu3aB5g9FnT2zrd5gcB7VzIlB14B48tCSFRL+mXicacsnu8JX5vdah9TBeJ8FgzTNWgkr8QVKAEymA7KZOktlRlrLMaHqPKJVIKOZHQJxfrqznGLOetbALnslQwU9EVyjCMSnFH3Gdh2JqsQP9y9lRt+tPEehAv7eTZmQ+MYCQrSXX2VAbXUrHxEWdjWwlPzFHQrNlVOpaAlVu9CnNZoBgk09IMkTJ3p5TjOY9UZcK/3p0B3iksWt10cWJ4GE+IrjNSu+ZxLYR5Ld4vYNtIL7cLEUw1CbB334JBH9vT8mTo54kdGVB4ZOix5lkog3PJnoAF</X509Certificate></X509Data></KeyInfo></Signature></DataRoot>
     headers:
+      Authorization:
+      - "<AUTHORIZATION>"
       User-Agent:
       - SmartHR v0.0.1
       X-Egovapi-Softwareid:

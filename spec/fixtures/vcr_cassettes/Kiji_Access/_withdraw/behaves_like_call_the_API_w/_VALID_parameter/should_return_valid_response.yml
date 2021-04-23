@@ -2,11 +2,13 @@
 http_interactions:
 - request:
     method: get
-    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/access/apply;id=201504281051005638
+    uri: "<EGOV-API-END-POINT>shinsei/1/access/apply;id=201504281051005638"
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Authorization:
+      - "<AUTHORIZATION>"
       User-Agent:
       - SmartHR v0.0.1
       X-Egovapi-Softwareid:
@@ -86,7 +88,7 @@ http_interactions:
   recorded_at: Tue, 28 Apr 2015 02:45:02 GMT
 - request:
     method: post
-    uri: https://<EGOV-SOFTWARE-ID>:<EGOV-BASIC-AUTH-PASSWORD>@api2.kn.e-gov.go.jp/shinsei/1/access/withdrawal
+    uri: "<EGOV-API-END-POINT>shinsei/1/access/withdrawal"
     body:
       encoding: UTF-8
       string: |
@@ -189,6 +191,8 @@ http_interactions:
           </ApplData>
         </DataRoot>
     headers:
+      Authorization:
+      - "<AUTHORIZATION>"
       User-Agent:
       - SmartHR v0.0.1
       X-Egovapi-Softwareid:
