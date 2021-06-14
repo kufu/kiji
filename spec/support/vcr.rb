@@ -9,7 +9,7 @@ VCR.configure do |config|
   #   re_record_interval: 60 * 60 * 24 # 1 day
   # }
   config.filter_sensitive_data('<EGOV-SOFTWARE-ID>') { ENV['EGOV_SOFTWARE_ID'] }
-  config.filter_sensitive_data('<EGOV-API-END-POINT>') { ENV['EGOV_API_END_POINT'] }
+  config.filter_sensitive_data('<EGOV-API-END-POINT>') { ENV.fetch('EGOV_API_END_POINT', 'http://example.com/') }
   config.filter_sensitive_data('<EGOV-TEST-USER-ID>') { ENV['EGOV_TEST_USER_ID'] }
   config.filter_sensitive_data('<EGOV-BASIC-AUTH-ID>') { ENV['EGOV_BASIC_AUTH_ID'] }
   config.filter_sensitive_data('<EGOV-BASIC-AUTH-PASSWORD>') { ENV['EGOV_BASIC_AUTH_PASSWORD'] }
