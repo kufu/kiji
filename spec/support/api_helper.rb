@@ -1,7 +1,7 @@
 shared_examples_for 'call the API w/ VALID parameter' do
   it 'should return valid response' do
     method_name = RSpec.current_example.metadata[:example_group][:parent_example_group][:description]
-    File.write("tmp/responses/response_#{method_name}.txt", response.body)
+    File.write("#{@temp_dir}/response_#{method_name}.txt", response.body)
 
     xml = Nokogiri::XML(response.body)
 

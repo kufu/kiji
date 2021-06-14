@@ -3,6 +3,13 @@ require 'spec_helper'
 describe Kiji::Access do
   include_context 'setup client'
 
+  around do |example|
+    Dir.mktmpdir('rspec-') do |dir|
+      @temp_dir = dir
+      example.run
+    end
+  end
+
   describe '#apply', :vcr do
     let(:expected_status_code) { 202 }
     let(:response) do
@@ -38,21 +45,25 @@ describe Kiji::Access do
   end
 
   describe '#withdraw', :vcr do
+    let(:procedure_id) { '900A010000004000' }
     before do
+      create_zip(procedure_id, ['900A01000000400001_01.xml'])
+      create_zip('9990000000000008', ['torisageshinsei.xml'])
+
       send_number = '201504281051005638'
       if send_number.blank?
         # 取下げ申請可能な手続き（900A010000004000）の申請
-        file_name = '900A010000004000.zip'
-        file_data = Base64.encode64(File.new('tmp/900A010000004000.zip').read)
+        file_name = "#{procedure_id}.zip"
+        file_data = Base64.encode64(File.new("#{@temp_dir}/#{file_name}").read)
         apply_response = my_client_with_access_key.apply(file_name, file_data)
-        File.write('tmp/response_apply_900A010000004000.txt', apply_response.body)
+        File.write("#{@temp_dir}/response_apply_#{procedure_id}.txt", apply_response.body)
       else
         # 手続きの状態確認
         response1 = my_client_with_access_key.sended_applications_by_id(send_number)
-        File.write('tmp/response_sended_applications_by_id_900A010000004000.txt', response1.body)
+        File.write("#{@temp_dir}/response_sended_applications_by_id_#{procedure_id}.txt", response1.body)
         # xml = Nokogiri::XML(response1.body)
         # error_file = xml.at_xpath('//ErrorFile').text
-        # File.write('tmp/response_sended_applications_by_id_error_900A010000004000.html', Base64.decode64(error_file))
+        # File.write("#{@temp_dir}/response_sended_applications_by_id_error_#{procedure_id}.html", Base64.decode64(error_file))
       end
     end
 
@@ -61,7 +72,7 @@ describe Kiji::Access do
       let(:expected_status_code) { 202 }
       let(:response) do
         # 取下げ申請データを Base64 エンコード
-        file_data = Base64.encode64(File.new('tmp/9990000000000008.zip').read)
+        file_data = Base64.encode64(File.new("#{@temp_dir}/9990000000000008.zip").read)
         my_client_with_access_key.withdraw(arrive_id, file_data)
       end
       it_behaves_like 'call the API w/ VALID parameter'
@@ -82,9 +93,12 @@ describe Kiji::Access do
     let(:expected_status_code) { 202 }
     let(:response) do
       # 補正用データを Base64 化
-      file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
+      file_data = Base64.encode64(File.new("#{@temp_dir}/900A010200001000.zip").read)
       my_client_with_access_key.reamend(arrive_id, file_data)
     end
+
+    before { create_zip('900A010200001000', ['900A01020000100001_01.xml'], ['tenpu.txt']) }
+
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
@@ -96,9 +110,12 @@ describe Kiji::Access do
     let(:expected_status_code) { 202 }
     let(:response) do
       # 補正用データを Base64 化
-      file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
+      file_data = Base64.encode64(File.new("#{@temp_dir}/900A010200001000.zip").read)
       my_client_with_access_key.partamend(arrive_id, true, false, file_data)
     end
+
+    before { create_zip('900A010200001000', ['900A01020000100001_01.xml'], ['tenpu.txt']) }
+
     it_behaves_like 'call the API w/ VALID parameter'
   end
 
@@ -110,14 +127,16 @@ describe Kiji::Access do
     let(:expected_status_code) { 202 }
     let(:response) do
       # 補正用データを Base64 化
-      file_data = Base64.encode64(File.new('tmp/900A010200001000.zip').read)
+      file_data = Base64.encode64(File.new("#{@temp_dir}/900A010200001000.zip").read)
       my_client_with_access_key.amendapply(arrive_id, file_data)
     end
 
     # 状況の確認
     before do
+      create_zip('900A010200001000', ['900A01020000100001_01.xml'], ['tenpu.txt'])
+
       res = my_client_with_access_key.reference('9002015000248266')
-      File.write('tmp/response_reference_9002015000248266.txt', res.body)
+      File.write("#{@temp_dir}/response_reference_9002015000248266.txt", res.body)
     end
 
     it_behaves_like 'call the API w/ VALID parameter'
@@ -149,9 +168,9 @@ describe Kiji::Access do
       @arrive_id = xml.at_xpath('//ArriveID').text
       @file_data = xml.at_xpath('//FileData').text
       @file_name = 'officialdocument_for_verify.zip'
-      File.write("tmp/#{@file_name}", Base64.decode64(@file_data))
+      File.write("#{@temp_dir}/#{@file_name}", Base64.decode64(@file_data))
 
-      @sig_xml_file_name = Zip::File.open("tmp/#{@file_name}").find do |zip_file|
+      @sig_xml_file_name = Zip::File.open("#{@temp_dir}/#{@file_name}").find do |zip_file|
         zip_file.to_s.end_with? '.xml'
       end.to_s
     end
