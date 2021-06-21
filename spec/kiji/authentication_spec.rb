@@ -3,6 +3,13 @@ require 'spec_helper'
 describe Kiji::Authentication do
   include_context 'setup client'
 
+  around do |example|
+    Dir.mktmpdir('rspec-') do |dir|
+      @temp_dir = dir
+      example.run
+    end
+  end
+
   describe '#register', :vcr do
     let(:expected_status_code) { 201 }
     let(:response) do

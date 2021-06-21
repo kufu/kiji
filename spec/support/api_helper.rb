@@ -1,7 +1,7 @@
 shared_examples_for 'call the API w/ VALID parameter' do
   it 'should return valid response' do
     method_name = RSpec.current_example.metadata[:example_group][:parent_example_group][:description]
-    File.write("tmp/responses/response_#{method_name}.txt", response.body)
+    File.write("#{@temp_dir}/response_#{method_name}.txt", response.body)
 
     xml = Nokogiri::XML(response.body)
 
@@ -16,7 +16,7 @@ shared_context 'setup client' do
   let(:my_client) do
     Kiji::Client.new do |c|
       c.software_id = ENV['EGOV_SOFTWARE_ID']
-      c.api_end_point = ENV['EGOV_API_END_POINT']
+      c.api_end_point = ENV.fetch('EGOV_API_END_POINT', 'http://example.com/')
       c.basic_auth_id = ENV['EGOV_BASIC_AUTH_ID']
       c.basic_auth_password = ENV['EGOV_BASIC_AUTH_PASSWORD']
     end

@@ -16,7 +16,7 @@ def create_zip(procedure_id, app_file_names = [], tenpu_file_names = [])
   signer = zipper.sign(kousei_base_file_path, app_file_paths)
 
   # 出力
-  base_dir              = "tmp/ikkatsu/#{procedure_id}"
+  base_dir              = "#{@temp_dir}/ikkatsu/#{procedure_id}"
   application_dir       = "#{base_dir}/#{procedure_id}(1)"
 
   # 申請案件フォルダの作成
@@ -36,10 +36,17 @@ def create_zip(procedure_id, app_file_names = [], tenpu_file_names = [])
   end
 
   # zip に固める
-  zipper.write_zip(base_dir, "tmp/#{procedure_id}.zip")
+  zipper.write_zip(base_dir, "#{@temp_dir}/#{procedure_id}.zip")
 end
 
 describe Kiji::Zipper do
+  around do |example|
+    Dir.mktmpdir('rspec-') do |dir|
+      @temp_dir = dir
+      example.run
+    end
+  end
+
   describe 'create_zip' do
     # ＡＰＩテスト用手続（労働保険関係手続）（通）０００１／ＡＰＩテスト用手続（労働保険関係手続）（通）０００１
     it '900A010200001000' do
