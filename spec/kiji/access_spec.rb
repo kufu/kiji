@@ -51,7 +51,7 @@ describe Kiji::Access do
       create_zip('9990000000000008', ['torisageshinsei.xml'])
 
       send_number = '201504281051005638'
-      if send_number.blank?
+      unless send_number
         # 取下げ申請可能な手続き（900A010000004000）の申請
         file_name = "#{procedure_id}.zip"
         file_data = Base64.encode64(File.new("#{@temp_dir}/#{file_name}").read)
@@ -68,7 +68,7 @@ describe Kiji::Access do
     end
 
     arrive_id = '9002015000246820'
-    if arrive_id.present?
+    if arrive_id
       let(:expected_status_code) { 202 }
       let(:response) do
         # 取下げ申請データを Base64 エンコード

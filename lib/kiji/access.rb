@@ -1,6 +1,3 @@
-require 'active_support'
-require 'active_support/core_ext/object'
-
 module Kiji
   module Access
     def apply(file_name, file_data)
