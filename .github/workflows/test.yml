@@ -19,7 +19,7 @@ jobs:
         ruby-version:
           - 2.6
           - 2.7
-          - 3.0
+          - '3.0' # Quoted, to avoid YAML float 3.0 interplated to "3"
 
     steps:
     - uses: actions/checkout@v2
