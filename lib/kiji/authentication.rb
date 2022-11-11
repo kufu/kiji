@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Kiji
   module Authentication
     def register(user_id)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 def create_zip(procedure_id, app_file_names = [], tenpu_file_names = [])

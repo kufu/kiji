@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2012 Edgars Beigarts
 # Released under the MIT license
 # http://opensource.org/licenses/mit-license.php
@@ -14,8 +16,8 @@ module Kiji
     attr_reader :cert
     attr_writer :security_node, :signature_node, :security_token_id
 
-    WSU_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'.freeze
-    WSSE_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'.freeze
+    WSU_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
+    WSSE_NAMESPACE = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
 
     def initialize(document)
       # self.document = Nokogiri::XML(document.to_s, &:noblanks)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'vcr'
 
 VCR.configure do |config|
@@ -14,12 +16,12 @@ VCR.configure do |config|
   config.filter_sensitive_data('<EGOV-BASIC-AUTH-ID>') { ENV['EGOV_BASIC_AUTH_ID'] }
   config.filter_sensitive_data('<EGOV-BASIC-AUTH-PASSWORD>') { ENV['EGOV_BASIC_AUTH_PASSWORD'] }
   config.filter_sensitive_data('<X-EGOVAPI-ACCESSKEY>') do |interaction|
-    interaction.request.headers['X-Egovapi-Accesskey'].first if interaction.request.headers['X-Egovapi-Accesskey']
+    interaction.request.headers['X-Egovapi-Accesskey']&.first
   end
   config.filter_sensitive_data('<AUTHORIZATION>') do |interaction|
-    interaction.request.headers['Authorization'].first if interaction.request.headers['Authorization']
+    interaction.request.headers['Authorization']&.first
   end
   config.filter_sensitive_data('<SET-COOKIE>') do |interaction|
-    interaction.response.headers['Set-Cookie'].first if interaction.response.headers['Set-Cookie']
+    interaction.response.headers['Set-Cookie']&.first
   end
 end
