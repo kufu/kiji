@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    kiji (0.2.2)
+    kiji (0.3.0)
       faraday (< 3)
       nokogiri
 
