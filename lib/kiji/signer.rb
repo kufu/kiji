@@ -304,15 +304,13 @@ module Kiji
     protected
 
     def encode_ja(str)
-      ret = ''
-      str.split(//).each do |c|
+      str.split(//).reduce('') do |ret, c|
         if /[!-~]/ =~ c
-          ret.concat(c)
+          ret + c
         else
-          ret.concat(CGI.escape(c))
+          ret + CGI.escape(c)
         end
       end
-      ret
     end
 
     # Reset digest algorithm for signature creation and signature algorithm identifier
