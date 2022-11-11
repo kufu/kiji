@@ -17,7 +17,6 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version:
-          - 2.6
           - 2.7
           - '3.0' # Quoted, to avoid YAML float 3.0 interplated to "3"
           - 3.1
