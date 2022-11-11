@@ -21,9 +21,14 @@ jobs:
           - 2.7
           - '3.0' # Quoted, to avoid YAML float 3.0 interplated to "3"
           - 3.1
-
+        gemfile:
+          - faraday_0
+          - faraday_1
+          - faraday_2
+    env:
+      BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}.gemfile
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}

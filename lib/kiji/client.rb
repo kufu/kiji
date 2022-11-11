@@ -24,10 +24,18 @@ module Kiji
       Faraday.new(url: @api_end_point) do |c|
         # c.response :logger
         c.adapter Faraday.default_adapter
-        c.basic_auth(@basic_auth_id, @basic_auth_password) unless @basic_auth_id.nil?
+        c.request(*authentication_middleware_keys, @basic_auth_id, @basic_auth_password) unless @basic_auth_id.nil?
         c.headers['User-Agent'] = 'SmartHR v0.0.1'
         c.headers['x-eGovAPI-SoftwareID'] = software_id
         c.headers['x-eGovAPI-AccessKey'] = access_key unless access_key.nil?
+      end
+    end
+
+    def authentication_middleware_keys
+      if Gem::Version.new(Faraday::VERSION) >= Gem::Version.new('2.0.0')
+        %i[authorization basic]
+      else
+        [:basic_auth]
       end
     end
 
