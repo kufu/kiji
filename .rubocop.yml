@@ -8,6 +8,8 @@ Style/AsciiComments:
 
 Metrics/BlockLength:
   Max: 150
+  Exclude:
+    - spec/**/*
 
 Metrics/ModuleLength:
   Max: 160

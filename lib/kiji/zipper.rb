@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Kiji
   class Zipper
     attr_accessor :cert, :private_key
@@ -11,10 +13,10 @@ module Kiji
       raise 'Please specify cert & private_key' if @cert.nil? || @private_key.nil?
 
       content = begin
-                  File.read(kousei_base_file_path_or_content)
-                rescue Errno::ENOENT, Errno::ENAMETOOLONG
-                  kousei_base_file_path_or_content
-                end
+        File.read(kousei_base_file_path_or_content)
+      rescue Errno::ENOENT, Errno::ENAMETOOLONG
+        kousei_base_file_path_or_content
+      end
 
       kousei_data = Nokogiri::XML(content)
       kousei_doc = kousei_data.to_xml(save_with: 0)

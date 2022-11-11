@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Copyright (c) 2012 Edgars Beigarts
 # Released under the MIT license
 # http://opensource.org/licenses/mit-license.php
@@ -10,13 +12,13 @@ module Kiji
     sha1: {
       name: 'SHA1',
       id: 'http://www.w3.org/2000/09/xmldsig#sha1',
-      digester: -> { OpenSSL::Digest::SHA1.new }
+      digester: -> { OpenSSL::Digest.new('SHA1') }
     },
     # SHA 256
     sha256: {
       name: 'SHA256',
       id: 'http://www.w3.org/2001/04/xmlenc#sha256',
-      digester: -> { OpenSSL::Digest::SHA256.new }
+      digester: -> { OpenSSL::Digest.new('SHA256') }
     },
     # GOST R 34-11 94
     gostr3411: {

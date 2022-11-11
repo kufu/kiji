@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Kiji
   module Access
     def apply(file_name, file_data)

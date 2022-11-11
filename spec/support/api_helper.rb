@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'call the API w/ VALID parameter' do
   it 'should return valid response' do
     method_name = RSpec.current_example.metadata[:example_group][:parent_example_group][:description]

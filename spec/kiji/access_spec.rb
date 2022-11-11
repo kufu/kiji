@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Kiji::Access do
@@ -51,19 +53,19 @@ describe Kiji::Access do
       create_zip('9990000000000008', ['torisageshinsei.xml'])
 
       send_number = '201504281051005638'
-      unless send_number
-        # 取下げ申請可能な手続き（900A010000004000）の申請
-        file_name = "#{procedure_id}.zip"
-        file_data = Base64.encode64(File.new("#{@temp_dir}/#{file_name}").read)
-        apply_response = my_client_with_access_key.apply(file_name, file_data)
-        File.write("#{@temp_dir}/response_apply_#{procedure_id}.txt", apply_response.body)
-      else
+      if send_number
         # 手続きの状態確認
         response1 = my_client_with_access_key.sended_applications_by_id(send_number)
         File.write("#{@temp_dir}/response_sended_applications_by_id_#{procedure_id}.txt", response1.body)
         # xml = Nokogiri::XML(response1.body)
         # error_file = xml.at_xpath('//ErrorFile').text
         # File.write("#{@temp_dir}/response_sended_applications_by_id_error_#{procedure_id}.html", Base64.decode64(error_file))
+      else
+        # 取下げ申請可能な手続き（900A010000004000）の申請
+        file_name = "#{procedure_id}.zip"
+        file_data = Base64.encode64(File.new("#{@temp_dir}/#{file_name}").read)
+        apply_response = my_client_with_access_key.apply(file_name, file_data)
+        File.write("#{@temp_dir}/response_apply_#{procedure_id}.txt", apply_response.body)
       end
     end
 
