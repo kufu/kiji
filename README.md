@@ -190,7 +190,7 @@ Everyone interacting in the kiji project’s codebases, issue trackers, chat roo
 
 ## Copyright
 
-Copyright (c) 2015 Kensuke NAITO and SmartHR, Inc.
+Copyright (c) 2023 SmartHR, Inc.
 ライセンスはこちら: [kiji/LICENSE.md](https://github.com/kufu/kiji/blob/master/LICENSE.md)
 
 
