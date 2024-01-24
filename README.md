@@ -1,3 +1,15 @@
+# Kiji is EOL.
+e-Govの外部連携APIは2024年01月31日 18時をもってサポートが終了します。  
+APIのサポート終了に伴い、kijiの更新は今後行われません。
+
+引き続きe-GovのAPIを利用される方は、電子申請APIへの移行をお願いします。
+
+これまで、kijiをご利用いただきありがとうございました。
+
+[【重要】e-Govの外部連携APIのサポート終了に伴う電子申請APIへの移行のお願い | e-Gov Developer](https://developer.e-gov.go.jp/contents/news/2023-11-20t1115310900_698.html)
+
+----
+
 ![kiji logo](https://raw.githubusercontent.com/wiki/kufu/kiji/images/logo_kiji.png)
 
 by [SmartHR, Inc.](https://smarthr.co.jp/)
